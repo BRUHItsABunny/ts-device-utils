@@ -2,9 +2,13 @@
   "name": "ts-device-utils",
   "version": "1.0.0",
   "description": "Device utilities for TypeScript, comes with data structures and helper functions",
-  "main": "index.js",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "/dist"
+  ],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \\\"Error: no src/test specified\\\" && exit 1"
   },
   "repository": {
     "type": "git",
