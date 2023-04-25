@@ -1,0 +1,27 @@
+{
+  "name": "ts-device-utils",
+  "version": "1.0.0",
+  "description": "Device utilities for TypeScript, comes with data structures and helper functions",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BRUHItsABunny/ts-device-utils.git"
+  },
+  "author": "BRUHItsABunny",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/BRUHItsABunny/ts-device-utils/issues"
+  },
+  "homepage": "https://github.com/BRUHItsABunny/ts-device-utils#readme",
+  "devDependencies": {
+    "@types/jest": "^29.5.1",
+    "ts-jest": "^29.1.0",
+    "typescript": "^5.0.4"
+  },
+  "dependencies": {
+    "protobufjs": "^7.2.3"
+  }
+}
