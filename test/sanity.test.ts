@@ -1,4 +1,5 @@
 import {Browser, Browser_TLSFingerprint_ProtocolVersion} from "../device_utils";
+import {formatTLSFingerprint} from "../utils_browser";
 
 test('Play with browser object', () => {
     const browser: Browser = {
@@ -24,5 +25,9 @@ test('Play with browser object', () => {
     };
     console.log(Browser.toJSON(browser));
     const browserBytes: Uint8Array = Browser.encode(browser).finish();
-    console.log(Buffer.from(browserBytes).toString('base64')) // This can now be decoded in any other language!
+    console.log(Buffer.from(browserBytes).toString('base64')); // This can now be decoded in any other language!
+    const expectedResult =  '771,4865-4866-4867-49195-49199-49196-49200-52393-52392-49171-49172-156-157-47-53,27-16-35-11-17513-43-13-5-23-0-18-51-10-65281-45-21,29-23-24,0';
+    const fmtResult = formatTLSFingerprint(browser.tlsFingerprint, true);
+    console.log(fmtResult);
+    expect(fmtResult).toBe(expectedResult);
 })
