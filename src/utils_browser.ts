@@ -1,4 +1,4 @@
-import {Browser_TLSFingerprint, Browser_TLSFingerprint_Extensions} from "./device_utils";
+import {Browser, Browser_TLSFingerprint, Browser_TLSFingerprint_Extensions} from "./device_utils";
 
 export function formatTLSFingerprint(fingerprint: Browser_TLSFingerprint | undefined, strict?: boolean): string {
     if (fingerprint == undefined) {
@@ -48,4 +48,37 @@ export function formatTLSFingerprint(fingerprint: Browser_TLSFingerprint | undef
     result[4] = ellipticCurvePointFormats.join("-");
 
     return result.join(",")
+}
+
+export function getBrowserHeaders(browser: Browser, productOverride?: string, platform?: string, isMobile?: boolean): { [key: string]: string}  {
+    if (typeof platform === "undefined") {
+        platform = "Windows"
+    }
+    if (typeof isMobile === "undefined") {
+        isMobile = false
+    }
+
+    const uaProductStart = browser.userAgent.indexOf("(");
+    const uaProductEnd = browser.userAgent.indexOf(")");
+    const uaStart = browser.userAgent.substring(0, uaProductStart + 1);
+    const uaEnd = browser.userAgent.substring(uaProductEnd, browser.userAgent.length);
+    if (typeof productOverride === 'undefined') {
+        productOverride = browser.userAgent.substring(uaProductStart + 1, uaProductEnd);
+    }
+
+    const result: { [key: string]: string} = {
+        "user-agent": uaStart + productOverride + uaEnd
+    }
+
+    if(browser.brandHeader.length > 0) {
+        result["sec-ch-ua"] = browser.brandHeader
+        result["sec-ch-ua-platform"] = platform
+        result["sec-ch-ua-mobile"] = "?0"
+        if(isMobile) {
+            result["sec-ch-ua-mobile"] = "?1"
+        }
+
+    }
+
+    return result;
 }

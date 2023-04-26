@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.formatTLSFingerprint = void 0;
+exports.getBrowserHeaders = exports.formatTLSFingerprint = void 0;
 function formatTLSFingerprint(fingerprint, strict) {
     if (fingerprint == undefined) {
         return "";
@@ -44,3 +44,31 @@ function formatTLSFingerprint(fingerprint, strict) {
     return result.join(",");
 }
 exports.formatTLSFingerprint = formatTLSFingerprint;
+function getBrowserHeaders(browser, productOverride, platform, isMobile) {
+    if (typeof platform === "undefined") {
+        platform = "Windows";
+    }
+    if (typeof isMobile === "undefined") {
+        isMobile = false;
+    }
+    const uaProductStart = browser.userAgent.indexOf("(");
+    const uaProductEnd = browser.userAgent.indexOf(")");
+    const uaStart = browser.userAgent.substring(0, uaProductStart + 1);
+    const uaEnd = browser.userAgent.substring(uaProductEnd, browser.userAgent.length);
+    if (typeof productOverride === 'undefined') {
+        productOverride = browser.userAgent.substring(uaProductStart + 1, uaProductEnd);
+    }
+    const result = {
+        "user-agent": uaStart + productOverride + uaEnd
+    };
+    if (browser.brandHeader.length > 0) {
+        result["sec-ch-ua"] = browser.brandHeader;
+        result["sec-ch-ua-platform"] = platform;
+        result["sec-ch-ua-mobile"] = "?0";
+        if (isMobile) {
+            result["sec-ch-ua-mobile"] = "?1";
+        }
+    }
+    return result;
+}
+exports.getBrowserHeaders = getBrowserHeaders;
