@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getBrowserHeaders = exports.formatTLSFingerprint = void 0;
+exports.setSecFetchHeaders = exports.getBrowserHeaders = exports.formatTLSFingerprint = void 0;
 function formatTLSFingerprint(fingerprint, strict) {
     if (fingerprint == undefined) {
         return "";
@@ -72,3 +72,21 @@ function getBrowserHeaders(browser, productOverride, platform, isMobile) {
     return result;
 }
 exports.getBrowserHeaders = getBrowserHeaders;
+function setSecFetchHeaders(headers, site, mode, dest) {
+    // Guarantee default values for optional parameters
+    if (typeof site === 'undefined') {
+        site = 'same-origin';
+    }
+    if (typeof mode === 'undefined') {
+        mode = 'cors';
+    }
+    if (typeof dest === 'undefined') {
+        dest = 'empty';
+    }
+    // set values in headers
+    headers['sec-fetch-site'] = site;
+    headers['sec-fetch-mode'] = mode;
+    headers['sec-fetch-dest'] = dest;
+    return headers;
+}
+exports.setSecFetchHeaders = setSecFetchHeaders;

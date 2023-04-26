@@ -82,3 +82,22 @@ export function getBrowserHeaders(browser: Browser, productOverride?: string, pl
 
     return result;
 }
+
+export function setSecFetchHeaders(headers: { [key: string]: string | string[] }, site?: string, mode?: string, dest?: string,): { [key: string]: string | string[] } {
+    // Guarantee default values for optional parameters
+    if (typeof site === 'undefined') {
+        site = 'same-origin';
+    }
+    if (typeof mode === 'undefined') {
+        mode = 'cors';
+    }
+    if (typeof dest === 'undefined') {
+        dest = 'empty';
+    }
+
+    // set values in headers
+    headers['sec-fetch-site'] = site;
+    headers['sec-fetch-mode'] = mode;
+    headers['sec-fetch-dest'] = dest;
+    return headers;
+}

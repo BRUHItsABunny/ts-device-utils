@@ -3,3 +3,8 @@ export declare function formatTLSFingerprint(fingerprint: Browser_TLSFingerprint
 export declare function getBrowserHeaders(browser: Browser, productOverride?: string, platform?: string, isMobile?: boolean): {
     [key: string]: string;
 };
+export declare function setSecFetchHeaders(headers: {
+    [key: string]: string | string[];
+}, site?: string, mode?: string, dest?: string): {
+    [key: string]: string | string[];
+};
