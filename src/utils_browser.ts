@@ -50,7 +50,7 @@ export function formatTLSFingerprint(fingerprint: Browser_TLSFingerprint | undef
     return result.join(",")
 }
 
-export function getBrowserHeaders(browser: Browser, productOverride?: string, platform?: string, isMobile?: boolean): { [key: string]: string}  {
+export function getBrowserHeaders(browser: Browser, productOverride?: string, platform?: string, isMobile?: boolean): { [key: string]: string | string[]}  {
     if (typeof platform === "undefined") {
         platform = "Windows"
     }
