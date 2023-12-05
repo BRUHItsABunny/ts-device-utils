@@ -1,5 +1,5 @@
 {
-  "name": "ts-device-utils",
+  "name": "@bruhitsabunny/ts-device-utils",
   "version": "1.0.0",
   "description": "Device utilities for TypeScript, comes with data structures and helper functions",
   "main": "dist/index.js",
@@ -8,7 +8,8 @@
     "/dist"
   ],
   "scripts": {
-    "test": "echo \\\"Error: no src/test specified\\\" && exit 1"
+    "build": "npx tsc",
+    "test": "jest"
   },
   "repository": {
     "type": "git",

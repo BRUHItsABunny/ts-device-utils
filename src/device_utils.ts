@@ -9,7 +9,43 @@ export interface Browser {
   name: string;
   userAgent: string;
   brandHeader: string;
-  tlsFingerprint: Browser_TLSFingerprint | undefined;
+  tlsFingerprint:
+    | Browser_TLSFingerprint
+    | undefined;
+  /** src: https://kaliiiiiiiiii.github.io/driverless-fp-collector/ */
+  appCodeName: string;
+  appName: string;
+  appVersion: string;
+  cookieEnabled: boolean;
+  deviceMemory: number;
+  doNotTrack: number;
+  hardwareConcurrency: number;
+  language: string;
+  languages: string[];
+  maxTouchPoints: number;
+  pdfViewerEnabled: boolean;
+  platform: string;
+  product: string;
+  productSub: string;
+  vendor: string;
+  vendorSub: string;
+  webdriver: boolean;
+  devicePixelRatio: number;
+  innerWidth: number;
+  innerHeight: number;
+  outerWidth: number;
+  outerHeight: number;
+  screen: Browser_BrowserScreen | undefined;
+  webGPU: Browser_WebGPU | undefined;
+  speechSynthesis: Browser_SpeechSynthesis[];
+  availableFonts: Browser_BrowserCollection | undefined;
+  navigator: Browser_BrowserCollection | undefined;
+  window: Browser_BrowserCollection | undefined;
+  document: Browser_BrowserCollection | undefined;
+  documentElement: Browser_BrowserCollection | undefined;
+  audioTypes: Browser_BrowserCollection | undefined;
+  videoTypes: Browser_BrowserCollection | undefined;
+  css: Browser_BrowserCollection | undefined;
 }
 
 export interface Browser_TLSFingerprint {
@@ -2995,6 +3031,91 @@ export function browser_TLSFingerprint_EllipticCurvePointFormatToJSON(
   }
 }
 
+export interface Browser_BrowserCollection {
+  hash: string;
+  listData: string[];
+  mapData: { [key: string]: string };
+}
+
+export interface Browser_BrowserCollection_MapDataEntry {
+  key: string;
+  value: string;
+}
+
+export interface Browser_BrowserScreen {
+  availWidth: number;
+  availHeight: number;
+  width: number;
+  height: number;
+  colorDepth: number;
+  pixelDepth: number;
+  availLeft: number;
+  availTop: number;
+  isExtended: boolean;
+  orientation: Browser_BrowserScreen_Orientation | undefined;
+}
+
+export interface Browser_BrowserScreen_Orientation {
+  angle: number;
+  type: string;
+}
+
+export interface Browser_WebGPU {
+  features: Browser_WebGPU_Features | undefined;
+  limits: Browser_WebGPU_Limits | undefined;
+  isFallbackAdapter: boolean;
+  vendor: string;
+  architecture: string;
+  device: string;
+  description: string;
+}
+
+export interface Browser_WebGPU_Features {
+  size: number;
+}
+
+export interface Browser_WebGPU_Limits {
+  maxTextureDimension1D: number;
+  maxTextureDimension2D: number;
+  maxTextureDimension3D: number;
+  maxTextureArrayLayers: number;
+  maxBindGroups: number;
+  maxBindingsPerBindGroup: number;
+  maxDynamicUniformBuffersPerPipelineLayout: number;
+  maxDynamicStorageBuffersPerPipelineLayout: number;
+  maxSampledTexturesPerShaderStage: number;
+  maxSamplersPerShaderStage: number;
+  maxStorageBuffersPerShaderStage: number;
+  maxStorageTexturesPerShaderStage: number;
+  maxUniformBuffersPerShaderStage: number;
+  maxUniformBufferBindingSize: number;
+  maxStorageBufferBindingSize: number;
+  minUniformBufferOffsetAlignment: number;
+  minStorageBufferOffsetAlignment: number;
+  maxVertexBuffers: number;
+  maxBufferSize: number;
+  maxVertexAttributes: number;
+  maxVertexBufferArrayStride: number;
+  maxInterStageShaderComponents: number;
+  maxInterStageShaderVariables: number;
+  maxColorAttachments: number;
+  maxColorAttachmentBytesPerSample: number;
+  maxComputeWorkgroupStorageSize: number;
+  maxComputeInvocationsPerWorkgroup: number;
+  maxComputeWorkgroupSizeX: number;
+  maxComputeWorkgroupSizeY: number;
+  maxComputeWorkgroupSizeZ: number;
+  maxComputeWorkgroupsPerDimension: number;
+}
+
+export interface Browser_SpeechSynthesis {
+  voiceURI: string;
+  name: string;
+  lang: string;
+  localService: boolean;
+  default: boolean;
+}
+
 /** Potentially common for more than just Android */
 export interface GPSLocation {
   longitude: number;
@@ -3524,7 +3645,46 @@ export interface AndroidDevice_DeviceSoftware_AppMetaDataEntry {
 }
 
 function createBaseBrowser(): Browser {
-  return { version: "", name: "", userAgent: "", brandHeader: "", tlsFingerprint: undefined };
+  return {
+    version: "",
+    name: "",
+    userAgent: "",
+    brandHeader: "",
+    tlsFingerprint: undefined,
+    appCodeName: "",
+    appName: "",
+    appVersion: "",
+    cookieEnabled: false,
+    deviceMemory: 0,
+    doNotTrack: 0,
+    hardwareConcurrency: 0,
+    language: "",
+    languages: [],
+    maxTouchPoints: 0,
+    pdfViewerEnabled: false,
+    platform: "",
+    product: "",
+    productSub: "",
+    vendor: "",
+    vendorSub: "",
+    webdriver: false,
+    devicePixelRatio: 0,
+    innerWidth: 0,
+    innerHeight: 0,
+    outerWidth: 0,
+    outerHeight: 0,
+    screen: undefined,
+    webGPU: undefined,
+    speechSynthesis: [],
+    availableFonts: undefined,
+    navigator: undefined,
+    window: undefined,
+    document: undefined,
+    documentElement: undefined,
+    audioTypes: undefined,
+    videoTypes: undefined,
+    css: undefined,
+  };
 }
 
 export const Browser = {
@@ -3543,6 +3703,105 @@ export const Browser = {
     }
     if (message.tlsFingerprint !== undefined) {
       Browser_TLSFingerprint.encode(message.tlsFingerprint, writer.uint32(42).fork()).ldelim();
+    }
+    if (message.appCodeName !== "") {
+      writer.uint32(162).string(message.appCodeName);
+    }
+    if (message.appName !== "") {
+      writer.uint32(170).string(message.appName);
+    }
+    if (message.appVersion !== "") {
+      writer.uint32(178).string(message.appVersion);
+    }
+    if (message.cookieEnabled === true) {
+      writer.uint32(184).bool(message.cookieEnabled);
+    }
+    if (message.deviceMemory !== 0) {
+      writer.uint32(192).int32(message.deviceMemory);
+    }
+    if (message.doNotTrack !== 0) {
+      writer.uint32(200).int32(message.doNotTrack);
+    }
+    if (message.hardwareConcurrency !== 0) {
+      writer.uint32(208).int32(message.hardwareConcurrency);
+    }
+    if (message.language !== "") {
+      writer.uint32(218).string(message.language);
+    }
+    for (const v of message.languages) {
+      writer.uint32(226).string(v!);
+    }
+    if (message.maxTouchPoints !== 0) {
+      writer.uint32(232).int32(message.maxTouchPoints);
+    }
+    if (message.pdfViewerEnabled === true) {
+      writer.uint32(240).bool(message.pdfViewerEnabled);
+    }
+    if (message.platform !== "") {
+      writer.uint32(250).string(message.platform);
+    }
+    if (message.product !== "") {
+      writer.uint32(258).string(message.product);
+    }
+    if (message.productSub !== "") {
+      writer.uint32(266).string(message.productSub);
+    }
+    if (message.vendor !== "") {
+      writer.uint32(274).string(message.vendor);
+    }
+    if (message.vendorSub !== "") {
+      writer.uint32(282).string(message.vendorSub);
+    }
+    if (message.webdriver === true) {
+      writer.uint32(288).bool(message.webdriver);
+    }
+    if (message.devicePixelRatio !== 0) {
+      writer.uint32(297).double(message.devicePixelRatio);
+    }
+    if (message.innerWidth !== 0) {
+      writer.uint32(304).int32(message.innerWidth);
+    }
+    if (message.innerHeight !== 0) {
+      writer.uint32(312).int32(message.innerHeight);
+    }
+    if (message.outerWidth !== 0) {
+      writer.uint32(320).int32(message.outerWidth);
+    }
+    if (message.outerHeight !== 0) {
+      writer.uint32(328).int32(message.outerHeight);
+    }
+    if (message.screen !== undefined) {
+      Browser_BrowserScreen.encode(message.screen, writer.uint32(338).fork()).ldelim();
+    }
+    if (message.webGPU !== undefined) {
+      Browser_WebGPU.encode(message.webGPU, writer.uint32(346).fork()).ldelim();
+    }
+    for (const v of message.speechSynthesis) {
+      Browser_SpeechSynthesis.encode(v!, writer.uint32(354).fork()).ldelim();
+    }
+    if (message.availableFonts !== undefined) {
+      Browser_BrowserCollection.encode(message.availableFonts, writer.uint32(802).fork()).ldelim();
+    }
+    if (message.navigator !== undefined) {
+      Browser_BrowserCollection.encode(message.navigator, writer.uint32(810).fork()).ldelim();
+    }
+    if (message.window !== undefined) {
+      Browser_BrowserCollection.encode(message.window, writer.uint32(818).fork()).ldelim();
+    }
+    if (message.document !== undefined) {
+      Browser_BrowserCollection.encode(message.document, writer.uint32(826).fork()).ldelim();
+    }
+    if (message.documentElement !== undefined) {
+      Browser_BrowserCollection.encode(message.documentElement, writer.uint32(834).fork()).ldelim();
+    }
+    if (message.audioTypes !== undefined) {
+      Browser_BrowserCollection.encode(message.audioTypes, writer.uint32(842).fork()).ldelim();
+    }
+    if (message.videoTypes !== undefined) {
+      Browser_BrowserCollection.encode(message.videoTypes, writer.uint32(850).fork()).ldelim();
+    }
+    if (message.css !== undefined) {
+      Browser_BrowserCollection.encode(message.css, writer.uint32(858).fork()).ldelim();
     }
     return writer;
   },
@@ -3589,6 +3848,237 @@ export const Browser = {
 
           message.tlsFingerprint = Browser_TLSFingerprint.decode(reader, reader.uint32());
           continue;
+        case 20:
+          if (tag != 162) {
+            break;
+          }
+
+          message.appCodeName = reader.string();
+          continue;
+        case 21:
+          if (tag != 170) {
+            break;
+          }
+
+          message.appName = reader.string();
+          continue;
+        case 22:
+          if (tag != 178) {
+            break;
+          }
+
+          message.appVersion = reader.string();
+          continue;
+        case 23:
+          if (tag != 184) {
+            break;
+          }
+
+          message.cookieEnabled = reader.bool();
+          continue;
+        case 24:
+          if (tag != 192) {
+            break;
+          }
+
+          message.deviceMemory = reader.int32();
+          continue;
+        case 25:
+          if (tag != 200) {
+            break;
+          }
+
+          message.doNotTrack = reader.int32();
+          continue;
+        case 26:
+          if (tag != 208) {
+            break;
+          }
+
+          message.hardwareConcurrency = reader.int32();
+          continue;
+        case 27:
+          if (tag != 218) {
+            break;
+          }
+
+          message.language = reader.string();
+          continue;
+        case 28:
+          if (tag != 226) {
+            break;
+          }
+
+          message.languages.push(reader.string());
+          continue;
+        case 29:
+          if (tag != 232) {
+            break;
+          }
+
+          message.maxTouchPoints = reader.int32();
+          continue;
+        case 30:
+          if (tag != 240) {
+            break;
+          }
+
+          message.pdfViewerEnabled = reader.bool();
+          continue;
+        case 31:
+          if (tag != 250) {
+            break;
+          }
+
+          message.platform = reader.string();
+          continue;
+        case 32:
+          if (tag != 258) {
+            break;
+          }
+
+          message.product = reader.string();
+          continue;
+        case 33:
+          if (tag != 266) {
+            break;
+          }
+
+          message.productSub = reader.string();
+          continue;
+        case 34:
+          if (tag != 274) {
+            break;
+          }
+
+          message.vendor = reader.string();
+          continue;
+        case 35:
+          if (tag != 282) {
+            break;
+          }
+
+          message.vendorSub = reader.string();
+          continue;
+        case 36:
+          if (tag != 288) {
+            break;
+          }
+
+          message.webdriver = reader.bool();
+          continue;
+        case 37:
+          if (tag != 297) {
+            break;
+          }
+
+          message.devicePixelRatio = reader.double();
+          continue;
+        case 38:
+          if (tag != 304) {
+            break;
+          }
+
+          message.innerWidth = reader.int32();
+          continue;
+        case 39:
+          if (tag != 312) {
+            break;
+          }
+
+          message.innerHeight = reader.int32();
+          continue;
+        case 40:
+          if (tag != 320) {
+            break;
+          }
+
+          message.outerWidth = reader.int32();
+          continue;
+        case 41:
+          if (tag != 328) {
+            break;
+          }
+
+          message.outerHeight = reader.int32();
+          continue;
+        case 42:
+          if (tag != 338) {
+            break;
+          }
+
+          message.screen = Browser_BrowserScreen.decode(reader, reader.uint32());
+          continue;
+        case 43:
+          if (tag != 346) {
+            break;
+          }
+
+          message.webGPU = Browser_WebGPU.decode(reader, reader.uint32());
+          continue;
+        case 44:
+          if (tag != 354) {
+            break;
+          }
+
+          message.speechSynthesis.push(Browser_SpeechSynthesis.decode(reader, reader.uint32()));
+          continue;
+        case 100:
+          if (tag != 802) {
+            break;
+          }
+
+          message.availableFonts = Browser_BrowserCollection.decode(reader, reader.uint32());
+          continue;
+        case 101:
+          if (tag != 810) {
+            break;
+          }
+
+          message.navigator = Browser_BrowserCollection.decode(reader, reader.uint32());
+          continue;
+        case 102:
+          if (tag != 818) {
+            break;
+          }
+
+          message.window = Browser_BrowserCollection.decode(reader, reader.uint32());
+          continue;
+        case 103:
+          if (tag != 826) {
+            break;
+          }
+
+          message.document = Browser_BrowserCollection.decode(reader, reader.uint32());
+          continue;
+        case 104:
+          if (tag != 834) {
+            break;
+          }
+
+          message.documentElement = Browser_BrowserCollection.decode(reader, reader.uint32());
+          continue;
+        case 105:
+          if (tag != 842) {
+            break;
+          }
+
+          message.audioTypes = Browser_BrowserCollection.decode(reader, reader.uint32());
+          continue;
+        case 106:
+          if (tag != 850) {
+            break;
+          }
+
+          message.videoTypes = Browser_BrowserCollection.decode(reader, reader.uint32());
+          continue;
+        case 107:
+          if (tag != 858) {
+            break;
+          }
+
+          message.css = Browser_BrowserCollection.decode(reader, reader.uint32());
+          continue;
       }
       if ((tag & 7) == 4 || tag == 0) {
         break;
@@ -3605,6 +4095,45 @@ export const Browser = {
       userAgent: isSet(object.userAgent) ? String(object.userAgent) : "",
       brandHeader: isSet(object.brandHeader) ? String(object.brandHeader) : "",
       tlsFingerprint: isSet(object.tlsFingerprint) ? Browser_TLSFingerprint.fromJSON(object.tlsFingerprint) : undefined,
+      appCodeName: isSet(object.appCodeName) ? String(object.appCodeName) : "",
+      appName: isSet(object.appName) ? String(object.appName) : "",
+      appVersion: isSet(object.appVersion) ? String(object.appVersion) : "",
+      cookieEnabled: isSet(object.cookieEnabled) ? Boolean(object.cookieEnabled) : false,
+      deviceMemory: isSet(object.deviceMemory) ? Number(object.deviceMemory) : 0,
+      doNotTrack: isSet(object.doNotTrack) ? Number(object.doNotTrack) : 0,
+      hardwareConcurrency: isSet(object.hardwareConcurrency) ? Number(object.hardwareConcurrency) : 0,
+      language: isSet(object.language) ? String(object.language) : "",
+      languages: Array.isArray(object?.languages) ? object.languages.map((e: any) => String(e)) : [],
+      maxTouchPoints: isSet(object.maxTouchPoints) ? Number(object.maxTouchPoints) : 0,
+      pdfViewerEnabled: isSet(object.pdfViewerEnabled) ? Boolean(object.pdfViewerEnabled) : false,
+      platform: isSet(object.platform) ? String(object.platform) : "",
+      product: isSet(object.product) ? String(object.product) : "",
+      productSub: isSet(object.productSub) ? String(object.productSub) : "",
+      vendor: isSet(object.vendor) ? String(object.vendor) : "",
+      vendorSub: isSet(object.vendorSub) ? String(object.vendorSub) : "",
+      webdriver: isSet(object.webdriver) ? Boolean(object.webdriver) : false,
+      devicePixelRatio: isSet(object.devicePixelRatio) ? Number(object.devicePixelRatio) : 0,
+      innerWidth: isSet(object.innerWidth) ? Number(object.innerWidth) : 0,
+      innerHeight: isSet(object.innerHeight) ? Number(object.innerHeight) : 0,
+      outerWidth: isSet(object.outerWidth) ? Number(object.outerWidth) : 0,
+      outerHeight: isSet(object.outerHeight) ? Number(object.outerHeight) : 0,
+      screen: isSet(object.screen) ? Browser_BrowserScreen.fromJSON(object.screen) : undefined,
+      webGPU: isSet(object.webGPU) ? Browser_WebGPU.fromJSON(object.webGPU) : undefined,
+      speechSynthesis: Array.isArray(object?.speechSynthesis)
+        ? object.speechSynthesis.map((e: any) => Browser_SpeechSynthesis.fromJSON(e))
+        : [],
+      availableFonts: isSet(object.availableFonts)
+        ? Browser_BrowserCollection.fromJSON(object.availableFonts)
+        : undefined,
+      navigator: isSet(object.navigator) ? Browser_BrowserCollection.fromJSON(object.navigator) : undefined,
+      window: isSet(object.window) ? Browser_BrowserCollection.fromJSON(object.window) : undefined,
+      document: isSet(object.document) ? Browser_BrowserCollection.fromJSON(object.document) : undefined,
+      documentElement: isSet(object.documentElement)
+        ? Browser_BrowserCollection.fromJSON(object.documentElement)
+        : undefined,
+      audioTypes: isSet(object.audioTypes) ? Browser_BrowserCollection.fromJSON(object.audioTypes) : undefined,
+      videoTypes: isSet(object.videoTypes) ? Browser_BrowserCollection.fromJSON(object.videoTypes) : undefined,
+      css: isSet(object.css) ? Browser_BrowserCollection.fromJSON(object.css) : undefined,
     };
   },
 
@@ -3616,6 +4145,57 @@ export const Browser = {
     message.brandHeader !== undefined && (obj.brandHeader = message.brandHeader);
     message.tlsFingerprint !== undefined &&
       (obj.tlsFingerprint = message.tlsFingerprint ? Browser_TLSFingerprint.toJSON(message.tlsFingerprint) : undefined);
+    message.appCodeName !== undefined && (obj.appCodeName = message.appCodeName);
+    message.appName !== undefined && (obj.appName = message.appName);
+    message.appVersion !== undefined && (obj.appVersion = message.appVersion);
+    message.cookieEnabled !== undefined && (obj.cookieEnabled = message.cookieEnabled);
+    message.deviceMemory !== undefined && (obj.deviceMemory = Math.round(message.deviceMemory));
+    message.doNotTrack !== undefined && (obj.doNotTrack = Math.round(message.doNotTrack));
+    message.hardwareConcurrency !== undefined && (obj.hardwareConcurrency = Math.round(message.hardwareConcurrency));
+    message.language !== undefined && (obj.language = message.language);
+    if (message.languages) {
+      obj.languages = message.languages.map((e) => e);
+    } else {
+      obj.languages = [];
+    }
+    message.maxTouchPoints !== undefined && (obj.maxTouchPoints = Math.round(message.maxTouchPoints));
+    message.pdfViewerEnabled !== undefined && (obj.pdfViewerEnabled = message.pdfViewerEnabled);
+    message.platform !== undefined && (obj.platform = message.platform);
+    message.product !== undefined && (obj.product = message.product);
+    message.productSub !== undefined && (obj.productSub = message.productSub);
+    message.vendor !== undefined && (obj.vendor = message.vendor);
+    message.vendorSub !== undefined && (obj.vendorSub = message.vendorSub);
+    message.webdriver !== undefined && (obj.webdriver = message.webdriver);
+    message.devicePixelRatio !== undefined && (obj.devicePixelRatio = message.devicePixelRatio);
+    message.innerWidth !== undefined && (obj.innerWidth = Math.round(message.innerWidth));
+    message.innerHeight !== undefined && (obj.innerHeight = Math.round(message.innerHeight));
+    message.outerWidth !== undefined && (obj.outerWidth = Math.round(message.outerWidth));
+    message.outerHeight !== undefined && (obj.outerHeight = Math.round(message.outerHeight));
+    message.screen !== undefined &&
+      (obj.screen = message.screen ? Browser_BrowserScreen.toJSON(message.screen) : undefined);
+    message.webGPU !== undefined && (obj.webGPU = message.webGPU ? Browser_WebGPU.toJSON(message.webGPU) : undefined);
+    if (message.speechSynthesis) {
+      obj.speechSynthesis = message.speechSynthesis.map((e) => e ? Browser_SpeechSynthesis.toJSON(e) : undefined);
+    } else {
+      obj.speechSynthesis = [];
+    }
+    message.availableFonts !== undefined && (obj.availableFonts = message.availableFonts
+      ? Browser_BrowserCollection.toJSON(message.availableFonts)
+      : undefined);
+    message.navigator !== undefined &&
+      (obj.navigator = message.navigator ? Browser_BrowserCollection.toJSON(message.navigator) : undefined);
+    message.window !== undefined &&
+      (obj.window = message.window ? Browser_BrowserCollection.toJSON(message.window) : undefined);
+    message.document !== undefined &&
+      (obj.document = message.document ? Browser_BrowserCollection.toJSON(message.document) : undefined);
+    message.documentElement !== undefined && (obj.documentElement = message.documentElement
+      ? Browser_BrowserCollection.toJSON(message.documentElement)
+      : undefined);
+    message.audioTypes !== undefined &&
+      (obj.audioTypes = message.audioTypes ? Browser_BrowserCollection.toJSON(message.audioTypes) : undefined);
+    message.videoTypes !== undefined &&
+      (obj.videoTypes = message.videoTypes ? Browser_BrowserCollection.toJSON(message.videoTypes) : undefined);
+    message.css !== undefined && (obj.css = message.css ? Browser_BrowserCollection.toJSON(message.css) : undefined);
     return obj;
   },
 
@@ -3631,6 +4211,59 @@ export const Browser = {
     message.brandHeader = object.brandHeader ?? "";
     message.tlsFingerprint = (object.tlsFingerprint !== undefined && object.tlsFingerprint !== null)
       ? Browser_TLSFingerprint.fromPartial(object.tlsFingerprint)
+      : undefined;
+    message.appCodeName = object.appCodeName ?? "";
+    message.appName = object.appName ?? "";
+    message.appVersion = object.appVersion ?? "";
+    message.cookieEnabled = object.cookieEnabled ?? false;
+    message.deviceMemory = object.deviceMemory ?? 0;
+    message.doNotTrack = object.doNotTrack ?? 0;
+    message.hardwareConcurrency = object.hardwareConcurrency ?? 0;
+    message.language = object.language ?? "";
+    message.languages = object.languages?.map((e) => e) || [];
+    message.maxTouchPoints = object.maxTouchPoints ?? 0;
+    message.pdfViewerEnabled = object.pdfViewerEnabled ?? false;
+    message.platform = object.platform ?? "";
+    message.product = object.product ?? "";
+    message.productSub = object.productSub ?? "";
+    message.vendor = object.vendor ?? "";
+    message.vendorSub = object.vendorSub ?? "";
+    message.webdriver = object.webdriver ?? false;
+    message.devicePixelRatio = object.devicePixelRatio ?? 0;
+    message.innerWidth = object.innerWidth ?? 0;
+    message.innerHeight = object.innerHeight ?? 0;
+    message.outerWidth = object.outerWidth ?? 0;
+    message.outerHeight = object.outerHeight ?? 0;
+    message.screen = (object.screen !== undefined && object.screen !== null)
+      ? Browser_BrowserScreen.fromPartial(object.screen)
+      : undefined;
+    message.webGPU = (object.webGPU !== undefined && object.webGPU !== null)
+      ? Browser_WebGPU.fromPartial(object.webGPU)
+      : undefined;
+    message.speechSynthesis = object.speechSynthesis?.map((e) => Browser_SpeechSynthesis.fromPartial(e)) || [];
+    message.availableFonts = (object.availableFonts !== undefined && object.availableFonts !== null)
+      ? Browser_BrowserCollection.fromPartial(object.availableFonts)
+      : undefined;
+    message.navigator = (object.navigator !== undefined && object.navigator !== null)
+      ? Browser_BrowserCollection.fromPartial(object.navigator)
+      : undefined;
+    message.window = (object.window !== undefined && object.window !== null)
+      ? Browser_BrowserCollection.fromPartial(object.window)
+      : undefined;
+    message.document = (object.document !== undefined && object.document !== null)
+      ? Browser_BrowserCollection.fromPartial(object.document)
+      : undefined;
+    message.documentElement = (object.documentElement !== undefined && object.documentElement !== null)
+      ? Browser_BrowserCollection.fromPartial(object.documentElement)
+      : undefined;
+    message.audioTypes = (object.audioTypes !== undefined && object.audioTypes !== null)
+      ? Browser_BrowserCollection.fromPartial(object.audioTypes)
+      : undefined;
+    message.videoTypes = (object.videoTypes !== undefined && object.videoTypes !== null)
+      ? Browser_BrowserCollection.fromPartial(object.videoTypes)
+      : undefined;
+    message.css = (object.css !== undefined && object.css !== null)
+      ? Browser_BrowserCollection.fromPartial(object.css)
       : undefined;
     return message;
   },
@@ -3812,6 +4445,1308 @@ export const Browser_TLSFingerprint = {
     message.extensions = object.extensions?.map((e) => e) || [];
     message.ellipticCurves = object.ellipticCurves?.map((e) => e) || [];
     message.ellipticCurvePointFormats = object.ellipticCurvePointFormats?.map((e) => e) || [];
+    return message;
+  },
+};
+
+function createBaseBrowser_BrowserCollection(): Browser_BrowserCollection {
+  return { hash: "", listData: [], mapData: {} };
+}
+
+export const Browser_BrowserCollection = {
+  encode(message: Browser_BrowserCollection, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.hash !== "") {
+      writer.uint32(10).string(message.hash);
+    }
+    for (const v of message.listData) {
+      writer.uint32(18).string(v!);
+    }
+    Object.entries(message.mapData).forEach(([key, value]) => {
+      Browser_BrowserCollection_MapDataEntry.encode({ key: key as any, value }, writer.uint32(26).fork()).ldelim();
+    });
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): Browser_BrowserCollection {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseBrowser_BrowserCollection();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag != 10) {
+            break;
+          }
+
+          message.hash = reader.string();
+          continue;
+        case 2:
+          if (tag != 18) {
+            break;
+          }
+
+          message.listData.push(reader.string());
+          continue;
+        case 3:
+          if (tag != 26) {
+            break;
+          }
+
+          const entry3 = Browser_BrowserCollection_MapDataEntry.decode(reader, reader.uint32());
+          if (entry3.value !== undefined) {
+            message.mapData[entry3.key] = entry3.value;
+          }
+          continue;
+      }
+      if ((tag & 7) == 4 || tag == 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): Browser_BrowserCollection {
+    return {
+      hash: isSet(object.hash) ? String(object.hash) : "",
+      listData: Array.isArray(object?.listData) ? object.listData.map((e: any) => String(e)) : [],
+      mapData: isObject(object.mapData)
+        ? Object.entries(object.mapData).reduce<{ [key: string]: string }>((acc, [key, value]) => {
+          acc[key] = String(value);
+          return acc;
+        }, {})
+        : {},
+    };
+  },
+
+  toJSON(message: Browser_BrowserCollection): unknown {
+    const obj: any = {};
+    message.hash !== undefined && (obj.hash = message.hash);
+    if (message.listData) {
+      obj.listData = message.listData.map((e) => e);
+    } else {
+      obj.listData = [];
+    }
+    obj.mapData = {};
+    if (message.mapData) {
+      Object.entries(message.mapData).forEach(([k, v]) => {
+        obj.mapData[k] = v;
+      });
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<Browser_BrowserCollection>, I>>(base?: I): Browser_BrowserCollection {
+    return Browser_BrowserCollection.fromPartial(base ?? {});
+  },
+
+  fromPartial<I extends Exact<DeepPartial<Browser_BrowserCollection>, I>>(object: I): Browser_BrowserCollection {
+    const message = createBaseBrowser_BrowserCollection();
+    message.hash = object.hash ?? "";
+    message.listData = object.listData?.map((e) => e) || [];
+    message.mapData = Object.entries(object.mapData ?? {}).reduce<{ [key: string]: string }>((acc, [key, value]) => {
+      if (value !== undefined) {
+        acc[key] = String(value);
+      }
+      return acc;
+    }, {});
+    return message;
+  },
+};
+
+function createBaseBrowser_BrowserCollection_MapDataEntry(): Browser_BrowserCollection_MapDataEntry {
+  return { key: "", value: "" };
+}
+
+export const Browser_BrowserCollection_MapDataEntry = {
+  encode(message: Browser_BrowserCollection_MapDataEntry, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.key !== "") {
+      writer.uint32(10).string(message.key);
+    }
+    if (message.value !== "") {
+      writer.uint32(18).string(message.value);
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): Browser_BrowserCollection_MapDataEntry {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseBrowser_BrowserCollection_MapDataEntry();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag != 10) {
+            break;
+          }
+
+          message.key = reader.string();
+          continue;
+        case 2:
+          if (tag != 18) {
+            break;
+          }
+
+          message.value = reader.string();
+          continue;
+      }
+      if ((tag & 7) == 4 || tag == 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): Browser_BrowserCollection_MapDataEntry {
+    return { key: isSet(object.key) ? String(object.key) : "", value: isSet(object.value) ? String(object.value) : "" };
+  },
+
+  toJSON(message: Browser_BrowserCollection_MapDataEntry): unknown {
+    const obj: any = {};
+    message.key !== undefined && (obj.key = message.key);
+    message.value !== undefined && (obj.value = message.value);
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<Browser_BrowserCollection_MapDataEntry>, I>>(
+    base?: I,
+  ): Browser_BrowserCollection_MapDataEntry {
+    return Browser_BrowserCollection_MapDataEntry.fromPartial(base ?? {});
+  },
+
+  fromPartial<I extends Exact<DeepPartial<Browser_BrowserCollection_MapDataEntry>, I>>(
+    object: I,
+  ): Browser_BrowserCollection_MapDataEntry {
+    const message = createBaseBrowser_BrowserCollection_MapDataEntry();
+    message.key = object.key ?? "";
+    message.value = object.value ?? "";
+    return message;
+  },
+};
+
+function createBaseBrowser_BrowserScreen(): Browser_BrowserScreen {
+  return {
+    availWidth: 0,
+    availHeight: 0,
+    width: 0,
+    height: 0,
+    colorDepth: 0,
+    pixelDepth: 0,
+    availLeft: 0,
+    availTop: 0,
+    isExtended: false,
+    orientation: undefined,
+  };
+}
+
+export const Browser_BrowserScreen = {
+  encode(message: Browser_BrowserScreen, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.availWidth !== 0) {
+      writer.uint32(8).int32(message.availWidth);
+    }
+    if (message.availHeight !== 0) {
+      writer.uint32(16).int32(message.availHeight);
+    }
+    if (message.width !== 0) {
+      writer.uint32(24).int32(message.width);
+    }
+    if (message.height !== 0) {
+      writer.uint32(32).int32(message.height);
+    }
+    if (message.colorDepth !== 0) {
+      writer.uint32(40).int32(message.colorDepth);
+    }
+    if (message.pixelDepth !== 0) {
+      writer.uint32(48).int32(message.pixelDepth);
+    }
+    if (message.availLeft !== 0) {
+      writer.uint32(56).int32(message.availLeft);
+    }
+    if (message.availTop !== 0) {
+      writer.uint32(64).int32(message.availTop);
+    }
+    if (message.isExtended === true) {
+      writer.uint32(72).bool(message.isExtended);
+    }
+    if (message.orientation !== undefined) {
+      Browser_BrowserScreen_Orientation.encode(message.orientation, writer.uint32(82).fork()).ldelim();
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): Browser_BrowserScreen {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseBrowser_BrowserScreen();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag != 8) {
+            break;
+          }
+
+          message.availWidth = reader.int32();
+          continue;
+        case 2:
+          if (tag != 16) {
+            break;
+          }
+
+          message.availHeight = reader.int32();
+          continue;
+        case 3:
+          if (tag != 24) {
+            break;
+          }
+
+          message.width = reader.int32();
+          continue;
+        case 4:
+          if (tag != 32) {
+            break;
+          }
+
+          message.height = reader.int32();
+          continue;
+        case 5:
+          if (tag != 40) {
+            break;
+          }
+
+          message.colorDepth = reader.int32();
+          continue;
+        case 6:
+          if (tag != 48) {
+            break;
+          }
+
+          message.pixelDepth = reader.int32();
+          continue;
+        case 7:
+          if (tag != 56) {
+            break;
+          }
+
+          message.availLeft = reader.int32();
+          continue;
+        case 8:
+          if (tag != 64) {
+            break;
+          }
+
+          message.availTop = reader.int32();
+          continue;
+        case 9:
+          if (tag != 72) {
+            break;
+          }
+
+          message.isExtended = reader.bool();
+          continue;
+        case 10:
+          if (tag != 82) {
+            break;
+          }
+
+          message.orientation = Browser_BrowserScreen_Orientation.decode(reader, reader.uint32());
+          continue;
+      }
+      if ((tag & 7) == 4 || tag == 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): Browser_BrowserScreen {
+    return {
+      availWidth: isSet(object.availWidth) ? Number(object.availWidth) : 0,
+      availHeight: isSet(object.availHeight) ? Number(object.availHeight) : 0,
+      width: isSet(object.width) ? Number(object.width) : 0,
+      height: isSet(object.height) ? Number(object.height) : 0,
+      colorDepth: isSet(object.colorDepth) ? Number(object.colorDepth) : 0,
+      pixelDepth: isSet(object.pixelDepth) ? Number(object.pixelDepth) : 0,
+      availLeft: isSet(object.availLeft) ? Number(object.availLeft) : 0,
+      availTop: isSet(object.availTop) ? Number(object.availTop) : 0,
+      isExtended: isSet(object.isExtended) ? Boolean(object.isExtended) : false,
+      orientation: isSet(object.orientation)
+        ? Browser_BrowserScreen_Orientation.fromJSON(object.orientation)
+        : undefined,
+    };
+  },
+
+  toJSON(message: Browser_BrowserScreen): unknown {
+    const obj: any = {};
+    message.availWidth !== undefined && (obj.availWidth = Math.round(message.availWidth));
+    message.availHeight !== undefined && (obj.availHeight = Math.round(message.availHeight));
+    message.width !== undefined && (obj.width = Math.round(message.width));
+    message.height !== undefined && (obj.height = Math.round(message.height));
+    message.colorDepth !== undefined && (obj.colorDepth = Math.round(message.colorDepth));
+    message.pixelDepth !== undefined && (obj.pixelDepth = Math.round(message.pixelDepth));
+    message.availLeft !== undefined && (obj.availLeft = Math.round(message.availLeft));
+    message.availTop !== undefined && (obj.availTop = Math.round(message.availTop));
+    message.isExtended !== undefined && (obj.isExtended = message.isExtended);
+    message.orientation !== undefined &&
+      (obj.orientation = message.orientation
+        ? Browser_BrowserScreen_Orientation.toJSON(message.orientation)
+        : undefined);
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<Browser_BrowserScreen>, I>>(base?: I): Browser_BrowserScreen {
+    return Browser_BrowserScreen.fromPartial(base ?? {});
+  },
+
+  fromPartial<I extends Exact<DeepPartial<Browser_BrowserScreen>, I>>(object: I): Browser_BrowserScreen {
+    const message = createBaseBrowser_BrowserScreen();
+    message.availWidth = object.availWidth ?? 0;
+    message.availHeight = object.availHeight ?? 0;
+    message.width = object.width ?? 0;
+    message.height = object.height ?? 0;
+    message.colorDepth = object.colorDepth ?? 0;
+    message.pixelDepth = object.pixelDepth ?? 0;
+    message.availLeft = object.availLeft ?? 0;
+    message.availTop = object.availTop ?? 0;
+    message.isExtended = object.isExtended ?? false;
+    message.orientation = (object.orientation !== undefined && object.orientation !== null)
+      ? Browser_BrowserScreen_Orientation.fromPartial(object.orientation)
+      : undefined;
+    return message;
+  },
+};
+
+function createBaseBrowser_BrowserScreen_Orientation(): Browser_BrowserScreen_Orientation {
+  return { angle: 0, type: "" };
+}
+
+export const Browser_BrowserScreen_Orientation = {
+  encode(message: Browser_BrowserScreen_Orientation, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.angle !== 0) {
+      writer.uint32(8).int32(message.angle);
+    }
+    if (message.type !== "") {
+      writer.uint32(18).string(message.type);
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): Browser_BrowserScreen_Orientation {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseBrowser_BrowserScreen_Orientation();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag != 8) {
+            break;
+          }
+
+          message.angle = reader.int32();
+          continue;
+        case 2:
+          if (tag != 18) {
+            break;
+          }
+
+          message.type = reader.string();
+          continue;
+      }
+      if ((tag & 7) == 4 || tag == 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): Browser_BrowserScreen_Orientation {
+    return {
+      angle: isSet(object.angle) ? Number(object.angle) : 0,
+      type: isSet(object.type) ? String(object.type) : "",
+    };
+  },
+
+  toJSON(message: Browser_BrowserScreen_Orientation): unknown {
+    const obj: any = {};
+    message.angle !== undefined && (obj.angle = Math.round(message.angle));
+    message.type !== undefined && (obj.type = message.type);
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<Browser_BrowserScreen_Orientation>, I>>(
+    base?: I,
+  ): Browser_BrowserScreen_Orientation {
+    return Browser_BrowserScreen_Orientation.fromPartial(base ?? {});
+  },
+
+  fromPartial<I extends Exact<DeepPartial<Browser_BrowserScreen_Orientation>, I>>(
+    object: I,
+  ): Browser_BrowserScreen_Orientation {
+    const message = createBaseBrowser_BrowserScreen_Orientation();
+    message.angle = object.angle ?? 0;
+    message.type = object.type ?? "";
+    return message;
+  },
+};
+
+function createBaseBrowser_WebGPU(): Browser_WebGPU {
+  return {
+    features: undefined,
+    limits: undefined,
+    isFallbackAdapter: false,
+    vendor: "",
+    architecture: "",
+    device: "",
+    description: "",
+  };
+}
+
+export const Browser_WebGPU = {
+  encode(message: Browser_WebGPU, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.features !== undefined) {
+      Browser_WebGPU_Features.encode(message.features, writer.uint32(10).fork()).ldelim();
+    }
+    if (message.limits !== undefined) {
+      Browser_WebGPU_Limits.encode(message.limits, writer.uint32(18).fork()).ldelim();
+    }
+    if (message.isFallbackAdapter === true) {
+      writer.uint32(24).bool(message.isFallbackAdapter);
+    }
+    if (message.vendor !== "") {
+      writer.uint32(34).string(message.vendor);
+    }
+    if (message.architecture !== "") {
+      writer.uint32(42).string(message.architecture);
+    }
+    if (message.device !== "") {
+      writer.uint32(50).string(message.device);
+    }
+    if (message.description !== "") {
+      writer.uint32(58).string(message.description);
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): Browser_WebGPU {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseBrowser_WebGPU();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag != 10) {
+            break;
+          }
+
+          message.features = Browser_WebGPU_Features.decode(reader, reader.uint32());
+          continue;
+        case 2:
+          if (tag != 18) {
+            break;
+          }
+
+          message.limits = Browser_WebGPU_Limits.decode(reader, reader.uint32());
+          continue;
+        case 3:
+          if (tag != 24) {
+            break;
+          }
+
+          message.isFallbackAdapter = reader.bool();
+          continue;
+        case 4:
+          if (tag != 34) {
+            break;
+          }
+
+          message.vendor = reader.string();
+          continue;
+        case 5:
+          if (tag != 42) {
+            break;
+          }
+
+          message.architecture = reader.string();
+          continue;
+        case 6:
+          if (tag != 50) {
+            break;
+          }
+
+          message.device = reader.string();
+          continue;
+        case 7:
+          if (tag != 58) {
+            break;
+          }
+
+          message.description = reader.string();
+          continue;
+      }
+      if ((tag & 7) == 4 || tag == 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): Browser_WebGPU {
+    return {
+      features: isSet(object.features) ? Browser_WebGPU_Features.fromJSON(object.features) : undefined,
+      limits: isSet(object.limits) ? Browser_WebGPU_Limits.fromJSON(object.limits) : undefined,
+      isFallbackAdapter: isSet(object.isFallbackAdapter) ? Boolean(object.isFallbackAdapter) : false,
+      vendor: isSet(object.vendor) ? String(object.vendor) : "",
+      architecture: isSet(object.architecture) ? String(object.architecture) : "",
+      device: isSet(object.device) ? String(object.device) : "",
+      description: isSet(object.description) ? String(object.description) : "",
+    };
+  },
+
+  toJSON(message: Browser_WebGPU): unknown {
+    const obj: any = {};
+    message.features !== undefined &&
+      (obj.features = message.features ? Browser_WebGPU_Features.toJSON(message.features) : undefined);
+    message.limits !== undefined &&
+      (obj.limits = message.limits ? Browser_WebGPU_Limits.toJSON(message.limits) : undefined);
+    message.isFallbackAdapter !== undefined && (obj.isFallbackAdapter = message.isFallbackAdapter);
+    message.vendor !== undefined && (obj.vendor = message.vendor);
+    message.architecture !== undefined && (obj.architecture = message.architecture);
+    message.device !== undefined && (obj.device = message.device);
+    message.description !== undefined && (obj.description = message.description);
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<Browser_WebGPU>, I>>(base?: I): Browser_WebGPU {
+    return Browser_WebGPU.fromPartial(base ?? {});
+  },
+
+  fromPartial<I extends Exact<DeepPartial<Browser_WebGPU>, I>>(object: I): Browser_WebGPU {
+    const message = createBaseBrowser_WebGPU();
+    message.features = (object.features !== undefined && object.features !== null)
+      ? Browser_WebGPU_Features.fromPartial(object.features)
+      : undefined;
+    message.limits = (object.limits !== undefined && object.limits !== null)
+      ? Browser_WebGPU_Limits.fromPartial(object.limits)
+      : undefined;
+    message.isFallbackAdapter = object.isFallbackAdapter ?? false;
+    message.vendor = object.vendor ?? "";
+    message.architecture = object.architecture ?? "";
+    message.device = object.device ?? "";
+    message.description = object.description ?? "";
+    return message;
+  },
+};
+
+function createBaseBrowser_WebGPU_Features(): Browser_WebGPU_Features {
+  return { size: 0 };
+}
+
+export const Browser_WebGPU_Features = {
+  encode(message: Browser_WebGPU_Features, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.size !== 0) {
+      writer.uint32(8).int32(message.size);
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): Browser_WebGPU_Features {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseBrowser_WebGPU_Features();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag != 8) {
+            break;
+          }
+
+          message.size = reader.int32();
+          continue;
+      }
+      if ((tag & 7) == 4 || tag == 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): Browser_WebGPU_Features {
+    return { size: isSet(object.size) ? Number(object.size) : 0 };
+  },
+
+  toJSON(message: Browser_WebGPU_Features): unknown {
+    const obj: any = {};
+    message.size !== undefined && (obj.size = Math.round(message.size));
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<Browser_WebGPU_Features>, I>>(base?: I): Browser_WebGPU_Features {
+    return Browser_WebGPU_Features.fromPartial(base ?? {});
+  },
+
+  fromPartial<I extends Exact<DeepPartial<Browser_WebGPU_Features>, I>>(object: I): Browser_WebGPU_Features {
+    const message = createBaseBrowser_WebGPU_Features();
+    message.size = object.size ?? 0;
+    return message;
+  },
+};
+
+function createBaseBrowser_WebGPU_Limits(): Browser_WebGPU_Limits {
+  return {
+    maxTextureDimension1D: 0,
+    maxTextureDimension2D: 0,
+    maxTextureDimension3D: 0,
+    maxTextureArrayLayers: 0,
+    maxBindGroups: 0,
+    maxBindingsPerBindGroup: 0,
+    maxDynamicUniformBuffersPerPipelineLayout: 0,
+    maxDynamicStorageBuffersPerPipelineLayout: 0,
+    maxSampledTexturesPerShaderStage: 0,
+    maxSamplersPerShaderStage: 0,
+    maxStorageBuffersPerShaderStage: 0,
+    maxStorageTexturesPerShaderStage: 0,
+    maxUniformBuffersPerShaderStage: 0,
+    maxUniformBufferBindingSize: 0,
+    maxStorageBufferBindingSize: 0,
+    minUniformBufferOffsetAlignment: 0,
+    minStorageBufferOffsetAlignment: 0,
+    maxVertexBuffers: 0,
+    maxBufferSize: 0,
+    maxVertexAttributes: 0,
+    maxVertexBufferArrayStride: 0,
+    maxInterStageShaderComponents: 0,
+    maxInterStageShaderVariables: 0,
+    maxColorAttachments: 0,
+    maxColorAttachmentBytesPerSample: 0,
+    maxComputeWorkgroupStorageSize: 0,
+    maxComputeInvocationsPerWorkgroup: 0,
+    maxComputeWorkgroupSizeX: 0,
+    maxComputeWorkgroupSizeY: 0,
+    maxComputeWorkgroupSizeZ: 0,
+    maxComputeWorkgroupsPerDimension: 0,
+  };
+}
+
+export const Browser_WebGPU_Limits = {
+  encode(message: Browser_WebGPU_Limits, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.maxTextureDimension1D !== 0) {
+      writer.uint32(8).int32(message.maxTextureDimension1D);
+    }
+    if (message.maxTextureDimension2D !== 0) {
+      writer.uint32(16).int32(message.maxTextureDimension2D);
+    }
+    if (message.maxTextureDimension3D !== 0) {
+      writer.uint32(24).int32(message.maxTextureDimension3D);
+    }
+    if (message.maxTextureArrayLayers !== 0) {
+      writer.uint32(32).int32(message.maxTextureArrayLayers);
+    }
+    if (message.maxBindGroups !== 0) {
+      writer.uint32(40).int32(message.maxBindGroups);
+    }
+    if (message.maxBindingsPerBindGroup !== 0) {
+      writer.uint32(48).int32(message.maxBindingsPerBindGroup);
+    }
+    if (message.maxDynamicUniformBuffersPerPipelineLayout !== 0) {
+      writer.uint32(56).int32(message.maxDynamicUniformBuffersPerPipelineLayout);
+    }
+    if (message.maxDynamicStorageBuffersPerPipelineLayout !== 0) {
+      writer.uint32(64).int32(message.maxDynamicStorageBuffersPerPipelineLayout);
+    }
+    if (message.maxSampledTexturesPerShaderStage !== 0) {
+      writer.uint32(72).int32(message.maxSampledTexturesPerShaderStage);
+    }
+    if (message.maxSamplersPerShaderStage !== 0) {
+      writer.uint32(80).int32(message.maxSamplersPerShaderStage);
+    }
+    if (message.maxStorageBuffersPerShaderStage !== 0) {
+      writer.uint32(88).int32(message.maxStorageBuffersPerShaderStage);
+    }
+    if (message.maxStorageTexturesPerShaderStage !== 0) {
+      writer.uint32(96).int32(message.maxStorageTexturesPerShaderStage);
+    }
+    if (message.maxUniformBuffersPerShaderStage !== 0) {
+      writer.uint32(104).int32(message.maxUniformBuffersPerShaderStage);
+    }
+    if (message.maxUniformBufferBindingSize !== 0) {
+      writer.uint32(112).int32(message.maxUniformBufferBindingSize);
+    }
+    if (message.maxStorageBufferBindingSize !== 0) {
+      writer.uint32(120).int32(message.maxStorageBufferBindingSize);
+    }
+    if (message.minUniformBufferOffsetAlignment !== 0) {
+      writer.uint32(128).int32(message.minUniformBufferOffsetAlignment);
+    }
+    if (message.minStorageBufferOffsetAlignment !== 0) {
+      writer.uint32(136).int32(message.minStorageBufferOffsetAlignment);
+    }
+    if (message.maxVertexBuffers !== 0) {
+      writer.uint32(144).int32(message.maxVertexBuffers);
+    }
+    if (message.maxBufferSize !== 0) {
+      writer.uint32(152).int32(message.maxBufferSize);
+    }
+    if (message.maxVertexAttributes !== 0) {
+      writer.uint32(160).int32(message.maxVertexAttributes);
+    }
+    if (message.maxVertexBufferArrayStride !== 0) {
+      writer.uint32(168).int32(message.maxVertexBufferArrayStride);
+    }
+    if (message.maxInterStageShaderComponents !== 0) {
+      writer.uint32(176).int32(message.maxInterStageShaderComponents);
+    }
+    if (message.maxInterStageShaderVariables !== 0) {
+      writer.uint32(184).int32(message.maxInterStageShaderVariables);
+    }
+    if (message.maxColorAttachments !== 0) {
+      writer.uint32(192).int32(message.maxColorAttachments);
+    }
+    if (message.maxColorAttachmentBytesPerSample !== 0) {
+      writer.uint32(200).int32(message.maxColorAttachmentBytesPerSample);
+    }
+    if (message.maxComputeWorkgroupStorageSize !== 0) {
+      writer.uint32(208).int32(message.maxComputeWorkgroupStorageSize);
+    }
+    if (message.maxComputeInvocationsPerWorkgroup !== 0) {
+      writer.uint32(216).int32(message.maxComputeInvocationsPerWorkgroup);
+    }
+    if (message.maxComputeWorkgroupSizeX !== 0) {
+      writer.uint32(224).int32(message.maxComputeWorkgroupSizeX);
+    }
+    if (message.maxComputeWorkgroupSizeY !== 0) {
+      writer.uint32(232).int32(message.maxComputeWorkgroupSizeY);
+    }
+    if (message.maxComputeWorkgroupSizeZ !== 0) {
+      writer.uint32(240).int32(message.maxComputeWorkgroupSizeZ);
+    }
+    if (message.maxComputeWorkgroupsPerDimension !== 0) {
+      writer.uint32(248).int32(message.maxComputeWorkgroupsPerDimension);
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): Browser_WebGPU_Limits {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseBrowser_WebGPU_Limits();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag != 8) {
+            break;
+          }
+
+          message.maxTextureDimension1D = reader.int32();
+          continue;
+        case 2:
+          if (tag != 16) {
+            break;
+          }
+
+          message.maxTextureDimension2D = reader.int32();
+          continue;
+        case 3:
+          if (tag != 24) {
+            break;
+          }
+
+          message.maxTextureDimension3D = reader.int32();
+          continue;
+        case 4:
+          if (tag != 32) {
+            break;
+          }
+
+          message.maxTextureArrayLayers = reader.int32();
+          continue;
+        case 5:
+          if (tag != 40) {
+            break;
+          }
+
+          message.maxBindGroups = reader.int32();
+          continue;
+        case 6:
+          if (tag != 48) {
+            break;
+          }
+
+          message.maxBindingsPerBindGroup = reader.int32();
+          continue;
+        case 7:
+          if (tag != 56) {
+            break;
+          }
+
+          message.maxDynamicUniformBuffersPerPipelineLayout = reader.int32();
+          continue;
+        case 8:
+          if (tag != 64) {
+            break;
+          }
+
+          message.maxDynamicStorageBuffersPerPipelineLayout = reader.int32();
+          continue;
+        case 9:
+          if (tag != 72) {
+            break;
+          }
+
+          message.maxSampledTexturesPerShaderStage = reader.int32();
+          continue;
+        case 10:
+          if (tag != 80) {
+            break;
+          }
+
+          message.maxSamplersPerShaderStage = reader.int32();
+          continue;
+        case 11:
+          if (tag != 88) {
+            break;
+          }
+
+          message.maxStorageBuffersPerShaderStage = reader.int32();
+          continue;
+        case 12:
+          if (tag != 96) {
+            break;
+          }
+
+          message.maxStorageTexturesPerShaderStage = reader.int32();
+          continue;
+        case 13:
+          if (tag != 104) {
+            break;
+          }
+
+          message.maxUniformBuffersPerShaderStage = reader.int32();
+          continue;
+        case 14:
+          if (tag != 112) {
+            break;
+          }
+
+          message.maxUniformBufferBindingSize = reader.int32();
+          continue;
+        case 15:
+          if (tag != 120) {
+            break;
+          }
+
+          message.maxStorageBufferBindingSize = reader.int32();
+          continue;
+        case 16:
+          if (tag != 128) {
+            break;
+          }
+
+          message.minUniformBufferOffsetAlignment = reader.int32();
+          continue;
+        case 17:
+          if (tag != 136) {
+            break;
+          }
+
+          message.minStorageBufferOffsetAlignment = reader.int32();
+          continue;
+        case 18:
+          if (tag != 144) {
+            break;
+          }
+
+          message.maxVertexBuffers = reader.int32();
+          continue;
+        case 19:
+          if (tag != 152) {
+            break;
+          }
+
+          message.maxBufferSize = reader.int32();
+          continue;
+        case 20:
+          if (tag != 160) {
+            break;
+          }
+
+          message.maxVertexAttributes = reader.int32();
+          continue;
+        case 21:
+          if (tag != 168) {
+            break;
+          }
+
+          message.maxVertexBufferArrayStride = reader.int32();
+          continue;
+        case 22:
+          if (tag != 176) {
+            break;
+          }
+
+          message.maxInterStageShaderComponents = reader.int32();
+          continue;
+        case 23:
+          if (tag != 184) {
+            break;
+          }
+
+          message.maxInterStageShaderVariables = reader.int32();
+          continue;
+        case 24:
+          if (tag != 192) {
+            break;
+          }
+
+          message.maxColorAttachments = reader.int32();
+          continue;
+        case 25:
+          if (tag != 200) {
+            break;
+          }
+
+          message.maxColorAttachmentBytesPerSample = reader.int32();
+          continue;
+        case 26:
+          if (tag != 208) {
+            break;
+          }
+
+          message.maxComputeWorkgroupStorageSize = reader.int32();
+          continue;
+        case 27:
+          if (tag != 216) {
+            break;
+          }
+
+          message.maxComputeInvocationsPerWorkgroup = reader.int32();
+          continue;
+        case 28:
+          if (tag != 224) {
+            break;
+          }
+
+          message.maxComputeWorkgroupSizeX = reader.int32();
+          continue;
+        case 29:
+          if (tag != 232) {
+            break;
+          }
+
+          message.maxComputeWorkgroupSizeY = reader.int32();
+          continue;
+        case 30:
+          if (tag != 240) {
+            break;
+          }
+
+          message.maxComputeWorkgroupSizeZ = reader.int32();
+          continue;
+        case 31:
+          if (tag != 248) {
+            break;
+          }
+
+          message.maxComputeWorkgroupsPerDimension = reader.int32();
+          continue;
+      }
+      if ((tag & 7) == 4 || tag == 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): Browser_WebGPU_Limits {
+    return {
+      maxTextureDimension1D: isSet(object.maxTextureDimension1D) ? Number(object.maxTextureDimension1D) : 0,
+      maxTextureDimension2D: isSet(object.maxTextureDimension2D) ? Number(object.maxTextureDimension2D) : 0,
+      maxTextureDimension3D: isSet(object.maxTextureDimension3D) ? Number(object.maxTextureDimension3D) : 0,
+      maxTextureArrayLayers: isSet(object.maxTextureArrayLayers) ? Number(object.maxTextureArrayLayers) : 0,
+      maxBindGroups: isSet(object.maxBindGroups) ? Number(object.maxBindGroups) : 0,
+      maxBindingsPerBindGroup: isSet(object.maxBindingsPerBindGroup) ? Number(object.maxBindingsPerBindGroup) : 0,
+      maxDynamicUniformBuffersPerPipelineLayout: isSet(object.maxDynamicUniformBuffersPerPipelineLayout)
+        ? Number(object.maxDynamicUniformBuffersPerPipelineLayout)
+        : 0,
+      maxDynamicStorageBuffersPerPipelineLayout: isSet(object.maxDynamicStorageBuffersPerPipelineLayout)
+        ? Number(object.maxDynamicStorageBuffersPerPipelineLayout)
+        : 0,
+      maxSampledTexturesPerShaderStage: isSet(object.maxSampledTexturesPerShaderStage)
+        ? Number(object.maxSampledTexturesPerShaderStage)
+        : 0,
+      maxSamplersPerShaderStage: isSet(object.maxSamplersPerShaderStage) ? Number(object.maxSamplersPerShaderStage) : 0,
+      maxStorageBuffersPerShaderStage: isSet(object.maxStorageBuffersPerShaderStage)
+        ? Number(object.maxStorageBuffersPerShaderStage)
+        : 0,
+      maxStorageTexturesPerShaderStage: isSet(object.maxStorageTexturesPerShaderStage)
+        ? Number(object.maxStorageTexturesPerShaderStage)
+        : 0,
+      maxUniformBuffersPerShaderStage: isSet(object.maxUniformBuffersPerShaderStage)
+        ? Number(object.maxUniformBuffersPerShaderStage)
+        : 0,
+      maxUniformBufferBindingSize: isSet(object.maxUniformBufferBindingSize)
+        ? Number(object.maxUniformBufferBindingSize)
+        : 0,
+      maxStorageBufferBindingSize: isSet(object.maxStorageBufferBindingSize)
+        ? Number(object.maxStorageBufferBindingSize)
+        : 0,
+      minUniformBufferOffsetAlignment: isSet(object.minUniformBufferOffsetAlignment)
+        ? Number(object.minUniformBufferOffsetAlignment)
+        : 0,
+      minStorageBufferOffsetAlignment: isSet(object.minStorageBufferOffsetAlignment)
+        ? Number(object.minStorageBufferOffsetAlignment)
+        : 0,
+      maxVertexBuffers: isSet(object.maxVertexBuffers) ? Number(object.maxVertexBuffers) : 0,
+      maxBufferSize: isSet(object.maxBufferSize) ? Number(object.maxBufferSize) : 0,
+      maxVertexAttributes: isSet(object.maxVertexAttributes) ? Number(object.maxVertexAttributes) : 0,
+      maxVertexBufferArrayStride: isSet(object.maxVertexBufferArrayStride)
+        ? Number(object.maxVertexBufferArrayStride)
+        : 0,
+      maxInterStageShaderComponents: isSet(object.maxInterStageShaderComponents)
+        ? Number(object.maxInterStageShaderComponents)
+        : 0,
+      maxInterStageShaderVariables: isSet(object.maxInterStageShaderVariables)
+        ? Number(object.maxInterStageShaderVariables)
+        : 0,
+      maxColorAttachments: isSet(object.maxColorAttachments) ? Number(object.maxColorAttachments) : 0,
+      maxColorAttachmentBytesPerSample: isSet(object.maxColorAttachmentBytesPerSample)
+        ? Number(object.maxColorAttachmentBytesPerSample)
+        : 0,
+      maxComputeWorkgroupStorageSize: isSet(object.maxComputeWorkgroupStorageSize)
+        ? Number(object.maxComputeWorkgroupStorageSize)
+        : 0,
+      maxComputeInvocationsPerWorkgroup: isSet(object.maxComputeInvocationsPerWorkgroup)
+        ? Number(object.maxComputeInvocationsPerWorkgroup)
+        : 0,
+      maxComputeWorkgroupSizeX: isSet(object.maxComputeWorkgroupSizeX) ? Number(object.maxComputeWorkgroupSizeX) : 0,
+      maxComputeWorkgroupSizeY: isSet(object.maxComputeWorkgroupSizeY) ? Number(object.maxComputeWorkgroupSizeY) : 0,
+      maxComputeWorkgroupSizeZ: isSet(object.maxComputeWorkgroupSizeZ) ? Number(object.maxComputeWorkgroupSizeZ) : 0,
+      maxComputeWorkgroupsPerDimension: isSet(object.maxComputeWorkgroupsPerDimension)
+        ? Number(object.maxComputeWorkgroupsPerDimension)
+        : 0,
+    };
+  },
+
+  toJSON(message: Browser_WebGPU_Limits): unknown {
+    const obj: any = {};
+    message.maxTextureDimension1D !== undefined &&
+      (obj.maxTextureDimension1D = Math.round(message.maxTextureDimension1D));
+    message.maxTextureDimension2D !== undefined &&
+      (obj.maxTextureDimension2D = Math.round(message.maxTextureDimension2D));
+    message.maxTextureDimension3D !== undefined &&
+      (obj.maxTextureDimension3D = Math.round(message.maxTextureDimension3D));
+    message.maxTextureArrayLayers !== undefined &&
+      (obj.maxTextureArrayLayers = Math.round(message.maxTextureArrayLayers));
+    message.maxBindGroups !== undefined && (obj.maxBindGroups = Math.round(message.maxBindGroups));
+    message.maxBindingsPerBindGroup !== undefined &&
+      (obj.maxBindingsPerBindGroup = Math.round(message.maxBindingsPerBindGroup));
+    message.maxDynamicUniformBuffersPerPipelineLayout !== undefined &&
+      (obj.maxDynamicUniformBuffersPerPipelineLayout = Math.round(message.maxDynamicUniformBuffersPerPipelineLayout));
+    message.maxDynamicStorageBuffersPerPipelineLayout !== undefined &&
+      (obj.maxDynamicStorageBuffersPerPipelineLayout = Math.round(message.maxDynamicStorageBuffersPerPipelineLayout));
+    message.maxSampledTexturesPerShaderStage !== undefined &&
+      (obj.maxSampledTexturesPerShaderStage = Math.round(message.maxSampledTexturesPerShaderStage));
+    message.maxSamplersPerShaderStage !== undefined &&
+      (obj.maxSamplersPerShaderStage = Math.round(message.maxSamplersPerShaderStage));
+    message.maxStorageBuffersPerShaderStage !== undefined &&
+      (obj.maxStorageBuffersPerShaderStage = Math.round(message.maxStorageBuffersPerShaderStage));
+    message.maxStorageTexturesPerShaderStage !== undefined &&
+      (obj.maxStorageTexturesPerShaderStage = Math.round(message.maxStorageTexturesPerShaderStage));
+    message.maxUniformBuffersPerShaderStage !== undefined &&
+      (obj.maxUniformBuffersPerShaderStage = Math.round(message.maxUniformBuffersPerShaderStage));
+    message.maxUniformBufferBindingSize !== undefined &&
+      (obj.maxUniformBufferBindingSize = Math.round(message.maxUniformBufferBindingSize));
+    message.maxStorageBufferBindingSize !== undefined &&
+      (obj.maxStorageBufferBindingSize = Math.round(message.maxStorageBufferBindingSize));
+    message.minUniformBufferOffsetAlignment !== undefined &&
+      (obj.minUniformBufferOffsetAlignment = Math.round(message.minUniformBufferOffsetAlignment));
+    message.minStorageBufferOffsetAlignment !== undefined &&
+      (obj.minStorageBufferOffsetAlignment = Math.round(message.minStorageBufferOffsetAlignment));
+    message.maxVertexBuffers !== undefined && (obj.maxVertexBuffers = Math.round(message.maxVertexBuffers));
+    message.maxBufferSize !== undefined && (obj.maxBufferSize = Math.round(message.maxBufferSize));
+    message.maxVertexAttributes !== undefined && (obj.maxVertexAttributes = Math.round(message.maxVertexAttributes));
+    message.maxVertexBufferArrayStride !== undefined &&
+      (obj.maxVertexBufferArrayStride = Math.round(message.maxVertexBufferArrayStride));
+    message.maxInterStageShaderComponents !== undefined &&
+      (obj.maxInterStageShaderComponents = Math.round(message.maxInterStageShaderComponents));
+    message.maxInterStageShaderVariables !== undefined &&
+      (obj.maxInterStageShaderVariables = Math.round(message.maxInterStageShaderVariables));
+    message.maxColorAttachments !== undefined && (obj.maxColorAttachments = Math.round(message.maxColorAttachments));
+    message.maxColorAttachmentBytesPerSample !== undefined &&
+      (obj.maxColorAttachmentBytesPerSample = Math.round(message.maxColorAttachmentBytesPerSample));
+    message.maxComputeWorkgroupStorageSize !== undefined &&
+      (obj.maxComputeWorkgroupStorageSize = Math.round(message.maxComputeWorkgroupStorageSize));
+    message.maxComputeInvocationsPerWorkgroup !== undefined &&
+      (obj.maxComputeInvocationsPerWorkgroup = Math.round(message.maxComputeInvocationsPerWorkgroup));
+    message.maxComputeWorkgroupSizeX !== undefined &&
+      (obj.maxComputeWorkgroupSizeX = Math.round(message.maxComputeWorkgroupSizeX));
+    message.maxComputeWorkgroupSizeY !== undefined &&
+      (obj.maxComputeWorkgroupSizeY = Math.round(message.maxComputeWorkgroupSizeY));
+    message.maxComputeWorkgroupSizeZ !== undefined &&
+      (obj.maxComputeWorkgroupSizeZ = Math.round(message.maxComputeWorkgroupSizeZ));
+    message.maxComputeWorkgroupsPerDimension !== undefined &&
+      (obj.maxComputeWorkgroupsPerDimension = Math.round(message.maxComputeWorkgroupsPerDimension));
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<Browser_WebGPU_Limits>, I>>(base?: I): Browser_WebGPU_Limits {
+    return Browser_WebGPU_Limits.fromPartial(base ?? {});
+  },
+
+  fromPartial<I extends Exact<DeepPartial<Browser_WebGPU_Limits>, I>>(object: I): Browser_WebGPU_Limits {
+    const message = createBaseBrowser_WebGPU_Limits();
+    message.maxTextureDimension1D = object.maxTextureDimension1D ?? 0;
+    message.maxTextureDimension2D = object.maxTextureDimension2D ?? 0;
+    message.maxTextureDimension3D = object.maxTextureDimension3D ?? 0;
+    message.maxTextureArrayLayers = object.maxTextureArrayLayers ?? 0;
+    message.maxBindGroups = object.maxBindGroups ?? 0;
+    message.maxBindingsPerBindGroup = object.maxBindingsPerBindGroup ?? 0;
+    message.maxDynamicUniformBuffersPerPipelineLayout = object.maxDynamicUniformBuffersPerPipelineLayout ?? 0;
+    message.maxDynamicStorageBuffersPerPipelineLayout = object.maxDynamicStorageBuffersPerPipelineLayout ?? 0;
+    message.maxSampledTexturesPerShaderStage = object.maxSampledTexturesPerShaderStage ?? 0;
+    message.maxSamplersPerShaderStage = object.maxSamplersPerShaderStage ?? 0;
+    message.maxStorageBuffersPerShaderStage = object.maxStorageBuffersPerShaderStage ?? 0;
+    message.maxStorageTexturesPerShaderStage = object.maxStorageTexturesPerShaderStage ?? 0;
+    message.maxUniformBuffersPerShaderStage = object.maxUniformBuffersPerShaderStage ?? 0;
+    message.maxUniformBufferBindingSize = object.maxUniformBufferBindingSize ?? 0;
+    message.maxStorageBufferBindingSize = object.maxStorageBufferBindingSize ?? 0;
+    message.minUniformBufferOffsetAlignment = object.minUniformBufferOffsetAlignment ?? 0;
+    message.minStorageBufferOffsetAlignment = object.minStorageBufferOffsetAlignment ?? 0;
+    message.maxVertexBuffers = object.maxVertexBuffers ?? 0;
+    message.maxBufferSize = object.maxBufferSize ?? 0;
+    message.maxVertexAttributes = object.maxVertexAttributes ?? 0;
+    message.maxVertexBufferArrayStride = object.maxVertexBufferArrayStride ?? 0;
+    message.maxInterStageShaderComponents = object.maxInterStageShaderComponents ?? 0;
+    message.maxInterStageShaderVariables = object.maxInterStageShaderVariables ?? 0;
+    message.maxColorAttachments = object.maxColorAttachments ?? 0;
+    message.maxColorAttachmentBytesPerSample = object.maxColorAttachmentBytesPerSample ?? 0;
+    message.maxComputeWorkgroupStorageSize = object.maxComputeWorkgroupStorageSize ?? 0;
+    message.maxComputeInvocationsPerWorkgroup = object.maxComputeInvocationsPerWorkgroup ?? 0;
+    message.maxComputeWorkgroupSizeX = object.maxComputeWorkgroupSizeX ?? 0;
+    message.maxComputeWorkgroupSizeY = object.maxComputeWorkgroupSizeY ?? 0;
+    message.maxComputeWorkgroupSizeZ = object.maxComputeWorkgroupSizeZ ?? 0;
+    message.maxComputeWorkgroupsPerDimension = object.maxComputeWorkgroupsPerDimension ?? 0;
+    return message;
+  },
+};
+
+function createBaseBrowser_SpeechSynthesis(): Browser_SpeechSynthesis {
+  return { voiceURI: "", name: "", lang: "", localService: false, default: false };
+}
+
+export const Browser_SpeechSynthesis = {
+  encode(message: Browser_SpeechSynthesis, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.voiceURI !== "") {
+      writer.uint32(10).string(message.voiceURI);
+    }
+    if (message.name !== "") {
+      writer.uint32(18).string(message.name);
+    }
+    if (message.lang !== "") {
+      writer.uint32(26).string(message.lang);
+    }
+    if (message.localService === true) {
+      writer.uint32(32).bool(message.localService);
+    }
+    if (message.default === true) {
+      writer.uint32(40).bool(message.default);
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): Browser_SpeechSynthesis {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseBrowser_SpeechSynthesis();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag != 10) {
+            break;
+          }
+
+          message.voiceURI = reader.string();
+          continue;
+        case 2:
+          if (tag != 18) {
+            break;
+          }
+
+          message.name = reader.string();
+          continue;
+        case 3:
+          if (tag != 26) {
+            break;
+          }
+
+          message.lang = reader.string();
+          continue;
+        case 4:
+          if (tag != 32) {
+            break;
+          }
+
+          message.localService = reader.bool();
+          continue;
+        case 5:
+          if (tag != 40) {
+            break;
+          }
+
+          message.default = reader.bool();
+          continue;
+      }
+      if ((tag & 7) == 4 || tag == 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): Browser_SpeechSynthesis {
+    return {
+      voiceURI: isSet(object.voiceURI) ? String(object.voiceURI) : "",
+      name: isSet(object.name) ? String(object.name) : "",
+      lang: isSet(object.lang) ? String(object.lang) : "",
+      localService: isSet(object.localService) ? Boolean(object.localService) : false,
+      default: isSet(object.default) ? Boolean(object.default) : false,
+    };
+  },
+
+  toJSON(message: Browser_SpeechSynthesis): unknown {
+    const obj: any = {};
+    message.voiceURI !== undefined && (obj.voiceURI = message.voiceURI);
+    message.name !== undefined && (obj.name = message.name);
+    message.lang !== undefined && (obj.lang = message.lang);
+    message.localService !== undefined && (obj.localService = message.localService);
+    message.default !== undefined && (obj.default = message.default);
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<Browser_SpeechSynthesis>, I>>(base?: I): Browser_SpeechSynthesis {
+    return Browser_SpeechSynthesis.fromPartial(base ?? {});
+  },
+
+  fromPartial<I extends Exact<DeepPartial<Browser_SpeechSynthesis>, I>>(object: I): Browser_SpeechSynthesis {
+    const message = createBaseBrowser_SpeechSynthesis();
+    message.voiceURI = object.voiceURI ?? "";
+    message.name = object.name ?? "";
+    message.lang = object.lang ?? "";
+    message.localService = object.localService ?? false;
+    message.default = object.default ?? false;
     return message;
   },
 };

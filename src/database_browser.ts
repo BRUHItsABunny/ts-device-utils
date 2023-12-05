@@ -22,7 +22,7 @@ const AvailableBrowsers: {[key: string]: {[key: string]: Browser}} = {
                     0
                 ],
             }
-        },
+        } as Browser,
     },
     "chrome": {
         "112.0.5615.50": {
@@ -45,7 +45,7 @@ const AvailableBrowsers: {[key: string]: {[key: string]: Browser}} = {
                     0
                 ],
             }
-        },
+        } as Browser,
     },
     "firefox": {
         "111.0.1": {
@@ -68,7 +68,7 @@ const AvailableBrowsers: {[key: string]: {[key: string]: Browser}} = {
                     0
                 ],
             }
-        },
+        } as Browser,
     },
     "opera": {
         "97.0.4719.56": {
@@ -91,7 +91,7 @@ const AvailableBrowsers: {[key: string]: {[key: string]: Browser}} = {
                     0
                 ],
             }
-        },
+        } as Browser,
     },
 }
 

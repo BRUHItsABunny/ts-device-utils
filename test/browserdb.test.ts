@@ -1,6 +1,6 @@
-import {Browser} from "../device_utils";
-import {randomBrowser} from "../database_browser";
-import {getBrowserHeaders} from "../utils_browser";
+import {Browser} from "../src";
+import {randomBrowser} from "../src";
+import {getBrowserHeaders} from "../src";
 
 test('Play with browser object', () => {
     const browser: Browser = randomBrowser()
