@@ -2,8 +2,8 @@ import {Browser, Browser_TLSFingerprint_ProtocolVersion} from "./device_utils";
 
 const AvailableBrowsers: {[key: string]: {[key: string]: Browser}} = {
     "brave": {
-        "1.50.114": {
-            version: "1.50.114",
+        "1.64.109": {
+            version: "1.64.109",
             name: "brave",
             userAgent: "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36",
             brandHeader: "\"Chromium\";v=\"112\", \"Brave\";v=\"112\", \"Not:A-Brand\";v=\"99\"",

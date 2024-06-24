@@ -1,7 +1,15 @@
-import {Browser, Browser_TLSFingerprint, Browser_TLSFingerprint_Extensions} from "./device_utils";
+import {Browser, Browser_TLSFingerprint, Browser_TLSFingerprint_Extension} from "./device_utils";
 
 export function formatTLSFingerprint(fingerprint: Browser_TLSFingerprint | undefined, strict?: boolean): string {
     if (fingerprint == undefined) {
+        return ""
+    }
+    if (!fingerprint.extensions ||
+        !fingerprint.version ||
+        !fingerprint.cipherSuites ||
+        !fingerprint.ellipticCurves ||
+        !fingerprint.ellipticCurvePointFormats
+    ) {
         return ""
     }
 
@@ -10,7 +18,7 @@ export function formatTLSFingerprint(fingerprint: Browser_TLSFingerprint | undef
         fmtStrict = strict;
     }
 
-    let extensions: Browser_TLSFingerprint_Extensions[] = [...fingerprint.extensions];
+    let extensions: Browser_TLSFingerprint_Extension[] = [...fingerprint.extensions];
     if (!fmtStrict) {
         extensions.sort(() => Math.random() - 0.5);
     }
@@ -51,6 +59,10 @@ export function formatTLSFingerprint(fingerprint: Browser_TLSFingerprint | undef
 }
 
 export function getBrowserHeaders(browser: Browser, productOverride?: string, platform?: string, isMobile?: boolean): { [key: string]: string | string[]}  {
+    if (!browser.userAgent) {
+        return {}
+    }
+
     if (typeof platform === "undefined") {
         platform = "Windows"
     }
@@ -70,14 +82,22 @@ export function getBrowserHeaders(browser: Browser, productOverride?: string, pl
         "user-agent": uaStart + productOverride + uaEnd
     }
 
-    if(browser.brandHeader.length > 0) {
+    if(browser.brandHeader && browser.brandHeader.length > 0) {
         result["sec-ch-ua"] = browser.brandHeader
-        result["sec-ch-ua-platform"] = platform
-        result["sec-ch-ua-mobile"] = "?0"
-        if(isMobile) {
-            result["sec-ch-ua-mobile"] = "?1"
+        if (browser.platformHeader) {
+            result["sec-ch-ua-platform"] = browser.platformHeader
+        } else {
+            result["sec-ch-ua-platform"] = platform
         }
 
+        if (browser.mobileHeader) {
+            result["sec-ch-ua-mobile"] = browser.mobileHeader
+        } else {
+            result["sec-ch-ua-mobile"] = "?0"
+            if(isMobile) {
+                result["sec-ch-ua-mobile"] = "?1"
+            }
+        }
     }
 
     return result;

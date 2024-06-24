@@ -39,7 +39,7 @@ ENV PROTO_INC "-I ./ \
   -I ../ \
   -I ../../"
 
-ENV PROTOC_CMD "protoc ${PROTO_INC} --plugin=/proto/node_modules/ts-proto/protoc-gen-ts_proto --ts_proto_out=. ./*.proto --ts_proto_opt=esModuleInterop=true"
+ENV PROTOC_CMD "protoc ${PROTO_INC} --plugin=/proto/node_modules/ts-proto/protoc-gen-ts_proto --ts_proto_out=. ./*.proto --ts_proto_opt=esModuleInterop=true --ts_proto_opt=useOptionals=all"
 # Generate
 RUN ls -R /proto
 RUN cd /proto/proto-device-utils/ && ${PROTOC_CMD}

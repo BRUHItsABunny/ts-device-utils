@@ -5,55 +5,63 @@ import _m0 from "protobufjs/minimal";
 export const protobufPackage = "device_utils";
 
 export interface Browser {
-  version: string;
-  name: string;
-  userAgent: string;
-  brandHeader: string;
-  tlsFingerprint:
-    | Browser_TLSFingerprint
-    | undefined;
+  version?: string;
+  name?: string;
+  userAgent?: string;
+  brandHeader?: string;
+  platformHeader?: string;
+  mobileHeader?: string;
+  tlsFingerprint?: Browser_TLSFingerprint;
+  httpFingerprint?: Browser_HTTPFingerprint;
   /** src: https://kaliiiiiiiiii.github.io/driverless-fp-collector/ */
-  appCodeName: string;
-  appName: string;
-  appVersion: string;
-  cookieEnabled: boolean;
-  deviceMemory: number;
-  doNotTrack: number;
-  hardwareConcurrency: number;
-  language: string;
-  languages: string[];
-  maxTouchPoints: number;
-  pdfViewerEnabled: boolean;
-  platform: string;
-  product: string;
-  productSub: string;
-  vendor: string;
-  vendorSub: string;
-  webdriver: boolean;
-  devicePixelRatio: number;
-  innerWidth: number;
-  innerHeight: number;
-  outerWidth: number;
-  outerHeight: number;
-  screen: Browser_BrowserScreen | undefined;
-  webGPU: Browser_WebGPU | undefined;
-  speechSynthesis: Browser_SpeechSynthesis[];
-  availableFonts: Browser_BrowserCollection | undefined;
-  navigator: Browser_BrowserCollection | undefined;
-  window: Browser_BrowserCollection | undefined;
-  document: Browser_BrowserCollection | undefined;
-  documentElement: Browser_BrowserCollection | undefined;
-  audioTypes: Browser_BrowserCollection | undefined;
-  videoTypes: Browser_BrowserCollection | undefined;
-  css: Browser_BrowserCollection | undefined;
+  appCodeName?: string;
+  appName?: string;
+  appVersion?: string;
+  cookieEnabled?: boolean;
+  deviceMemory?: number;
+  doNotTrack?: number;
+  hardwareConcurrency?: number;
+  language?: string;
+  languages?: string[];
+  maxTouchPoints?: number;
+  pdfViewerEnabled?: boolean;
+  platform?: string;
+  product?: string;
+  productSub?: string;
+  vendor?: string;
+  vendorSub?: string;
+  webdriver?: boolean;
+  devicePixelRatio?: number;
+  innerWidth?: number;
+  innerHeight?: number;
+  outerWidth?: number;
+  outerHeight?: number;
+  screen?: Browser_BrowserScreen;
+  webGPU?: Browser_WebGPU;
+  speechSynthesis?: Browser_SpeechSynthesis[];
+  plugins?: Browser_Plugin[];
+  highEntropyValues?: Browser_HighEntropyValues;
+  webRTC?: Browser_WebRTC;
+  availableFonts?: Browser_BrowserCollection;
+  navigator?: Browser_BrowserCollection;
+  window?: Browser_BrowserCollection;
+  document?: Browser_BrowserCollection;
+  documentElement?: Browser_BrowserCollection;
+  audioTypes?: Browser_BrowserCollection;
+  videoTypes?: Browser_BrowserCollection;
+  css?: Browser_BrowserCollection;
+  gl?: Browser_BrowserCollection;
+  gl2?: Browser_BrowserCollection;
+  glExperimental?: Browser_BrowserCollection;
 }
 
 export interface Browser_TLSFingerprint {
-  version: Browser_TLSFingerprint_ProtocolVersion;
-  cipherSuites: Browser_TLSFingerprint_CipherSuite[];
-  extensions: Browser_TLSFingerprint_Extensions[];
-  ellipticCurves: Browser_TLSFingerprint_EllipticCurve[];
-  ellipticCurvePointFormats: Browser_TLSFingerprint_EllipticCurvePointFormat[];
+  version?: Browser_TLSFingerprint_ProtocolVersion;
+  cipherSuites?: Browser_TLSFingerprint_CipherSuite[];
+  extensions?: Browser_TLSFingerprint_Extension[];
+  ellipticCurves?: Browser_TLSFingerprint_EllipticCurve[];
+  ellipticCurvePointFormats?: Browser_TLSFingerprint_EllipticCurvePointFormat[];
+  extensionData?: Browser_TLSFingerprint_ExtensionData[];
 }
 
 /**
@@ -2283,7 +2291,7 @@ export function browser_TLSFingerprint_CipherSuiteToJSON(object: Browser_TLSFing
 }
 
 /** - TLS extensions: https://www.iana.org/assignments/tls-extensiontype-values/tls-extensiontype-values.xhtml */
-export enum Browser_TLSFingerprint_Extensions {
+export enum Browser_TLSFingerprint_Extension {
   SERVER_NAME = 0,
   MAX_FRAGMENT_LENGTH = 1,
   CLIENT_CERTIFICATE_URL = 2,
@@ -2345,327 +2353,499 @@ export enum Browser_TLSFingerprint_Extensions {
   SEQUENCE_NUMBER_ENCRYPTION_ALGORITHMS = 60,
   /** EXTENSION_APPLICATIONS_SETTINGS - src: boringssl */
   EXTENSION_APPLICATIONS_SETTINGS = 17513,
+  EXTENSION_ENCRYPTED_CLIENT_HELLO = 65037,
   EXTENSION_RENEGOTIATION_INFO = 65281,
   UNRECOGNIZED = -1,
 }
 
-export function browser_TLSFingerprint_ExtensionsFromJSON(object: any): Browser_TLSFingerprint_Extensions {
+export function browser_TLSFingerprint_ExtensionFromJSON(object: any): Browser_TLSFingerprint_Extension {
   switch (object) {
     case 0:
     case "SERVER_NAME":
-      return Browser_TLSFingerprint_Extensions.SERVER_NAME;
+      return Browser_TLSFingerprint_Extension.SERVER_NAME;
     case 1:
     case "MAX_FRAGMENT_LENGTH":
-      return Browser_TLSFingerprint_Extensions.MAX_FRAGMENT_LENGTH;
+      return Browser_TLSFingerprint_Extension.MAX_FRAGMENT_LENGTH;
     case 2:
     case "CLIENT_CERTIFICATE_URL":
-      return Browser_TLSFingerprint_Extensions.CLIENT_CERTIFICATE_URL;
+      return Browser_TLSFingerprint_Extension.CLIENT_CERTIFICATE_URL;
     case 3:
     case "TRUSTED_CA_KEYS":
-      return Browser_TLSFingerprint_Extensions.TRUSTED_CA_KEYS;
+      return Browser_TLSFingerprint_Extension.TRUSTED_CA_KEYS;
     case 4:
     case "TRUNCATED_HMAC":
-      return Browser_TLSFingerprint_Extensions.TRUNCATED_HMAC;
+      return Browser_TLSFingerprint_Extension.TRUNCATED_HMAC;
     case 5:
     case "STATUS_REQUEST":
-      return Browser_TLSFingerprint_Extensions.STATUS_REQUEST;
+      return Browser_TLSFingerprint_Extension.STATUS_REQUEST;
     case 6:
     case "USER_MAPPING":
-      return Browser_TLSFingerprint_Extensions.USER_MAPPING;
+      return Browser_TLSFingerprint_Extension.USER_MAPPING;
     case 7:
     case "CLIENT_AUTHZ":
-      return Browser_TLSFingerprint_Extensions.CLIENT_AUTHZ;
+      return Browser_TLSFingerprint_Extension.CLIENT_AUTHZ;
     case 8:
     case "SERVER_AUTHZ":
-      return Browser_TLSFingerprint_Extensions.SERVER_AUTHZ;
+      return Browser_TLSFingerprint_Extension.SERVER_AUTHZ;
     case 9:
     case "CERT_TYPE":
-      return Browser_TLSFingerprint_Extensions.CERT_TYPE;
+      return Browser_TLSFingerprint_Extension.CERT_TYPE;
     case 10:
     case "SUPPORTED_GROUPS":
-      return Browser_TLSFingerprint_Extensions.SUPPORTED_GROUPS;
+      return Browser_TLSFingerprint_Extension.SUPPORTED_GROUPS;
     case 11:
     case "EC_POINT_FORMATS":
-      return Browser_TLSFingerprint_Extensions.EC_POINT_FORMATS;
+      return Browser_TLSFingerprint_Extension.EC_POINT_FORMATS;
     case 12:
     case "SRP":
-      return Browser_TLSFingerprint_Extensions.SRP;
+      return Browser_TLSFingerprint_Extension.SRP;
     case 13:
     case "SIGNATURE_ALGORITHMS":
-      return Browser_TLSFingerprint_Extensions.SIGNATURE_ALGORITHMS;
+      return Browser_TLSFingerprint_Extension.SIGNATURE_ALGORITHMS;
     case 14:
     case "USE_SRTP":
-      return Browser_TLSFingerprint_Extensions.USE_SRTP;
+      return Browser_TLSFingerprint_Extension.USE_SRTP;
     case 15:
     case "HEARTBEAT":
-      return Browser_TLSFingerprint_Extensions.HEARTBEAT;
+      return Browser_TLSFingerprint_Extension.HEARTBEAT;
     case 16:
     case "APPLICATION_LAYER_PROTOCOL_NEGOTIATION":
-      return Browser_TLSFingerprint_Extensions.APPLICATION_LAYER_PROTOCOL_NEGOTIATION;
+      return Browser_TLSFingerprint_Extension.APPLICATION_LAYER_PROTOCOL_NEGOTIATION;
     case 17:
     case "STATUS_REQUEST_V2":
-      return Browser_TLSFingerprint_Extensions.STATUS_REQUEST_V2;
+      return Browser_TLSFingerprint_Extension.STATUS_REQUEST_V2;
     case 18:
     case "SIGNED_CERTIFICATE_TIMESTAMP":
-      return Browser_TLSFingerprint_Extensions.SIGNED_CERTIFICATE_TIMESTAMP;
+      return Browser_TLSFingerprint_Extension.SIGNED_CERTIFICATE_TIMESTAMP;
     case 19:
     case "CLIENT_CERTIFICATE_TYPE":
-      return Browser_TLSFingerprint_Extensions.CLIENT_CERTIFICATE_TYPE;
+      return Browser_TLSFingerprint_Extension.CLIENT_CERTIFICATE_TYPE;
     case 20:
     case "SERVER_CERTIFICATE_TYPE":
-      return Browser_TLSFingerprint_Extensions.SERVER_CERTIFICATE_TYPE;
+      return Browser_TLSFingerprint_Extension.SERVER_CERTIFICATE_TYPE;
     case 21:
     case "PADDING":
-      return Browser_TLSFingerprint_Extensions.PADDING;
+      return Browser_TLSFingerprint_Extension.PADDING;
     case 22:
     case "ENCRYPT_THEN_MAC":
-      return Browser_TLSFingerprint_Extensions.ENCRYPT_THEN_MAC;
+      return Browser_TLSFingerprint_Extension.ENCRYPT_THEN_MAC;
     case 23:
     case "EXTENDED_MASTER_SECRET":
-      return Browser_TLSFingerprint_Extensions.EXTENDED_MASTER_SECRET;
+      return Browser_TLSFingerprint_Extension.EXTENDED_MASTER_SECRET;
     case 24:
     case "TOKEN_BINDING":
-      return Browser_TLSFingerprint_Extensions.TOKEN_BINDING;
+      return Browser_TLSFingerprint_Extension.TOKEN_BINDING;
     case 25:
     case "CACHED_INFO":
-      return Browser_TLSFingerprint_Extensions.CACHED_INFO;
+      return Browser_TLSFingerprint_Extension.CACHED_INFO;
     case 26:
     case "TLS_LTS":
-      return Browser_TLSFingerprint_Extensions.TLS_LTS;
+      return Browser_TLSFingerprint_Extension.TLS_LTS;
     case 27:
     case "COMPRESS_CERTIFICATE":
-      return Browser_TLSFingerprint_Extensions.COMPRESS_CERTIFICATE;
+      return Browser_TLSFingerprint_Extension.COMPRESS_CERTIFICATE;
     case 28:
     case "RECORD_SIZE_LIMIT":
-      return Browser_TLSFingerprint_Extensions.RECORD_SIZE_LIMIT;
+      return Browser_TLSFingerprint_Extension.RECORD_SIZE_LIMIT;
     case 29:
     case "PWD_PROTECT":
-      return Browser_TLSFingerprint_Extensions.PWD_PROTECT;
+      return Browser_TLSFingerprint_Extension.PWD_PROTECT;
     case 30:
     case "PWD_CLEAR":
-      return Browser_TLSFingerprint_Extensions.PWD_CLEAR;
+      return Browser_TLSFingerprint_Extension.PWD_CLEAR;
     case 31:
     case "PASSWORD_SALT":
-      return Browser_TLSFingerprint_Extensions.PASSWORD_SALT;
+      return Browser_TLSFingerprint_Extension.PASSWORD_SALT;
     case 32:
     case "TICKET_PINNING":
-      return Browser_TLSFingerprint_Extensions.TICKET_PINNING;
+      return Browser_TLSFingerprint_Extension.TICKET_PINNING;
     case 33:
     case "TLS_CERT_WITH_EXTERN_PSK":
-      return Browser_TLSFingerprint_Extensions.TLS_CERT_WITH_EXTERN_PSK;
+      return Browser_TLSFingerprint_Extension.TLS_CERT_WITH_EXTERN_PSK;
     case 34:
     case "DELEGATED_CREDENTIAL":
-      return Browser_TLSFingerprint_Extensions.DELEGATED_CREDENTIAL;
+      return Browser_TLSFingerprint_Extension.DELEGATED_CREDENTIAL;
     case 35:
     case "SESSION_TICKET":
-      return Browser_TLSFingerprint_Extensions.SESSION_TICKET;
+      return Browser_TLSFingerprint_Extension.SESSION_TICKET;
     case 36:
     case "TLMSP":
-      return Browser_TLSFingerprint_Extensions.TLMSP;
+      return Browser_TLSFingerprint_Extension.TLMSP;
     case 37:
     case "TLMSP_PROXYING":
-      return Browser_TLSFingerprint_Extensions.TLMSP_PROXYING;
+      return Browser_TLSFingerprint_Extension.TLMSP_PROXYING;
     case 38:
     case "TLMSP_DELEGATE":
-      return Browser_TLSFingerprint_Extensions.TLMSP_DELEGATE;
+      return Browser_TLSFingerprint_Extension.TLMSP_DELEGATE;
     case 39:
     case "SUPPORTED_EKT_CIPHERS":
-      return Browser_TLSFingerprint_Extensions.SUPPORTED_EKT_CIPHERS;
+      return Browser_TLSFingerprint_Extension.SUPPORTED_EKT_CIPHERS;
     case 41:
     case "PRE_SHARED_KEY":
-      return Browser_TLSFingerprint_Extensions.PRE_SHARED_KEY;
+      return Browser_TLSFingerprint_Extension.PRE_SHARED_KEY;
     case 42:
     case "EARLY_DATA":
-      return Browser_TLSFingerprint_Extensions.EARLY_DATA;
+      return Browser_TLSFingerprint_Extension.EARLY_DATA;
     case 43:
     case "SUPPORTED_VERSIONS":
-      return Browser_TLSFingerprint_Extensions.SUPPORTED_VERSIONS;
+      return Browser_TLSFingerprint_Extension.SUPPORTED_VERSIONS;
     case 44:
     case "COOKIE":
-      return Browser_TLSFingerprint_Extensions.COOKIE;
+      return Browser_TLSFingerprint_Extension.COOKIE;
     case 45:
     case "PSK_KEY_EXCHANGE_MODES":
-      return Browser_TLSFingerprint_Extensions.PSK_KEY_EXCHANGE_MODES;
+      return Browser_TLSFingerprint_Extension.PSK_KEY_EXCHANGE_MODES;
     case 47:
     case "CERTIFICATE_AUTHORITIES":
-      return Browser_TLSFingerprint_Extensions.CERTIFICATE_AUTHORITIES;
+      return Browser_TLSFingerprint_Extension.CERTIFICATE_AUTHORITIES;
     case 48:
     case "OID_FILTERS":
-      return Browser_TLSFingerprint_Extensions.OID_FILTERS;
+      return Browser_TLSFingerprint_Extension.OID_FILTERS;
     case 49:
     case "POST_HANDSHAKE_AUTH":
-      return Browser_TLSFingerprint_Extensions.POST_HANDSHAKE_AUTH;
+      return Browser_TLSFingerprint_Extension.POST_HANDSHAKE_AUTH;
     case 50:
     case "SIGNATURE_ALGORITHMS_CERT":
-      return Browser_TLSFingerprint_Extensions.SIGNATURE_ALGORITHMS_CERT;
+      return Browser_TLSFingerprint_Extension.SIGNATURE_ALGORITHMS_CERT;
     case 51:
     case "KEY_SHARE":
-      return Browser_TLSFingerprint_Extensions.KEY_SHARE;
+      return Browser_TLSFingerprint_Extension.KEY_SHARE;
     case 52:
     case "TRANSPARENCY_INFO":
-      return Browser_TLSFingerprint_Extensions.TRANSPARENCY_INFO;
+      return Browser_TLSFingerprint_Extension.TRANSPARENCY_INFO;
     case 53:
     case "CONNECTION_ID_DEPRECATED":
-      return Browser_TLSFingerprint_Extensions.CONNECTION_ID_DEPRECATED;
+      return Browser_TLSFingerprint_Extension.CONNECTION_ID_DEPRECATED;
     case 54:
     case "CONNECTION_ID":
-      return Browser_TLSFingerprint_Extensions.CONNECTION_ID;
+      return Browser_TLSFingerprint_Extension.CONNECTION_ID;
     case 55:
     case "EXTERNAL_ID_HASH":
-      return Browser_TLSFingerprint_Extensions.EXTERNAL_ID_HASH;
+      return Browser_TLSFingerprint_Extension.EXTERNAL_ID_HASH;
     case 56:
     case "EXTERNAL_SESSION_ID":
-      return Browser_TLSFingerprint_Extensions.EXTERNAL_SESSION_ID;
+      return Browser_TLSFingerprint_Extension.EXTERNAL_SESSION_ID;
     case 57:
     case "QUIC_TRANSPORT_PARAMETERS":
-      return Browser_TLSFingerprint_Extensions.QUIC_TRANSPORT_PARAMETERS;
+      return Browser_TLSFingerprint_Extension.QUIC_TRANSPORT_PARAMETERS;
     case 58:
     case "TICKET_REQUEST":
-      return Browser_TLSFingerprint_Extensions.TICKET_REQUEST;
+      return Browser_TLSFingerprint_Extension.TICKET_REQUEST;
     case 59:
     case "DNSSEC_CHAIN":
-      return Browser_TLSFingerprint_Extensions.DNSSEC_CHAIN;
+      return Browser_TLSFingerprint_Extension.DNSSEC_CHAIN;
     case 60:
     case "SEQUENCE_NUMBER_ENCRYPTION_ALGORITHMS":
-      return Browser_TLSFingerprint_Extensions.SEQUENCE_NUMBER_ENCRYPTION_ALGORITHMS;
+      return Browser_TLSFingerprint_Extension.SEQUENCE_NUMBER_ENCRYPTION_ALGORITHMS;
     case 17513:
     case "EXTENSION_APPLICATIONS_SETTINGS":
-      return Browser_TLSFingerprint_Extensions.EXTENSION_APPLICATIONS_SETTINGS;
+      return Browser_TLSFingerprint_Extension.EXTENSION_APPLICATIONS_SETTINGS;
+    case 65037:
+    case "EXTENSION_ENCRYPTED_CLIENT_HELLO":
+      return Browser_TLSFingerprint_Extension.EXTENSION_ENCRYPTED_CLIENT_HELLO;
     case 65281:
     case "EXTENSION_RENEGOTIATION_INFO":
-      return Browser_TLSFingerprint_Extensions.EXTENSION_RENEGOTIATION_INFO;
+      return Browser_TLSFingerprint_Extension.EXTENSION_RENEGOTIATION_INFO;
     case -1:
     case "UNRECOGNIZED":
     default:
-      return Browser_TLSFingerprint_Extensions.UNRECOGNIZED;
+      return Browser_TLSFingerprint_Extension.UNRECOGNIZED;
   }
 }
 
-export function browser_TLSFingerprint_ExtensionsToJSON(object: Browser_TLSFingerprint_Extensions): string {
+export function browser_TLSFingerprint_ExtensionToJSON(object: Browser_TLSFingerprint_Extension): string {
   switch (object) {
-    case Browser_TLSFingerprint_Extensions.SERVER_NAME:
+    case Browser_TLSFingerprint_Extension.SERVER_NAME:
       return "SERVER_NAME";
-    case Browser_TLSFingerprint_Extensions.MAX_FRAGMENT_LENGTH:
+    case Browser_TLSFingerprint_Extension.MAX_FRAGMENT_LENGTH:
       return "MAX_FRAGMENT_LENGTH";
-    case Browser_TLSFingerprint_Extensions.CLIENT_CERTIFICATE_URL:
+    case Browser_TLSFingerprint_Extension.CLIENT_CERTIFICATE_URL:
       return "CLIENT_CERTIFICATE_URL";
-    case Browser_TLSFingerprint_Extensions.TRUSTED_CA_KEYS:
+    case Browser_TLSFingerprint_Extension.TRUSTED_CA_KEYS:
       return "TRUSTED_CA_KEYS";
-    case Browser_TLSFingerprint_Extensions.TRUNCATED_HMAC:
+    case Browser_TLSFingerprint_Extension.TRUNCATED_HMAC:
       return "TRUNCATED_HMAC";
-    case Browser_TLSFingerprint_Extensions.STATUS_REQUEST:
+    case Browser_TLSFingerprint_Extension.STATUS_REQUEST:
       return "STATUS_REQUEST";
-    case Browser_TLSFingerprint_Extensions.USER_MAPPING:
+    case Browser_TLSFingerprint_Extension.USER_MAPPING:
       return "USER_MAPPING";
-    case Browser_TLSFingerprint_Extensions.CLIENT_AUTHZ:
+    case Browser_TLSFingerprint_Extension.CLIENT_AUTHZ:
       return "CLIENT_AUTHZ";
-    case Browser_TLSFingerprint_Extensions.SERVER_AUTHZ:
+    case Browser_TLSFingerprint_Extension.SERVER_AUTHZ:
       return "SERVER_AUTHZ";
-    case Browser_TLSFingerprint_Extensions.CERT_TYPE:
+    case Browser_TLSFingerprint_Extension.CERT_TYPE:
       return "CERT_TYPE";
-    case Browser_TLSFingerprint_Extensions.SUPPORTED_GROUPS:
+    case Browser_TLSFingerprint_Extension.SUPPORTED_GROUPS:
       return "SUPPORTED_GROUPS";
-    case Browser_TLSFingerprint_Extensions.EC_POINT_FORMATS:
+    case Browser_TLSFingerprint_Extension.EC_POINT_FORMATS:
       return "EC_POINT_FORMATS";
-    case Browser_TLSFingerprint_Extensions.SRP:
+    case Browser_TLSFingerprint_Extension.SRP:
       return "SRP";
-    case Browser_TLSFingerprint_Extensions.SIGNATURE_ALGORITHMS:
+    case Browser_TLSFingerprint_Extension.SIGNATURE_ALGORITHMS:
       return "SIGNATURE_ALGORITHMS";
-    case Browser_TLSFingerprint_Extensions.USE_SRTP:
+    case Browser_TLSFingerprint_Extension.USE_SRTP:
       return "USE_SRTP";
-    case Browser_TLSFingerprint_Extensions.HEARTBEAT:
+    case Browser_TLSFingerprint_Extension.HEARTBEAT:
       return "HEARTBEAT";
-    case Browser_TLSFingerprint_Extensions.APPLICATION_LAYER_PROTOCOL_NEGOTIATION:
+    case Browser_TLSFingerprint_Extension.APPLICATION_LAYER_PROTOCOL_NEGOTIATION:
       return "APPLICATION_LAYER_PROTOCOL_NEGOTIATION";
-    case Browser_TLSFingerprint_Extensions.STATUS_REQUEST_V2:
+    case Browser_TLSFingerprint_Extension.STATUS_REQUEST_V2:
       return "STATUS_REQUEST_V2";
-    case Browser_TLSFingerprint_Extensions.SIGNED_CERTIFICATE_TIMESTAMP:
+    case Browser_TLSFingerprint_Extension.SIGNED_CERTIFICATE_TIMESTAMP:
       return "SIGNED_CERTIFICATE_TIMESTAMP";
-    case Browser_TLSFingerprint_Extensions.CLIENT_CERTIFICATE_TYPE:
+    case Browser_TLSFingerprint_Extension.CLIENT_CERTIFICATE_TYPE:
       return "CLIENT_CERTIFICATE_TYPE";
-    case Browser_TLSFingerprint_Extensions.SERVER_CERTIFICATE_TYPE:
+    case Browser_TLSFingerprint_Extension.SERVER_CERTIFICATE_TYPE:
       return "SERVER_CERTIFICATE_TYPE";
-    case Browser_TLSFingerprint_Extensions.PADDING:
+    case Browser_TLSFingerprint_Extension.PADDING:
       return "PADDING";
-    case Browser_TLSFingerprint_Extensions.ENCRYPT_THEN_MAC:
+    case Browser_TLSFingerprint_Extension.ENCRYPT_THEN_MAC:
       return "ENCRYPT_THEN_MAC";
-    case Browser_TLSFingerprint_Extensions.EXTENDED_MASTER_SECRET:
+    case Browser_TLSFingerprint_Extension.EXTENDED_MASTER_SECRET:
       return "EXTENDED_MASTER_SECRET";
-    case Browser_TLSFingerprint_Extensions.TOKEN_BINDING:
+    case Browser_TLSFingerprint_Extension.TOKEN_BINDING:
       return "TOKEN_BINDING";
-    case Browser_TLSFingerprint_Extensions.CACHED_INFO:
+    case Browser_TLSFingerprint_Extension.CACHED_INFO:
       return "CACHED_INFO";
-    case Browser_TLSFingerprint_Extensions.TLS_LTS:
+    case Browser_TLSFingerprint_Extension.TLS_LTS:
       return "TLS_LTS";
-    case Browser_TLSFingerprint_Extensions.COMPRESS_CERTIFICATE:
+    case Browser_TLSFingerprint_Extension.COMPRESS_CERTIFICATE:
       return "COMPRESS_CERTIFICATE";
-    case Browser_TLSFingerprint_Extensions.RECORD_SIZE_LIMIT:
+    case Browser_TLSFingerprint_Extension.RECORD_SIZE_LIMIT:
       return "RECORD_SIZE_LIMIT";
-    case Browser_TLSFingerprint_Extensions.PWD_PROTECT:
+    case Browser_TLSFingerprint_Extension.PWD_PROTECT:
       return "PWD_PROTECT";
-    case Browser_TLSFingerprint_Extensions.PWD_CLEAR:
+    case Browser_TLSFingerprint_Extension.PWD_CLEAR:
       return "PWD_CLEAR";
-    case Browser_TLSFingerprint_Extensions.PASSWORD_SALT:
+    case Browser_TLSFingerprint_Extension.PASSWORD_SALT:
       return "PASSWORD_SALT";
-    case Browser_TLSFingerprint_Extensions.TICKET_PINNING:
+    case Browser_TLSFingerprint_Extension.TICKET_PINNING:
       return "TICKET_PINNING";
-    case Browser_TLSFingerprint_Extensions.TLS_CERT_WITH_EXTERN_PSK:
+    case Browser_TLSFingerprint_Extension.TLS_CERT_WITH_EXTERN_PSK:
       return "TLS_CERT_WITH_EXTERN_PSK";
-    case Browser_TLSFingerprint_Extensions.DELEGATED_CREDENTIAL:
+    case Browser_TLSFingerprint_Extension.DELEGATED_CREDENTIAL:
       return "DELEGATED_CREDENTIAL";
-    case Browser_TLSFingerprint_Extensions.SESSION_TICKET:
+    case Browser_TLSFingerprint_Extension.SESSION_TICKET:
       return "SESSION_TICKET";
-    case Browser_TLSFingerprint_Extensions.TLMSP:
+    case Browser_TLSFingerprint_Extension.TLMSP:
       return "TLMSP";
-    case Browser_TLSFingerprint_Extensions.TLMSP_PROXYING:
+    case Browser_TLSFingerprint_Extension.TLMSP_PROXYING:
       return "TLMSP_PROXYING";
-    case Browser_TLSFingerprint_Extensions.TLMSP_DELEGATE:
+    case Browser_TLSFingerprint_Extension.TLMSP_DELEGATE:
       return "TLMSP_DELEGATE";
-    case Browser_TLSFingerprint_Extensions.SUPPORTED_EKT_CIPHERS:
+    case Browser_TLSFingerprint_Extension.SUPPORTED_EKT_CIPHERS:
       return "SUPPORTED_EKT_CIPHERS";
-    case Browser_TLSFingerprint_Extensions.PRE_SHARED_KEY:
+    case Browser_TLSFingerprint_Extension.PRE_SHARED_KEY:
       return "PRE_SHARED_KEY";
-    case Browser_TLSFingerprint_Extensions.EARLY_DATA:
+    case Browser_TLSFingerprint_Extension.EARLY_DATA:
       return "EARLY_DATA";
-    case Browser_TLSFingerprint_Extensions.SUPPORTED_VERSIONS:
+    case Browser_TLSFingerprint_Extension.SUPPORTED_VERSIONS:
       return "SUPPORTED_VERSIONS";
-    case Browser_TLSFingerprint_Extensions.COOKIE:
+    case Browser_TLSFingerprint_Extension.COOKIE:
       return "COOKIE";
-    case Browser_TLSFingerprint_Extensions.PSK_KEY_EXCHANGE_MODES:
+    case Browser_TLSFingerprint_Extension.PSK_KEY_EXCHANGE_MODES:
       return "PSK_KEY_EXCHANGE_MODES";
-    case Browser_TLSFingerprint_Extensions.CERTIFICATE_AUTHORITIES:
+    case Browser_TLSFingerprint_Extension.CERTIFICATE_AUTHORITIES:
       return "CERTIFICATE_AUTHORITIES";
-    case Browser_TLSFingerprint_Extensions.OID_FILTERS:
+    case Browser_TLSFingerprint_Extension.OID_FILTERS:
       return "OID_FILTERS";
-    case Browser_TLSFingerprint_Extensions.POST_HANDSHAKE_AUTH:
+    case Browser_TLSFingerprint_Extension.POST_HANDSHAKE_AUTH:
       return "POST_HANDSHAKE_AUTH";
-    case Browser_TLSFingerprint_Extensions.SIGNATURE_ALGORITHMS_CERT:
+    case Browser_TLSFingerprint_Extension.SIGNATURE_ALGORITHMS_CERT:
       return "SIGNATURE_ALGORITHMS_CERT";
-    case Browser_TLSFingerprint_Extensions.KEY_SHARE:
+    case Browser_TLSFingerprint_Extension.KEY_SHARE:
       return "KEY_SHARE";
-    case Browser_TLSFingerprint_Extensions.TRANSPARENCY_INFO:
+    case Browser_TLSFingerprint_Extension.TRANSPARENCY_INFO:
       return "TRANSPARENCY_INFO";
-    case Browser_TLSFingerprint_Extensions.CONNECTION_ID_DEPRECATED:
+    case Browser_TLSFingerprint_Extension.CONNECTION_ID_DEPRECATED:
       return "CONNECTION_ID_DEPRECATED";
-    case Browser_TLSFingerprint_Extensions.CONNECTION_ID:
+    case Browser_TLSFingerprint_Extension.CONNECTION_ID:
       return "CONNECTION_ID";
-    case Browser_TLSFingerprint_Extensions.EXTERNAL_ID_HASH:
+    case Browser_TLSFingerprint_Extension.EXTERNAL_ID_HASH:
       return "EXTERNAL_ID_HASH";
-    case Browser_TLSFingerprint_Extensions.EXTERNAL_SESSION_ID:
+    case Browser_TLSFingerprint_Extension.EXTERNAL_SESSION_ID:
       return "EXTERNAL_SESSION_ID";
-    case Browser_TLSFingerprint_Extensions.QUIC_TRANSPORT_PARAMETERS:
+    case Browser_TLSFingerprint_Extension.QUIC_TRANSPORT_PARAMETERS:
       return "QUIC_TRANSPORT_PARAMETERS";
-    case Browser_TLSFingerprint_Extensions.TICKET_REQUEST:
+    case Browser_TLSFingerprint_Extension.TICKET_REQUEST:
       return "TICKET_REQUEST";
-    case Browser_TLSFingerprint_Extensions.DNSSEC_CHAIN:
+    case Browser_TLSFingerprint_Extension.DNSSEC_CHAIN:
       return "DNSSEC_CHAIN";
-    case Browser_TLSFingerprint_Extensions.SEQUENCE_NUMBER_ENCRYPTION_ALGORITHMS:
+    case Browser_TLSFingerprint_Extension.SEQUENCE_NUMBER_ENCRYPTION_ALGORITHMS:
       return "SEQUENCE_NUMBER_ENCRYPTION_ALGORITHMS";
-    case Browser_TLSFingerprint_Extensions.EXTENSION_APPLICATIONS_SETTINGS:
+    case Browser_TLSFingerprint_Extension.EXTENSION_APPLICATIONS_SETTINGS:
       return "EXTENSION_APPLICATIONS_SETTINGS";
-    case Browser_TLSFingerprint_Extensions.EXTENSION_RENEGOTIATION_INFO:
+    case Browser_TLSFingerprint_Extension.EXTENSION_ENCRYPTED_CLIENT_HELLO:
+      return "EXTENSION_ENCRYPTED_CLIENT_HELLO";
+    case Browser_TLSFingerprint_Extension.EXTENSION_RENEGOTIATION_INFO:
       return "EXTENSION_RENEGOTIATION_INFO";
-    case Browser_TLSFingerprint_Extensions.UNRECOGNIZED:
+    case Browser_TLSFingerprint_Extension.UNRECOGNIZED:
+    default:
+      return "UNRECOGNIZED";
+  }
+}
+
+export enum Browser_TLSFingerprint_RenegotiationSupport {
+  RENEGOTIATE_NEVER = 0,
+  RENEGOTIATE_ONCE_AS_CLIENT = 1,
+  RENEGOTIATE_FREELY_AS_CLIENT = 2,
+  UNRECOGNIZED = -1,
+}
+
+export function browser_TLSFingerprint_RenegotiationSupportFromJSON(
+  object: any,
+): Browser_TLSFingerprint_RenegotiationSupport {
+  switch (object) {
+    case 0:
+    case "RENEGOTIATE_NEVER":
+      return Browser_TLSFingerprint_RenegotiationSupport.RENEGOTIATE_NEVER;
+    case 1:
+    case "RENEGOTIATE_ONCE_AS_CLIENT":
+      return Browser_TLSFingerprint_RenegotiationSupport.RENEGOTIATE_ONCE_AS_CLIENT;
+    case 2:
+    case "RENEGOTIATE_FREELY_AS_CLIENT":
+      return Browser_TLSFingerprint_RenegotiationSupport.RENEGOTIATE_FREELY_AS_CLIENT;
+    case -1:
+    case "UNRECOGNIZED":
+    default:
+      return Browser_TLSFingerprint_RenegotiationSupport.UNRECOGNIZED;
+  }
+}
+
+export function browser_TLSFingerprint_RenegotiationSupportToJSON(
+  object: Browser_TLSFingerprint_RenegotiationSupport,
+): string {
+  switch (object) {
+    case Browser_TLSFingerprint_RenegotiationSupport.RENEGOTIATE_NEVER:
+      return "RENEGOTIATE_NEVER";
+    case Browser_TLSFingerprint_RenegotiationSupport.RENEGOTIATE_ONCE_AS_CLIENT:
+      return "RENEGOTIATE_ONCE_AS_CLIENT";
+    case Browser_TLSFingerprint_RenegotiationSupport.RENEGOTIATE_FREELY_AS_CLIENT:
+      return "RENEGOTIATE_FREELY_AS_CLIENT";
+    case Browser_TLSFingerprint_RenegotiationSupport.UNRECOGNIZED:
+    default:
+      return "UNRECOGNIZED";
+  }
+}
+
+export enum Browser_TLSFingerprint_SignatureScheme {
+  NO_SIGNATURE = 0,
+  RSA_PKCS1_SHA256 = 1025,
+  RSA_PKCS1_SHA384 = 1281,
+  RSA_PKCS1_SHA512 = 1537,
+  ECDSA_SECP256R1_SHA256 = 1027,
+  ECDSA_SECP384R1_SHA384 = 1283,
+  ECDSA_SECP521R1_SHA512 = 1539,
+  RSA_PSS_RSAE_SHA256 = 2052,
+  RSA_PSS_RSAE_SHA384 = 2053,
+  RSA_PSS_RSAE_SHA512 = 2054,
+  ED25519 = 2055,
+  ED448 = 2056,
+  RSA_PSS_PSS_SHA256 = 2057,
+  RSA_PSS_PSS_SHA384 = 2058,
+  RSA_PSS_PSS_SHA512 = 2059,
+  RSA_PKCS1_SHA1 = 513,
+  ECDSA_SHA1 = 515,
+  UNRECOGNIZED = -1,
+}
+
+export function browser_TLSFingerprint_SignatureSchemeFromJSON(object: any): Browser_TLSFingerprint_SignatureScheme {
+  switch (object) {
+    case 0:
+    case "NO_SIGNATURE":
+      return Browser_TLSFingerprint_SignatureScheme.NO_SIGNATURE;
+    case 1025:
+    case "RSA_PKCS1_SHA256":
+      return Browser_TLSFingerprint_SignatureScheme.RSA_PKCS1_SHA256;
+    case 1281:
+    case "RSA_PKCS1_SHA384":
+      return Browser_TLSFingerprint_SignatureScheme.RSA_PKCS1_SHA384;
+    case 1537:
+    case "RSA_PKCS1_SHA512":
+      return Browser_TLSFingerprint_SignatureScheme.RSA_PKCS1_SHA512;
+    case 1027:
+    case "ECDSA_SECP256R1_SHA256":
+      return Browser_TLSFingerprint_SignatureScheme.ECDSA_SECP256R1_SHA256;
+    case 1283:
+    case "ECDSA_SECP384R1_SHA384":
+      return Browser_TLSFingerprint_SignatureScheme.ECDSA_SECP384R1_SHA384;
+    case 1539:
+    case "ECDSA_SECP521R1_SHA512":
+      return Browser_TLSFingerprint_SignatureScheme.ECDSA_SECP521R1_SHA512;
+    case 2052:
+    case "RSA_PSS_RSAE_SHA256":
+      return Browser_TLSFingerprint_SignatureScheme.RSA_PSS_RSAE_SHA256;
+    case 2053:
+    case "RSA_PSS_RSAE_SHA384":
+      return Browser_TLSFingerprint_SignatureScheme.RSA_PSS_RSAE_SHA384;
+    case 2054:
+    case "RSA_PSS_RSAE_SHA512":
+      return Browser_TLSFingerprint_SignatureScheme.RSA_PSS_RSAE_SHA512;
+    case 2055:
+    case "ED25519":
+      return Browser_TLSFingerprint_SignatureScheme.ED25519;
+    case 2056:
+    case "ED448":
+      return Browser_TLSFingerprint_SignatureScheme.ED448;
+    case 2057:
+    case "RSA_PSS_PSS_SHA256":
+      return Browser_TLSFingerprint_SignatureScheme.RSA_PSS_PSS_SHA256;
+    case 2058:
+    case "RSA_PSS_PSS_SHA384":
+      return Browser_TLSFingerprint_SignatureScheme.RSA_PSS_PSS_SHA384;
+    case 2059:
+    case "RSA_PSS_PSS_SHA512":
+      return Browser_TLSFingerprint_SignatureScheme.RSA_PSS_PSS_SHA512;
+    case 513:
+    case "RSA_PKCS1_SHA1":
+      return Browser_TLSFingerprint_SignatureScheme.RSA_PKCS1_SHA1;
+    case 515:
+    case "ECDSA_SHA1":
+      return Browser_TLSFingerprint_SignatureScheme.ECDSA_SHA1;
+    case -1:
+    case "UNRECOGNIZED":
+    default:
+      return Browser_TLSFingerprint_SignatureScheme.UNRECOGNIZED;
+  }
+}
+
+export function browser_TLSFingerprint_SignatureSchemeToJSON(object: Browser_TLSFingerprint_SignatureScheme): string {
+  switch (object) {
+    case Browser_TLSFingerprint_SignatureScheme.NO_SIGNATURE:
+      return "NO_SIGNATURE";
+    case Browser_TLSFingerprint_SignatureScheme.RSA_PKCS1_SHA256:
+      return "RSA_PKCS1_SHA256";
+    case Browser_TLSFingerprint_SignatureScheme.RSA_PKCS1_SHA384:
+      return "RSA_PKCS1_SHA384";
+    case Browser_TLSFingerprint_SignatureScheme.RSA_PKCS1_SHA512:
+      return "RSA_PKCS1_SHA512";
+    case Browser_TLSFingerprint_SignatureScheme.ECDSA_SECP256R1_SHA256:
+      return "ECDSA_SECP256R1_SHA256";
+    case Browser_TLSFingerprint_SignatureScheme.ECDSA_SECP384R1_SHA384:
+      return "ECDSA_SECP384R1_SHA384";
+    case Browser_TLSFingerprint_SignatureScheme.ECDSA_SECP521R1_SHA512:
+      return "ECDSA_SECP521R1_SHA512";
+    case Browser_TLSFingerprint_SignatureScheme.RSA_PSS_RSAE_SHA256:
+      return "RSA_PSS_RSAE_SHA256";
+    case Browser_TLSFingerprint_SignatureScheme.RSA_PSS_RSAE_SHA384:
+      return "RSA_PSS_RSAE_SHA384";
+    case Browser_TLSFingerprint_SignatureScheme.RSA_PSS_RSAE_SHA512:
+      return "RSA_PSS_RSAE_SHA512";
+    case Browser_TLSFingerprint_SignatureScheme.ED25519:
+      return "ED25519";
+    case Browser_TLSFingerprint_SignatureScheme.ED448:
+      return "ED448";
+    case Browser_TLSFingerprint_SignatureScheme.RSA_PSS_PSS_SHA256:
+      return "RSA_PSS_PSS_SHA256";
+    case Browser_TLSFingerprint_SignatureScheme.RSA_PSS_PSS_SHA384:
+      return "RSA_PSS_PSS_SHA384";
+    case Browser_TLSFingerprint_SignatureScheme.RSA_PSS_PSS_SHA512:
+      return "RSA_PSS_PSS_SHA512";
+    case Browser_TLSFingerprint_SignatureScheme.RSA_PKCS1_SHA1:
+      return "RSA_PKCS1_SHA1";
+    case Browser_TLSFingerprint_SignatureScheme.ECDSA_SHA1:
+      return "ECDSA_SHA1";
+    case Browser_TLSFingerprint_SignatureScheme.UNRECOGNIZED:
     default:
       return "UNRECOGNIZED";
   }
@@ -2720,6 +2900,10 @@ export enum Browser_TLSFingerprint_EllipticCurve {
   FFDHE4096 = 258,
   FFDHE6144 = 259,
   FFDHE8192 = 260,
+  X25519KYBER512DRAFT00 = 65072,
+  X25519KYBER768DRAFT00 = 25497,
+  X25519KYBER768DRAFT00OLD = 65073,
+  P256Kyber768Draft00 = 65074,
   ARBITRARY_EXPLICIT_PRIME_CURVES = 65281,
   ARBITRARY_EXPLICIT_CHAR2_CURVES = 65282,
   UNRECOGNIZED = -1,
@@ -2868,6 +3052,18 @@ export function browser_TLSFingerprint_EllipticCurveFromJSON(object: any): Brows
     case 260:
     case "FFDHE8192":
       return Browser_TLSFingerprint_EllipticCurve.FFDHE8192;
+    case 65072:
+    case "X25519KYBER512DRAFT00":
+      return Browser_TLSFingerprint_EllipticCurve.X25519KYBER512DRAFT00;
+    case 25497:
+    case "X25519KYBER768DRAFT00":
+      return Browser_TLSFingerprint_EllipticCurve.X25519KYBER768DRAFT00;
+    case 65073:
+    case "X25519KYBER768DRAFT00OLD":
+      return Browser_TLSFingerprint_EllipticCurve.X25519KYBER768DRAFT00OLD;
+    case 65074:
+    case "P256Kyber768Draft00":
+      return Browser_TLSFingerprint_EllipticCurve.P256Kyber768Draft00;
     case 65281:
     case "ARBITRARY_EXPLICIT_PRIME_CURVES":
       return Browser_TLSFingerprint_EllipticCurve.ARBITRARY_EXPLICIT_PRIME_CURVES;
@@ -2977,6 +3173,14 @@ export function browser_TLSFingerprint_EllipticCurveToJSON(object: Browser_TLSFi
       return "FFDHE6144";
     case Browser_TLSFingerprint_EllipticCurve.FFDHE8192:
       return "FFDHE8192";
+    case Browser_TLSFingerprint_EllipticCurve.X25519KYBER512DRAFT00:
+      return "X25519KYBER512DRAFT00";
+    case Browser_TLSFingerprint_EllipticCurve.X25519KYBER768DRAFT00:
+      return "X25519KYBER768DRAFT00";
+    case Browser_TLSFingerprint_EllipticCurve.X25519KYBER768DRAFT00OLD:
+      return "X25519KYBER768DRAFT00OLD";
+    case Browser_TLSFingerprint_EllipticCurve.P256Kyber768Draft00:
+      return "P256Kyber768Draft00";
     case Browser_TLSFingerprint_EllipticCurve.ARBITRARY_EXPLICIT_PRIME_CURVES:
       return "ARBITRARY_EXPLICIT_PRIME_CURVES";
     case Browser_TLSFingerprint_EllipticCurve.ARBITRARY_EXPLICIT_CHAR2_CURVES:
@@ -3031,10 +3235,297 @@ export function browser_TLSFingerprint_EllipticCurvePointFormatToJSON(
   }
 }
 
+export interface Browser_TLSFingerprint_ExtensionData {
+  extensionId?: Browser_TLSFingerprint_Extension;
+  signatureAlgorithms?: Browser_TLSFingerprint_ExtensionData_SignatureAlgorithms;
+  applicationLayerProtocolNegotiation?: Browser_TLSFingerprint_ExtensionData_ApplicationLayerProtocolNegotiation;
+  compressCertificate?: Browser_TLSFingerprint_ExtensionData_CompressCertificate;
+  recordSizeLimit?: Browser_TLSFingerprint_ExtensionData_RecordSizeLimit;
+  supportedVersions?: Browser_TLSFingerprint_ExtensionData_SupportedVersions;
+  pskKeyExchangeModes?: Browser_TLSFingerprint_ExtensionData_PSKKeyExchangeModes;
+  keyShareExtension?: Browser_TLSFingerprint_ExtensionData_KeyShareExtension;
+  extensionApplicationsSettings?: Browser_TLSFingerprint_ExtensionData_ExtensionApplicationsSettings;
+  extensionEncryptedClientHello?: Browser_TLSFingerprint_ExtensionData_ExtensionEncryptedClientHello;
+  extensionRenegotiationInfo?: Browser_TLSFingerprint_ExtensionData_ExtensionRenegotiationInfo;
+}
+
+export interface Browser_TLSFingerprint_ExtensionData_SignatureAlgorithms {
+  supportedSignatureAlgorithms?: Browser_TLSFingerprint_SignatureScheme[];
+}
+
+export interface Browser_TLSFingerprint_ExtensionData_ApplicationLayerProtocolNegotiation {
+  protocols?: string[];
+}
+
+export interface Browser_TLSFingerprint_ExtensionData_RecordSizeLimit {
+  limit?: number;
+}
+
+export interface Browser_TLSFingerprint_ExtensionData_CompressCertificate {
+  algorithms?: Browser_TLSFingerprint_ExtensionData_CompressCertificate_CertificateCompression[];
+}
+
+export enum Browser_TLSFingerprint_ExtensionData_CompressCertificate_CertificateCompression {
+  NO_COMPRESSION = 0,
+  ZLIB = 1,
+  BROTLI = 2,
+  ZSTD = 3,
+  UNRECOGNIZED = -1,
+}
+
+export function browser_TLSFingerprint_ExtensionData_CompressCertificate_CertificateCompressionFromJSON(
+  object: any,
+): Browser_TLSFingerprint_ExtensionData_CompressCertificate_CertificateCompression {
+  switch (object) {
+    case 0:
+    case "NO_COMPRESSION":
+      return Browser_TLSFingerprint_ExtensionData_CompressCertificate_CertificateCompression.NO_COMPRESSION;
+    case 1:
+    case "ZLIB":
+      return Browser_TLSFingerprint_ExtensionData_CompressCertificate_CertificateCompression.ZLIB;
+    case 2:
+    case "BROTLI":
+      return Browser_TLSFingerprint_ExtensionData_CompressCertificate_CertificateCompression.BROTLI;
+    case 3:
+    case "ZSTD":
+      return Browser_TLSFingerprint_ExtensionData_CompressCertificate_CertificateCompression.ZSTD;
+    case -1:
+    case "UNRECOGNIZED":
+    default:
+      return Browser_TLSFingerprint_ExtensionData_CompressCertificate_CertificateCompression.UNRECOGNIZED;
+  }
+}
+
+export function browser_TLSFingerprint_ExtensionData_CompressCertificate_CertificateCompressionToJSON(
+  object: Browser_TLSFingerprint_ExtensionData_CompressCertificate_CertificateCompression,
+): string {
+  switch (object) {
+    case Browser_TLSFingerprint_ExtensionData_CompressCertificate_CertificateCompression.NO_COMPRESSION:
+      return "NO_COMPRESSION";
+    case Browser_TLSFingerprint_ExtensionData_CompressCertificate_CertificateCompression.ZLIB:
+      return "ZLIB";
+    case Browser_TLSFingerprint_ExtensionData_CompressCertificate_CertificateCompression.BROTLI:
+      return "BROTLI";
+    case Browser_TLSFingerprint_ExtensionData_CompressCertificate_CertificateCompression.ZSTD:
+      return "ZSTD";
+    case Browser_TLSFingerprint_ExtensionData_CompressCertificate_CertificateCompression.UNRECOGNIZED:
+    default:
+      return "UNRECOGNIZED";
+  }
+}
+
+export interface Browser_TLSFingerprint_ExtensionData_SupportedVersions {
+  versions?: Browser_TLSFingerprint_ProtocolVersion[];
+}
+
+export interface Browser_TLSFingerprint_ExtensionData_PSKKeyExchangeModes {
+  modes?: Browser_TLSFingerprint_ExtensionData_PSKKeyExchangeModes_Mode[];
+}
+
+export enum Browser_TLSFingerprint_ExtensionData_PSKKeyExchangeModes_Mode {
+  PLAIN = 0,
+  DHE = 1,
+  UNRECOGNIZED = -1,
+}
+
+export function browser_TLSFingerprint_ExtensionData_PSKKeyExchangeModes_ModeFromJSON(
+  object: any,
+): Browser_TLSFingerprint_ExtensionData_PSKKeyExchangeModes_Mode {
+  switch (object) {
+    case 0:
+    case "PLAIN":
+      return Browser_TLSFingerprint_ExtensionData_PSKKeyExchangeModes_Mode.PLAIN;
+    case 1:
+    case "DHE":
+      return Browser_TLSFingerprint_ExtensionData_PSKKeyExchangeModes_Mode.DHE;
+    case -1:
+    case "UNRECOGNIZED":
+    default:
+      return Browser_TLSFingerprint_ExtensionData_PSKKeyExchangeModes_Mode.UNRECOGNIZED;
+  }
+}
+
+export function browser_TLSFingerprint_ExtensionData_PSKKeyExchangeModes_ModeToJSON(
+  object: Browser_TLSFingerprint_ExtensionData_PSKKeyExchangeModes_Mode,
+): string {
+  switch (object) {
+    case Browser_TLSFingerprint_ExtensionData_PSKKeyExchangeModes_Mode.PLAIN:
+      return "PLAIN";
+    case Browser_TLSFingerprint_ExtensionData_PSKKeyExchangeModes_Mode.DHE:
+      return "DHE";
+    case Browser_TLSFingerprint_ExtensionData_PSKKeyExchangeModes_Mode.UNRECOGNIZED:
+    default:
+      return "UNRECOGNIZED";
+  }
+}
+
+export interface Browser_TLSFingerprint_ExtensionData_KeyShareExtension {
+  keyShares?: Browser_TLSFingerprint_ExtensionData_KeyShareExtension_KeyShare[];
+}
+
+export interface Browser_TLSFingerprint_ExtensionData_KeyShareExtension_KeyShare {
+  group?: Browser_TLSFingerprint_EllipticCurve;
+  data?: Uint8Array;
+}
+
+export interface Browser_TLSFingerprint_ExtensionData_ExtensionApplicationsSettings {
+  protocols?: string[];
+}
+
+export interface Browser_TLSFingerprint_ExtensionData_ExtensionRenegotiationInfo {
+  renegotiationSupport?: Browser_TLSFingerprint_RenegotiationSupport;
+}
+
+export interface Browser_TLSFingerprint_ExtensionData_ExtensionEncryptedClientHello {
+  candidateCipherSuites?: Browser_TLSFingerprint_ExtensionData_ExtensionEncryptedClientHello_HPKESymmetricCipherSuite[];
+  candidatePayloadLens?: number[];
+}
+
+export enum Browser_TLSFingerprint_ExtensionData_ExtensionEncryptedClientHello_HKDF {
+  HKDF_RESERVED = 0,
+  HKDF_SHA256 = 1,
+  HKDF_SHA384 = 2,
+  HKDF_SHA512 = 3,
+  UNRECOGNIZED = -1,
+}
+
+export function browser_TLSFingerprint_ExtensionData_ExtensionEncryptedClientHello_HKDFFromJSON(
+  object: any,
+): Browser_TLSFingerprint_ExtensionData_ExtensionEncryptedClientHello_HKDF {
+  switch (object) {
+    case 0:
+    case "HKDF_RESERVED":
+      return Browser_TLSFingerprint_ExtensionData_ExtensionEncryptedClientHello_HKDF.HKDF_RESERVED;
+    case 1:
+    case "HKDF_SHA256":
+      return Browser_TLSFingerprint_ExtensionData_ExtensionEncryptedClientHello_HKDF.HKDF_SHA256;
+    case 2:
+    case "HKDF_SHA384":
+      return Browser_TLSFingerprint_ExtensionData_ExtensionEncryptedClientHello_HKDF.HKDF_SHA384;
+    case 3:
+    case "HKDF_SHA512":
+      return Browser_TLSFingerprint_ExtensionData_ExtensionEncryptedClientHello_HKDF.HKDF_SHA512;
+    case -1:
+    case "UNRECOGNIZED":
+    default:
+      return Browser_TLSFingerprint_ExtensionData_ExtensionEncryptedClientHello_HKDF.UNRECOGNIZED;
+  }
+}
+
+export function browser_TLSFingerprint_ExtensionData_ExtensionEncryptedClientHello_HKDFToJSON(
+  object: Browser_TLSFingerprint_ExtensionData_ExtensionEncryptedClientHello_HKDF,
+): string {
+  switch (object) {
+    case Browser_TLSFingerprint_ExtensionData_ExtensionEncryptedClientHello_HKDF.HKDF_RESERVED:
+      return "HKDF_RESERVED";
+    case Browser_TLSFingerprint_ExtensionData_ExtensionEncryptedClientHello_HKDF.HKDF_SHA256:
+      return "HKDF_SHA256";
+    case Browser_TLSFingerprint_ExtensionData_ExtensionEncryptedClientHello_HKDF.HKDF_SHA384:
+      return "HKDF_SHA384";
+    case Browser_TLSFingerprint_ExtensionData_ExtensionEncryptedClientHello_HKDF.HKDF_SHA512:
+      return "HKDF_SHA512";
+    case Browser_TLSFingerprint_ExtensionData_ExtensionEncryptedClientHello_HKDF.UNRECOGNIZED:
+    default:
+      return "UNRECOGNIZED";
+  }
+}
+
+export enum Browser_TLSFingerprint_ExtensionData_ExtensionEncryptedClientHello_HPKEAEAD {
+  HPKEAEAD_RESERVED = 0,
+  HPKEAEAD_AES_128_GCM = 1,
+  HPKEAEAD_AES_256_GCM = 2,
+  HPKEAEAD_CHACHA20POLY1305 = 3,
+  UNRECOGNIZED = -1,
+}
+
+export function browser_TLSFingerprint_ExtensionData_ExtensionEncryptedClientHello_HPKEAEADFromJSON(
+  object: any,
+): Browser_TLSFingerprint_ExtensionData_ExtensionEncryptedClientHello_HPKEAEAD {
+  switch (object) {
+    case 0:
+    case "HPKEAEAD_RESERVED":
+      return Browser_TLSFingerprint_ExtensionData_ExtensionEncryptedClientHello_HPKEAEAD.HPKEAEAD_RESERVED;
+    case 1:
+    case "HPKEAEAD_AES_128_GCM":
+      return Browser_TLSFingerprint_ExtensionData_ExtensionEncryptedClientHello_HPKEAEAD.HPKEAEAD_AES_128_GCM;
+    case 2:
+    case "HPKEAEAD_AES_256_GCM":
+      return Browser_TLSFingerprint_ExtensionData_ExtensionEncryptedClientHello_HPKEAEAD.HPKEAEAD_AES_256_GCM;
+    case 3:
+    case "HPKEAEAD_CHACHA20POLY1305":
+      return Browser_TLSFingerprint_ExtensionData_ExtensionEncryptedClientHello_HPKEAEAD.HPKEAEAD_CHACHA20POLY1305;
+    case -1:
+    case "UNRECOGNIZED":
+    default:
+      return Browser_TLSFingerprint_ExtensionData_ExtensionEncryptedClientHello_HPKEAEAD.UNRECOGNIZED;
+  }
+}
+
+export function browser_TLSFingerprint_ExtensionData_ExtensionEncryptedClientHello_HPKEAEADToJSON(
+  object: Browser_TLSFingerprint_ExtensionData_ExtensionEncryptedClientHello_HPKEAEAD,
+): string {
+  switch (object) {
+    case Browser_TLSFingerprint_ExtensionData_ExtensionEncryptedClientHello_HPKEAEAD.HPKEAEAD_RESERVED:
+      return "HPKEAEAD_RESERVED";
+    case Browser_TLSFingerprint_ExtensionData_ExtensionEncryptedClientHello_HPKEAEAD.HPKEAEAD_AES_128_GCM:
+      return "HPKEAEAD_AES_128_GCM";
+    case Browser_TLSFingerprint_ExtensionData_ExtensionEncryptedClientHello_HPKEAEAD.HPKEAEAD_AES_256_GCM:
+      return "HPKEAEAD_AES_256_GCM";
+    case Browser_TLSFingerprint_ExtensionData_ExtensionEncryptedClientHello_HPKEAEAD.HPKEAEAD_CHACHA20POLY1305:
+      return "HPKEAEAD_CHACHA20POLY1305";
+    case Browser_TLSFingerprint_ExtensionData_ExtensionEncryptedClientHello_HPKEAEAD.UNRECOGNIZED:
+    default:
+      return "UNRECOGNIZED";
+  }
+}
+
+export interface Browser_TLSFingerprint_ExtensionData_ExtensionEncryptedClientHello_HPKESymmetricCipherSuite {
+  kdfId?: Browser_TLSFingerprint_ExtensionData_ExtensionEncryptedClientHello_HKDF;
+  aeadId?: Browser_TLSFingerprint_ExtensionData_ExtensionEncryptedClientHello_HPKEAEAD;
+}
+
+export interface Browser_HTTPFingerprint {
+  /** HTTP 1 */
+  headerOrder?: string[];
+  /** HTTP 2 */
+  pseudoHeaderOrder?: string[];
+  settingsFrame?: Browser_HTTPFingerprint_SettingsFrameOpts;
+  windowUpdateIncrement?: number;
+  priorityFrames?: Browser_HTTPFingerprint_PriorityFrameOpts[];
+  headerFramePriority?: Browser_HTTPFingerprint_PriorityFrameOpts;
+}
+
+export interface Browser_HTTPFingerprint_PriorityFrameOpts {
+  streamId?: number;
+  streamDep?: number;
+  exclusive?: boolean;
+  weight?: number;
+}
+
+export interface Browser_HTTPFingerprint_SettingsFrameOpts {
+  headerTableSize?: number;
+  enablePush?: number;
+  maxConcurrentStreams?: number;
+  initialWindowSize?: number;
+  maxFrameSize?: number;
+  maxHeaderListSize?: number;
+}
+
+export interface Browser_GLCapability {
+  boolValue?: boolean[];
+  intValue?: number[];
+  floatValue?: number[];
+  stringValue?: string[];
+  enumValue?: number;
+  enumName?: string;
+}
+
 export interface Browser_BrowserCollection {
-  hash: string;
-  listData: string[];
-  mapData: { [key: string]: string };
+  id?: number;
+  hash?: string;
+  listData?: string[];
+  mapData?: { [key: string]: string };
+  glCapabilities?: { [key: string]: Browser_GLCapability };
 }
 
 export interface Browser_BrowserCollection_MapDataEntry {
@@ -3042,86 +3533,119 @@ export interface Browser_BrowserCollection_MapDataEntry {
   value: string;
 }
 
+export interface Browser_BrowserCollection_GlCapabilitiesEntry {
+  key: string;
+  value?: Browser_GLCapability;
+}
+
 export interface Browser_BrowserScreen {
-  availWidth: number;
-  availHeight: number;
-  width: number;
-  height: number;
-  colorDepth: number;
-  pixelDepth: number;
-  availLeft: number;
-  availTop: number;
-  isExtended: boolean;
-  orientation: Browser_BrowserScreen_Orientation | undefined;
+  availWidth?: number;
+  availHeight?: number;
+  width?: number;
+  height?: number;
+  colorDepth?: number;
+  pixelDepth?: number;
+  availLeft?: number;
+  availTop?: number;
+  isExtended?: boolean;
+  orientation?: Browser_BrowserScreen_Orientation;
 }
 
 export interface Browser_BrowserScreen_Orientation {
-  angle: number;
-  type: string;
+  angle?: number;
+  type?: string;
 }
 
 export interface Browser_WebGPU {
-  features: Browser_WebGPU_Features | undefined;
-  limits: Browser_WebGPU_Limits | undefined;
-  isFallbackAdapter: boolean;
-  vendor: string;
-  architecture: string;
-  device: string;
-  description: string;
+  features?: Browser_WebGPU_Features;
+  limits?: { [key: string]: number };
+  isFallbackAdapter?: boolean;
+  vendor?: string;
+  architecture?: string;
+  device?: string;
+  description?: string;
 }
 
 export interface Browser_WebGPU_Features {
-  size: number;
+  size?: number;
 }
 
-export interface Browser_WebGPU_Limits {
-  maxTextureDimension1D: number;
-  maxTextureDimension2D: number;
-  maxTextureDimension3D: number;
-  maxTextureArrayLayers: number;
-  maxBindGroups: number;
-  maxBindingsPerBindGroup: number;
-  maxDynamicUniformBuffersPerPipelineLayout: number;
-  maxDynamicStorageBuffersPerPipelineLayout: number;
-  maxSampledTexturesPerShaderStage: number;
-  maxSamplersPerShaderStage: number;
-  maxStorageBuffersPerShaderStage: number;
-  maxStorageTexturesPerShaderStage: number;
-  maxUniformBuffersPerShaderStage: number;
-  maxUniformBufferBindingSize: number;
-  maxStorageBufferBindingSize: number;
-  minUniformBufferOffsetAlignment: number;
-  minStorageBufferOffsetAlignment: number;
-  maxVertexBuffers: number;
-  maxBufferSize: number;
-  maxVertexAttributes: number;
-  maxVertexBufferArrayStride: number;
-  maxInterStageShaderComponents: number;
-  maxInterStageShaderVariables: number;
-  maxColorAttachments: number;
-  maxColorAttachmentBytesPerSample: number;
-  maxComputeWorkgroupStorageSize: number;
-  maxComputeInvocationsPerWorkgroup: number;
-  maxComputeWorkgroupSizeX: number;
-  maxComputeWorkgroupSizeY: number;
-  maxComputeWorkgroupSizeZ: number;
-  maxComputeWorkgroupsPerDimension: number;
+export interface Browser_WebGPU_LimitsEntry {
+  key: string;
+  value: number;
 }
 
 export interface Browser_SpeechSynthesis {
-  voiceURI: string;
-  name: string;
-  lang: string;
-  localService: boolean;
-  default: boolean;
+  voiceURI?: string;
+  name?: string;
+  lang?: string;
+  localService?: boolean;
+  default?: boolean;
+}
+
+export interface Browser_Plugin {
+  name?: string;
+  fileName?: string;
+  description?: string;
+  supportedMIMETypes?: { [key: string]: Browser_Plugin_MIMEType };
+}
+
+export interface Browser_Plugin_MIMEType {
+  type?: string;
+  suffixes?: string;
+  description?: string;
+}
+
+export interface Browser_Plugin_SupportedMIMETypesEntry {
+  key: string;
+  value?: Browser_Plugin_MIMEType;
+}
+
+export interface Browser_HighEntropyValues {
+  architecture?: string;
+  bitness?: string;
+  mobile?: boolean;
+  model?: string;
+  platform?: string;
+  platformVersion?: string;
+  usFullVersion?: string;
+  brands?: Browser_HighEntropyValues_Brand[];
+  fullVersionList?: Browser_HighEntropyValues_Brand[];
+}
+
+export interface Browser_HighEntropyValues_Brand {
+  brand?: string;
+  version?: string;
+}
+
+export interface Browser_WebRTC {
+  video?: Browser_WebRTC_CodecInformation;
+  audio?: Browser_WebRTC_CodecInformation;
+}
+
+export interface Browser_WebRTC_Codec {
+  channels?: number;
+  clockRate?: number;
+  mimeType?: string;
+  sdpFmtLine?: string;
+}
+
+export interface Browser_WebRTC_HeaderExtension {
+  direction?: string;
+  uri?: string;
+}
+
+export interface Browser_WebRTC_CodecInformation {
+  codecs?: Browser_WebRTC_Codec[];
+  headerExtensions?: Browser_WebRTC_HeaderExtension[];
 }
 
 /** Potentially common for more than just Android */
 export interface GPSLocation {
-  longitude: number;
-  latitude: number;
-  altitude: number;
-  provider: GPSLocation_LocationProvider;
+  longitude?: number;
+  latitude?: number;
+  altitude?: number;
+  provider?: GPSLocation_LocationProvider;
 }
 
 export enum GPSLocation_LocationProvider {
@@ -3171,70 +3695,70 @@ export function gPSLocation_LocationProviderToJSON(object: GPSLocation_LocationP
 }
 
 export interface Locale {
-  language: string;
-  countryISO: string;
+  language?: string;
+  countryISO?: string;
 }
 
 export interface SIMCard {
   /** With or without country code? */
-  phoneNumber: string;
+  phoneNumber?: string;
   /** Provider and country information */
-  MCC: string;
-  MNC: string;
-  carrier: string;
-  countryISO: string;
-  countryCode: string;
-  imei: SIMCard_IMEI | undefined;
-  meid: SIMCard_MEID | undefined;
+  MCC?: string;
+  MNC?: string;
+  carrier?: string;
+  countryISO?: string;
+  countryCode?: string;
+  imei?: SIMCard_IMEI;
+  meid?: SIMCard_MEID;
 }
 
 export interface SIMCard_IMEI {
-  TAC: string;
+  TAC?: string;
   /**
    * src: https://en.wikipedia.org/wiki/International_Mobile_Equipment_Identity
    * AA	-	BB	BB	BB	-	CC	CC	CC	D
    * Where AA and BB = TAC, CC = serial (randomized) and D = Luhn validation
    */
-  imei: string;
+  imei?: string;
 }
 
 export interface SIMCard_MEID {
-  RegionCode: string;
-  ManufacturerCode: string;
+  RegionCode?: string;
+  ManufacturerCode?: string;
   /**
    * src: https://en.wikipedia.org/wiki/Mobile_equipment_identifier
    * R R	X	X	X	X	X	X	Z	Z	Z	Z	Z	Z	C
    * Where R = region, X = manufacturer, Z = serial (randomized) and C = Luhn validation
    */
-  meid: string;
+  meid?: string;
 }
 
 export interface MAC {
-  OUI: string;
-  address: string;
+  OUI?: string;
+  address?: string;
 }
 
 export interface Timezone {
   /** IANA standard */
-  name: string;
+  name?: string;
 }
 
 export interface ScreenData {
   /** in DPI */
-  density: number;
+  density?: number;
   /** in pixels */
-  resolutionHorizontal: number;
+  resolutionHorizontal?: number;
   /** in pixels */
-  resolutionVertical: number;
+  resolutionVertical?: number;
 }
 
 export interface CPUData {
-  arch: CPUData_Architecture;
-  archName: string;
-  model: string;
-  brand: string;
-  board: string;
-  abiList: string[];
+  arch?: CPUData_Architecture;
+  archName?: string;
+  model?: string;
+  brand?: string;
+  board?: string;
+  abiList?: string[];
 }
 
 export enum CPUData_Architecture {
@@ -3314,23 +3838,19 @@ export function cPUData_ArchitectureToJSON(object: CPUData_Architecture): string
 
 /** Android device */
 export interface AndroidDevice {
-  id: AndroidDevice_ID | undefined;
-  version: AndroidDevice_Version;
-  build: AndroidDevice_BuildData | undefined;
-  software:
-    | AndroidDevice_DeviceSoftware
-    | undefined;
+  id?: AndroidDevice_ID;
+  version?: AndroidDevice_Version;
+  build?: AndroidDevice_BuildData;
+  software?: AndroidDevice_DeviceSoftware;
   /** Everything below this can technically be abstracted to unified device */
-  screen: ScreenData | undefined;
-  cpu: CPUData | undefined;
-  locale: Locale | undefined;
-  location: GPSLocation | undefined;
-  timezone: Timezone | undefined;
-  macAddress:
-    | MAC
-    | undefined;
+  screen?: ScreenData;
+  cpu?: CPUData;
+  locale?: Locale;
+  location?: GPSLocation;
+  timezone?: Timezone;
+  macAddress?: MAC;
   /** Dual SIM compatibility */
-  simSlots: SIMCard[];
+  simSlots?: SIMCard[];
 }
 
 /**
@@ -3603,35 +4123,35 @@ export function androidDevice_VersionToJSON(object: AndroidDevice_Version): stri
 }
 
 export interface AndroidDevice_ID {
-  id: number;
+  id?: number;
 }
 
 /** https://developer.android.com/reference/android/os/Build */
 export interface AndroidDevice_BuildData {
-  board: string;
-  bootloader: string;
-  brand: string;
-  device: string;
-  display: string;
-  fingerprint: string;
-  hardware: string;
-  id: string;
-  manufacturer: string;
-  model: string;
-  odmSku: string;
-  product: string;
-  sku: string;
-  socManufacturer: string;
-  socModel: string;
-  tags: string;
-  type: string;
-  incrementalVersion: string;
+  board?: string;
+  bootloader?: string;
+  brand?: string;
+  device?: string;
+  display?: string;
+  fingerprint?: string;
+  hardware?: string;
+  id?: string;
+  manufacturer?: string;
+  model?: string;
+  odmSku?: string;
+  product?: string;
+  sku?: string;
+  socManufacturer?: string;
+  socModel?: string;
+  tags?: string;
+  type?: string;
+  incrementalVersion?: string;
 }
 
 export interface AndroidDevice_DeviceSoftware {
-  softwareMetaData: { [key: string]: string };
+  softwareMetaData?: { [key: string]: string };
   /** app package : version string */
-  appMetaData: { [key: string]: string };
+  appMetaData?: { [key: string]: string };
 }
 
 export interface AndroidDevice_DeviceSoftware_SoftwareMetaDataEntry {
@@ -3650,7 +4170,10 @@ function createBaseBrowser(): Browser {
     name: "",
     userAgent: "",
     brandHeader: "",
+    platformHeader: "",
+    mobileHeader: "",
     tlsFingerprint: undefined,
+    httpFingerprint: undefined,
     appCodeName: "",
     appName: "",
     appVersion: "",
@@ -3676,6 +4199,9 @@ function createBaseBrowser(): Browser {
     screen: undefined,
     webGPU: undefined,
     speechSynthesis: [],
+    plugins: [],
+    highEntropyValues: undefined,
+    webRTC: undefined,
     availableFonts: undefined,
     navigator: undefined,
     window: undefined,
@@ -3684,90 +4210,104 @@ function createBaseBrowser(): Browser {
     audioTypes: undefined,
     videoTypes: undefined,
     css: undefined,
+    gl: undefined,
+    gl2: undefined,
+    glExperimental: undefined,
   };
 }
 
 export const Browser = {
   encode(message: Browser, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.version !== "") {
+    if (message.version !== undefined && message.version !== "") {
       writer.uint32(10).string(message.version);
     }
-    if (message.name !== "") {
+    if (message.name !== undefined && message.name !== "") {
       writer.uint32(18).string(message.name);
     }
-    if (message.userAgent !== "") {
+    if (message.userAgent !== undefined && message.userAgent !== "") {
       writer.uint32(26).string(message.userAgent);
     }
-    if (message.brandHeader !== "") {
+    if (message.brandHeader !== undefined && message.brandHeader !== "") {
       writer.uint32(34).string(message.brandHeader);
     }
-    if (message.tlsFingerprint !== undefined) {
-      Browser_TLSFingerprint.encode(message.tlsFingerprint, writer.uint32(42).fork()).ldelim();
+    if (message.platformHeader !== undefined && message.platformHeader !== "") {
+      writer.uint32(42).string(message.platformHeader);
     }
-    if (message.appCodeName !== "") {
+    if (message.mobileHeader !== undefined && message.mobileHeader !== "") {
+      writer.uint32(50).string(message.mobileHeader);
+    }
+    if (message.tlsFingerprint !== undefined) {
+      Browser_TLSFingerprint.encode(message.tlsFingerprint, writer.uint32(82).fork()).ldelim();
+    }
+    if (message.httpFingerprint !== undefined) {
+      Browser_HTTPFingerprint.encode(message.httpFingerprint, writer.uint32(90).fork()).ldelim();
+    }
+    if (message.appCodeName !== undefined && message.appCodeName !== "") {
       writer.uint32(162).string(message.appCodeName);
     }
-    if (message.appName !== "") {
+    if (message.appName !== undefined && message.appName !== "") {
       writer.uint32(170).string(message.appName);
     }
-    if (message.appVersion !== "") {
+    if (message.appVersion !== undefined && message.appVersion !== "") {
       writer.uint32(178).string(message.appVersion);
     }
     if (message.cookieEnabled === true) {
       writer.uint32(184).bool(message.cookieEnabled);
     }
-    if (message.deviceMemory !== 0) {
-      writer.uint32(192).int32(message.deviceMemory);
+    if (message.deviceMemory !== undefined && message.deviceMemory !== 0) {
+      writer.uint32(192).int64(message.deviceMemory);
     }
-    if (message.doNotTrack !== 0) {
+    if (message.doNotTrack !== undefined && message.doNotTrack !== 0) {
       writer.uint32(200).int32(message.doNotTrack);
     }
-    if (message.hardwareConcurrency !== 0) {
+    if (message.hardwareConcurrency !== undefined && message.hardwareConcurrency !== 0) {
       writer.uint32(208).int32(message.hardwareConcurrency);
     }
-    if (message.language !== "") {
+    if (message.language !== undefined && message.language !== "") {
       writer.uint32(218).string(message.language);
     }
-    for (const v of message.languages) {
-      writer.uint32(226).string(v!);
+    if (message.languages !== undefined && message.languages.length !== 0) {
+      for (const v of message.languages) {
+        writer.uint32(226).string(v!);
+      }
     }
-    if (message.maxTouchPoints !== 0) {
+    if (message.maxTouchPoints !== undefined && message.maxTouchPoints !== 0) {
       writer.uint32(232).int32(message.maxTouchPoints);
     }
     if (message.pdfViewerEnabled === true) {
       writer.uint32(240).bool(message.pdfViewerEnabled);
     }
-    if (message.platform !== "") {
+    if (message.platform !== undefined && message.platform !== "") {
       writer.uint32(250).string(message.platform);
     }
-    if (message.product !== "") {
+    if (message.product !== undefined && message.product !== "") {
       writer.uint32(258).string(message.product);
     }
-    if (message.productSub !== "") {
+    if (message.productSub !== undefined && message.productSub !== "") {
       writer.uint32(266).string(message.productSub);
     }
-    if (message.vendor !== "") {
+    if (message.vendor !== undefined && message.vendor !== "") {
       writer.uint32(274).string(message.vendor);
     }
-    if (message.vendorSub !== "") {
+    if (message.vendorSub !== undefined && message.vendorSub !== "") {
       writer.uint32(282).string(message.vendorSub);
     }
     if (message.webdriver === true) {
       writer.uint32(288).bool(message.webdriver);
     }
-    if (message.devicePixelRatio !== 0) {
+    if (message.devicePixelRatio !== undefined && message.devicePixelRatio !== 0) {
       writer.uint32(297).double(message.devicePixelRatio);
     }
-    if (message.innerWidth !== 0) {
+    if (message.innerWidth !== undefined && message.innerWidth !== 0) {
       writer.uint32(304).int32(message.innerWidth);
     }
-    if (message.innerHeight !== 0) {
+    if (message.innerHeight !== undefined && message.innerHeight !== 0) {
       writer.uint32(312).int32(message.innerHeight);
     }
-    if (message.outerWidth !== 0) {
+    if (message.outerWidth !== undefined && message.outerWidth !== 0) {
       writer.uint32(320).int32(message.outerWidth);
     }
-    if (message.outerHeight !== 0) {
+    if (message.outerHeight !== undefined && message.outerHeight !== 0) {
       writer.uint32(328).int32(message.outerHeight);
     }
     if (message.screen !== undefined) {
@@ -3776,8 +4316,21 @@ export const Browser = {
     if (message.webGPU !== undefined) {
       Browser_WebGPU.encode(message.webGPU, writer.uint32(346).fork()).ldelim();
     }
-    for (const v of message.speechSynthesis) {
-      Browser_SpeechSynthesis.encode(v!, writer.uint32(354).fork()).ldelim();
+    if (message.speechSynthesis !== undefined && message.speechSynthesis.length !== 0) {
+      for (const v of message.speechSynthesis) {
+        Browser_SpeechSynthesis.encode(v!, writer.uint32(354).fork()).ldelim();
+      }
+    }
+    if (message.plugins !== undefined && message.plugins.length !== 0) {
+      for (const v of message.plugins) {
+        Browser_Plugin.encode(v!, writer.uint32(362).fork()).ldelim();
+      }
+    }
+    if (message.highEntropyValues !== undefined) {
+      Browser_HighEntropyValues.encode(message.highEntropyValues, writer.uint32(370).fork()).ldelim();
+    }
+    if (message.webRTC !== undefined) {
+      Browser_WebRTC.encode(message.webRTC, writer.uint32(378).fork()).ldelim();
     }
     if (message.availableFonts !== undefined) {
       Browser_BrowserCollection.encode(message.availableFonts, writer.uint32(802).fork()).ldelim();
@@ -3802,6 +4355,15 @@ export const Browser = {
     }
     if (message.css !== undefined) {
       Browser_BrowserCollection.encode(message.css, writer.uint32(858).fork()).ldelim();
+    }
+    if (message.gl !== undefined) {
+      Browser_BrowserCollection.encode(message.gl, writer.uint32(866).fork()).ldelim();
+    }
+    if (message.gl2 !== undefined) {
+      Browser_BrowserCollection.encode(message.gl2, writer.uint32(874).fork()).ldelim();
+    }
+    if (message.glExperimental !== undefined) {
+      Browser_BrowserCollection.encode(message.glExperimental, writer.uint32(882).fork()).ldelim();
     }
     return writer;
   },
@@ -3846,7 +4408,28 @@ export const Browser = {
             break;
           }
 
+          message.platformHeader = reader.string();
+          continue;
+        case 6:
+          if (tag != 50) {
+            break;
+          }
+
+          message.mobileHeader = reader.string();
+          continue;
+        case 10:
+          if (tag != 82) {
+            break;
+          }
+
           message.tlsFingerprint = Browser_TLSFingerprint.decode(reader, reader.uint32());
+          continue;
+        case 11:
+          if (tag != 90) {
+            break;
+          }
+
+          message.httpFingerprint = Browser_HTTPFingerprint.decode(reader, reader.uint32());
           continue;
         case 20:
           if (tag != 162) {
@@ -3881,7 +4464,7 @@ export const Browser = {
             break;
           }
 
-          message.deviceMemory = reader.int32();
+          message.deviceMemory = longToNumber(reader.int64() as Long);
           continue;
         case 25:
           if (tag != 200) {
@@ -3909,7 +4492,7 @@ export const Browser = {
             break;
           }
 
-          message.languages.push(reader.string());
+          message.languages!.push(reader.string());
           continue;
         case 29:
           if (tag != 232) {
@@ -4021,7 +4604,28 @@ export const Browser = {
             break;
           }
 
-          message.speechSynthesis.push(Browser_SpeechSynthesis.decode(reader, reader.uint32()));
+          message.speechSynthesis!.push(Browser_SpeechSynthesis.decode(reader, reader.uint32()));
+          continue;
+        case 45:
+          if (tag != 362) {
+            break;
+          }
+
+          message.plugins!.push(Browser_Plugin.decode(reader, reader.uint32()));
+          continue;
+        case 46:
+          if (tag != 370) {
+            break;
+          }
+
+          message.highEntropyValues = Browser_HighEntropyValues.decode(reader, reader.uint32());
+          continue;
+        case 47:
+          if (tag != 378) {
+            break;
+          }
+
+          message.webRTC = Browser_WebRTC.decode(reader, reader.uint32());
           continue;
         case 100:
           if (tag != 802) {
@@ -4079,6 +4683,27 @@ export const Browser = {
 
           message.css = Browser_BrowserCollection.decode(reader, reader.uint32());
           continue;
+        case 108:
+          if (tag != 866) {
+            break;
+          }
+
+          message.gl = Browser_BrowserCollection.decode(reader, reader.uint32());
+          continue;
+        case 109:
+          if (tag != 874) {
+            break;
+          }
+
+          message.gl2 = Browser_BrowserCollection.decode(reader, reader.uint32());
+          continue;
+        case 110:
+          if (tag != 882) {
+            break;
+          }
+
+          message.glExperimental = Browser_BrowserCollection.decode(reader, reader.uint32());
+          continue;
       }
       if ((tag & 7) == 4 || tag == 0) {
         break;
@@ -4094,7 +4719,12 @@ export const Browser = {
       name: isSet(object.name) ? String(object.name) : "",
       userAgent: isSet(object.userAgent) ? String(object.userAgent) : "",
       brandHeader: isSet(object.brandHeader) ? String(object.brandHeader) : "",
+      platformHeader: isSet(object.platformHeader) ? String(object.platformHeader) : "",
+      mobileHeader: isSet(object.mobileHeader) ? String(object.mobileHeader) : "",
       tlsFingerprint: isSet(object.tlsFingerprint) ? Browser_TLSFingerprint.fromJSON(object.tlsFingerprint) : undefined,
+      httpFingerprint: isSet(object.httpFingerprint)
+        ? Browser_HTTPFingerprint.fromJSON(object.httpFingerprint)
+        : undefined,
       appCodeName: isSet(object.appCodeName) ? String(object.appCodeName) : "",
       appName: isSet(object.appName) ? String(object.appName) : "",
       appVersion: isSet(object.appVersion) ? String(object.appVersion) : "",
@@ -4122,6 +4752,11 @@ export const Browser = {
       speechSynthesis: Array.isArray(object?.speechSynthesis)
         ? object.speechSynthesis.map((e: any) => Browser_SpeechSynthesis.fromJSON(e))
         : [],
+      plugins: Array.isArray(object?.plugins) ? object.plugins.map((e: any) => Browser_Plugin.fromJSON(e)) : [],
+      highEntropyValues: isSet(object.highEntropyValues)
+        ? Browser_HighEntropyValues.fromJSON(object.highEntropyValues)
+        : undefined,
+      webRTC: isSet(object.webRTC) ? Browser_WebRTC.fromJSON(object.webRTC) : undefined,
       availableFonts: isSet(object.availableFonts)
         ? Browser_BrowserCollection.fromJSON(object.availableFonts)
         : undefined,
@@ -4134,6 +4769,11 @@ export const Browser = {
       audioTypes: isSet(object.audioTypes) ? Browser_BrowserCollection.fromJSON(object.audioTypes) : undefined,
       videoTypes: isSet(object.videoTypes) ? Browser_BrowserCollection.fromJSON(object.videoTypes) : undefined,
       css: isSet(object.css) ? Browser_BrowserCollection.fromJSON(object.css) : undefined,
+      gl: isSet(object.gl) ? Browser_BrowserCollection.fromJSON(object.gl) : undefined,
+      gl2: isSet(object.gl2) ? Browser_BrowserCollection.fromJSON(object.gl2) : undefined,
+      glExperimental: isSet(object.glExperimental)
+        ? Browser_BrowserCollection.fromJSON(object.glExperimental)
+        : undefined,
     };
   },
 
@@ -4143,8 +4783,13 @@ export const Browser = {
     message.name !== undefined && (obj.name = message.name);
     message.userAgent !== undefined && (obj.userAgent = message.userAgent);
     message.brandHeader !== undefined && (obj.brandHeader = message.brandHeader);
+    message.platformHeader !== undefined && (obj.platformHeader = message.platformHeader);
+    message.mobileHeader !== undefined && (obj.mobileHeader = message.mobileHeader);
     message.tlsFingerprint !== undefined &&
       (obj.tlsFingerprint = message.tlsFingerprint ? Browser_TLSFingerprint.toJSON(message.tlsFingerprint) : undefined);
+    message.httpFingerprint !== undefined && (obj.httpFingerprint = message.httpFingerprint
+      ? Browser_HTTPFingerprint.toJSON(message.httpFingerprint)
+      : undefined);
     message.appCodeName !== undefined && (obj.appCodeName = message.appCodeName);
     message.appName !== undefined && (obj.appName = message.appName);
     message.appVersion !== undefined && (obj.appVersion = message.appVersion);
@@ -4179,6 +4824,15 @@ export const Browser = {
     } else {
       obj.speechSynthesis = [];
     }
+    if (message.plugins) {
+      obj.plugins = message.plugins.map((e) => e ? Browser_Plugin.toJSON(e) : undefined);
+    } else {
+      obj.plugins = [];
+    }
+    message.highEntropyValues !== undefined && (obj.highEntropyValues = message.highEntropyValues
+      ? Browser_HighEntropyValues.toJSON(message.highEntropyValues)
+      : undefined);
+    message.webRTC !== undefined && (obj.webRTC = message.webRTC ? Browser_WebRTC.toJSON(message.webRTC) : undefined);
     message.availableFonts !== undefined && (obj.availableFonts = message.availableFonts
       ? Browser_BrowserCollection.toJSON(message.availableFonts)
       : undefined);
@@ -4196,6 +4850,11 @@ export const Browser = {
     message.videoTypes !== undefined &&
       (obj.videoTypes = message.videoTypes ? Browser_BrowserCollection.toJSON(message.videoTypes) : undefined);
     message.css !== undefined && (obj.css = message.css ? Browser_BrowserCollection.toJSON(message.css) : undefined);
+    message.gl !== undefined && (obj.gl = message.gl ? Browser_BrowserCollection.toJSON(message.gl) : undefined);
+    message.gl2 !== undefined && (obj.gl2 = message.gl2 ? Browser_BrowserCollection.toJSON(message.gl2) : undefined);
+    message.glExperimental !== undefined && (obj.glExperimental = message.glExperimental
+      ? Browser_BrowserCollection.toJSON(message.glExperimental)
+      : undefined);
     return obj;
   },
 
@@ -4209,8 +4868,13 @@ export const Browser = {
     message.name = object.name ?? "";
     message.userAgent = object.userAgent ?? "";
     message.brandHeader = object.brandHeader ?? "";
+    message.platformHeader = object.platformHeader ?? "";
+    message.mobileHeader = object.mobileHeader ?? "";
     message.tlsFingerprint = (object.tlsFingerprint !== undefined && object.tlsFingerprint !== null)
       ? Browser_TLSFingerprint.fromPartial(object.tlsFingerprint)
+      : undefined;
+    message.httpFingerprint = (object.httpFingerprint !== undefined && object.httpFingerprint !== null)
+      ? Browser_HTTPFingerprint.fromPartial(object.httpFingerprint)
       : undefined;
     message.appCodeName = object.appCodeName ?? "";
     message.appName = object.appName ?? "";
@@ -4241,6 +4905,13 @@ export const Browser = {
       ? Browser_WebGPU.fromPartial(object.webGPU)
       : undefined;
     message.speechSynthesis = object.speechSynthesis?.map((e) => Browser_SpeechSynthesis.fromPartial(e)) || [];
+    message.plugins = object.plugins?.map((e) => Browser_Plugin.fromPartial(e)) || [];
+    message.highEntropyValues = (object.highEntropyValues !== undefined && object.highEntropyValues !== null)
+      ? Browser_HighEntropyValues.fromPartial(object.highEntropyValues)
+      : undefined;
+    message.webRTC = (object.webRTC !== undefined && object.webRTC !== null)
+      ? Browser_WebRTC.fromPartial(object.webRTC)
+      : undefined;
     message.availableFonts = (object.availableFonts !== undefined && object.availableFonts !== null)
       ? Browser_BrowserCollection.fromPartial(object.availableFonts)
       : undefined;
@@ -4265,39 +4936,68 @@ export const Browser = {
     message.css = (object.css !== undefined && object.css !== null)
       ? Browser_BrowserCollection.fromPartial(object.css)
       : undefined;
+    message.gl = (object.gl !== undefined && object.gl !== null)
+      ? Browser_BrowserCollection.fromPartial(object.gl)
+      : undefined;
+    message.gl2 = (object.gl2 !== undefined && object.gl2 !== null)
+      ? Browser_BrowserCollection.fromPartial(object.gl2)
+      : undefined;
+    message.glExperimental = (object.glExperimental !== undefined && object.glExperimental !== null)
+      ? Browser_BrowserCollection.fromPartial(object.glExperimental)
+      : undefined;
     return message;
   },
 };
 
 function createBaseBrowser_TLSFingerprint(): Browser_TLSFingerprint {
-  return { version: 0, cipherSuites: [], extensions: [], ellipticCurves: [], ellipticCurvePointFormats: [] };
+  return {
+    version: 0,
+    cipherSuites: [],
+    extensions: [],
+    ellipticCurves: [],
+    ellipticCurvePointFormats: [],
+    extensionData: [],
+  };
 }
 
 export const Browser_TLSFingerprint = {
   encode(message: Browser_TLSFingerprint, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.version !== 0) {
+    if (message.version !== undefined && message.version !== 0) {
       writer.uint32(8).int32(message.version);
     }
-    writer.uint32(18).fork();
-    for (const v of message.cipherSuites) {
-      writer.int32(v);
+    if (message.cipherSuites !== undefined && message.cipherSuites.length !== 0) {
+      writer.uint32(18).fork();
+      for (const v of message.cipherSuites) {
+        writer.int32(v);
+      }
+      writer.ldelim();
     }
-    writer.ldelim();
-    writer.uint32(26).fork();
-    for (const v of message.extensions) {
-      writer.int32(v);
+    if (message.extensions !== undefined && message.extensions.length !== 0) {
+      writer.uint32(26).fork();
+      for (const v of message.extensions) {
+        writer.int32(v);
+      }
+      writer.ldelim();
     }
-    writer.ldelim();
-    writer.uint32(34).fork();
-    for (const v of message.ellipticCurves) {
-      writer.int32(v);
+    if (message.ellipticCurves !== undefined && message.ellipticCurves.length !== 0) {
+      writer.uint32(34).fork();
+      for (const v of message.ellipticCurves) {
+        writer.int32(v);
+      }
+      writer.ldelim();
     }
-    writer.ldelim();
-    writer.uint32(42).fork();
-    for (const v of message.ellipticCurvePointFormats) {
-      writer.int32(v);
+    if (message.ellipticCurvePointFormats !== undefined && message.ellipticCurvePointFormats.length !== 0) {
+      writer.uint32(42).fork();
+      for (const v of message.ellipticCurvePointFormats) {
+        writer.int32(v);
+      }
+      writer.ldelim();
     }
-    writer.ldelim();
+    if (message.extensionData !== undefined && message.extensionData.length !== 0) {
+      for (const v of message.extensionData) {
+        Browser_TLSFingerprint_ExtensionData.encode(v!, writer.uint32(50).fork()).ldelim();
+      }
+    }
     return writer;
   },
 
@@ -4317,14 +5017,14 @@ export const Browser_TLSFingerprint = {
           continue;
         case 2:
           if (tag == 16) {
-            message.cipherSuites.push(reader.int32() as any);
+            message.cipherSuites!.push(reader.int32() as any);
             continue;
           }
 
           if (tag == 18) {
             const end2 = reader.uint32() + reader.pos;
             while (reader.pos < end2) {
-              message.cipherSuites.push(reader.int32() as any);
+              message.cipherSuites!.push(reader.int32() as any);
             }
 
             continue;
@@ -4333,14 +5033,14 @@ export const Browser_TLSFingerprint = {
           break;
         case 3:
           if (tag == 24) {
-            message.extensions.push(reader.int32() as any);
+            message.extensions!.push(reader.int32() as any);
             continue;
           }
 
           if (tag == 26) {
             const end2 = reader.uint32() + reader.pos;
             while (reader.pos < end2) {
-              message.extensions.push(reader.int32() as any);
+              message.extensions!.push(reader.int32() as any);
             }
 
             continue;
@@ -4349,14 +5049,14 @@ export const Browser_TLSFingerprint = {
           break;
         case 4:
           if (tag == 32) {
-            message.ellipticCurves.push(reader.int32() as any);
+            message.ellipticCurves!.push(reader.int32() as any);
             continue;
           }
 
           if (tag == 34) {
             const end2 = reader.uint32() + reader.pos;
             while (reader.pos < end2) {
-              message.ellipticCurves.push(reader.int32() as any);
+              message.ellipticCurves!.push(reader.int32() as any);
             }
 
             continue;
@@ -4365,20 +5065,27 @@ export const Browser_TLSFingerprint = {
           break;
         case 5:
           if (tag == 40) {
-            message.ellipticCurvePointFormats.push(reader.int32() as any);
+            message.ellipticCurvePointFormats!.push(reader.int32() as any);
             continue;
           }
 
           if (tag == 42) {
             const end2 = reader.uint32() + reader.pos;
             while (reader.pos < end2) {
-              message.ellipticCurvePointFormats.push(reader.int32() as any);
+              message.ellipticCurvePointFormats!.push(reader.int32() as any);
             }
 
             continue;
           }
 
           break;
+        case 6:
+          if (tag != 50) {
+            break;
+          }
+
+          message.extensionData!.push(Browser_TLSFingerprint_ExtensionData.decode(reader, reader.uint32()));
+          continue;
       }
       if ((tag & 7) == 4 || tag == 0) {
         break;
@@ -4395,13 +5102,16 @@ export const Browser_TLSFingerprint = {
         ? object.cipherSuites.map((e: any) => browser_TLSFingerprint_CipherSuiteFromJSON(e))
         : [],
       extensions: Array.isArray(object?.extensions)
-        ? object.extensions.map((e: any) => browser_TLSFingerprint_ExtensionsFromJSON(e))
+        ? object.extensions.map((e: any) => browser_TLSFingerprint_ExtensionFromJSON(e))
         : [],
       ellipticCurves: Array.isArray(object?.ellipticCurves)
         ? object.ellipticCurves.map((e: any) => browser_TLSFingerprint_EllipticCurveFromJSON(e))
         : [],
       ellipticCurvePointFormats: Array.isArray(object?.ellipticCurvePointFormats)
         ? object.ellipticCurvePointFormats.map((e: any) => browser_TLSFingerprint_EllipticCurvePointFormatFromJSON(e))
+        : [],
+      extensionData: Array.isArray(object?.extensionData)
+        ? object.extensionData.map((e: any) => Browser_TLSFingerprint_ExtensionData.fromJSON(e))
         : [],
     };
   },
@@ -4415,7 +5125,7 @@ export const Browser_TLSFingerprint = {
       obj.cipherSuites = [];
     }
     if (message.extensions) {
-      obj.extensions = message.extensions.map((e) => browser_TLSFingerprint_ExtensionsToJSON(e));
+      obj.extensions = message.extensions.map((e) => browser_TLSFingerprint_ExtensionToJSON(e));
     } else {
       obj.extensions = [];
     }
@@ -4431,6 +5141,13 @@ export const Browser_TLSFingerprint = {
     } else {
       obj.ellipticCurvePointFormats = [];
     }
+    if (message.extensionData) {
+      obj.extensionData = message.extensionData.map((e) =>
+        e ? Browser_TLSFingerprint_ExtensionData.toJSON(e) : undefined
+      );
+    } else {
+      obj.extensionData = [];
+    }
     return obj;
   },
 
@@ -4445,24 +5162,1964 @@ export const Browser_TLSFingerprint = {
     message.extensions = object.extensions?.map((e) => e) || [];
     message.ellipticCurves = object.ellipticCurves?.map((e) => e) || [];
     message.ellipticCurvePointFormats = object.ellipticCurvePointFormats?.map((e) => e) || [];
+    message.extensionData = object.extensionData?.map((e) => Browser_TLSFingerprint_ExtensionData.fromPartial(e)) || [];
+    return message;
+  },
+};
+
+function createBaseBrowser_TLSFingerprint_ExtensionData(): Browser_TLSFingerprint_ExtensionData {
+  return {
+    extensionId: 0,
+    signatureAlgorithms: undefined,
+    applicationLayerProtocolNegotiation: undefined,
+    compressCertificate: undefined,
+    recordSizeLimit: undefined,
+    supportedVersions: undefined,
+    pskKeyExchangeModes: undefined,
+    keyShareExtension: undefined,
+    extensionApplicationsSettings: undefined,
+    extensionEncryptedClientHello: undefined,
+    extensionRenegotiationInfo: undefined,
+  };
+}
+
+export const Browser_TLSFingerprint_ExtensionData = {
+  encode(message: Browser_TLSFingerprint_ExtensionData, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.extensionId !== undefined && message.extensionId !== 0) {
+      writer.uint32(8).int32(message.extensionId);
+    }
+    if (message.signatureAlgorithms !== undefined) {
+      Browser_TLSFingerprint_ExtensionData_SignatureAlgorithms.encode(
+        message.signatureAlgorithms,
+        writer.uint32(106).fork(),
+      ).ldelim();
+    }
+    if (message.applicationLayerProtocolNegotiation !== undefined) {
+      Browser_TLSFingerprint_ExtensionData_ApplicationLayerProtocolNegotiation.encode(
+        message.applicationLayerProtocolNegotiation,
+        writer.uint32(130).fork(),
+      ).ldelim();
+    }
+    if (message.compressCertificate !== undefined) {
+      Browser_TLSFingerprint_ExtensionData_CompressCertificate.encode(
+        message.compressCertificate,
+        writer.uint32(218).fork(),
+      ).ldelim();
+    }
+    if (message.recordSizeLimit !== undefined) {
+      Browser_TLSFingerprint_ExtensionData_RecordSizeLimit.encode(message.recordSizeLimit, writer.uint32(226).fork())
+        .ldelim();
+    }
+    if (message.supportedVersions !== undefined) {
+      Browser_TLSFingerprint_ExtensionData_SupportedVersions.encode(
+        message.supportedVersions,
+        writer.uint32(346).fork(),
+      ).ldelim();
+    }
+    if (message.pskKeyExchangeModes !== undefined) {
+      Browser_TLSFingerprint_ExtensionData_PSKKeyExchangeModes.encode(
+        message.pskKeyExchangeModes,
+        writer.uint32(362).fork(),
+      ).ldelim();
+    }
+    if (message.keyShareExtension !== undefined) {
+      Browser_TLSFingerprint_ExtensionData_KeyShareExtension.encode(
+        message.keyShareExtension,
+        writer.uint32(410).fork(),
+      ).ldelim();
+    }
+    if (message.extensionApplicationsSettings !== undefined) {
+      Browser_TLSFingerprint_ExtensionData_ExtensionApplicationsSettings.encode(
+        message.extensionApplicationsSettings,
+        writer.uint32(140106).fork(),
+      ).ldelim();
+    }
+    if (message.extensionEncryptedClientHello !== undefined) {
+      Browser_TLSFingerprint_ExtensionData_ExtensionEncryptedClientHello.encode(
+        message.extensionEncryptedClientHello,
+        writer.uint32(520298).fork(),
+      ).ldelim();
+    }
+    if (message.extensionRenegotiationInfo !== undefined) {
+      Browser_TLSFingerprint_ExtensionData_ExtensionRenegotiationInfo.encode(
+        message.extensionRenegotiationInfo,
+        writer.uint32(522250).fork(),
+      ).ldelim();
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): Browser_TLSFingerprint_ExtensionData {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseBrowser_TLSFingerprint_ExtensionData();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag != 8) {
+            break;
+          }
+
+          message.extensionId = reader.int32() as any;
+          continue;
+        case 13:
+          if (tag != 106) {
+            break;
+          }
+
+          message.signatureAlgorithms = Browser_TLSFingerprint_ExtensionData_SignatureAlgorithms.decode(
+            reader,
+            reader.uint32(),
+          );
+          continue;
+        case 16:
+          if (tag != 130) {
+            break;
+          }
+
+          message.applicationLayerProtocolNegotiation =
+            Browser_TLSFingerprint_ExtensionData_ApplicationLayerProtocolNegotiation.decode(reader, reader.uint32());
+          continue;
+        case 27:
+          if (tag != 218) {
+            break;
+          }
+
+          message.compressCertificate = Browser_TLSFingerprint_ExtensionData_CompressCertificate.decode(
+            reader,
+            reader.uint32(),
+          );
+          continue;
+        case 28:
+          if (tag != 226) {
+            break;
+          }
+
+          message.recordSizeLimit = Browser_TLSFingerprint_ExtensionData_RecordSizeLimit.decode(
+            reader,
+            reader.uint32(),
+          );
+          continue;
+        case 43:
+          if (tag != 346) {
+            break;
+          }
+
+          message.supportedVersions = Browser_TLSFingerprint_ExtensionData_SupportedVersions.decode(
+            reader,
+            reader.uint32(),
+          );
+          continue;
+        case 45:
+          if (tag != 362) {
+            break;
+          }
+
+          message.pskKeyExchangeModes = Browser_TLSFingerprint_ExtensionData_PSKKeyExchangeModes.decode(
+            reader,
+            reader.uint32(),
+          );
+          continue;
+        case 51:
+          if (tag != 410) {
+            break;
+          }
+
+          message.keyShareExtension = Browser_TLSFingerprint_ExtensionData_KeyShareExtension.decode(
+            reader,
+            reader.uint32(),
+          );
+          continue;
+        case 17513:
+          if (tag != 140106) {
+            break;
+          }
+
+          message.extensionApplicationsSettings = Browser_TLSFingerprint_ExtensionData_ExtensionApplicationsSettings
+            .decode(reader, reader.uint32());
+          continue;
+        case 65037:
+          if (tag != 520298) {
+            break;
+          }
+
+          message.extensionEncryptedClientHello = Browser_TLSFingerprint_ExtensionData_ExtensionEncryptedClientHello
+            .decode(reader, reader.uint32());
+          continue;
+        case 65281:
+          if (tag != 522250) {
+            break;
+          }
+
+          message.extensionRenegotiationInfo = Browser_TLSFingerprint_ExtensionData_ExtensionRenegotiationInfo.decode(
+            reader,
+            reader.uint32(),
+          );
+          continue;
+      }
+      if ((tag & 7) == 4 || tag == 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): Browser_TLSFingerprint_ExtensionData {
+    return {
+      extensionId: isSet(object.extensionId) ? browser_TLSFingerprint_ExtensionFromJSON(object.extensionId) : 0,
+      signatureAlgorithms: isSet(object.signatureAlgorithms)
+        ? Browser_TLSFingerprint_ExtensionData_SignatureAlgorithms.fromJSON(object.signatureAlgorithms)
+        : undefined,
+      applicationLayerProtocolNegotiation: isSet(object.applicationLayerProtocolNegotiation)
+        ? Browser_TLSFingerprint_ExtensionData_ApplicationLayerProtocolNegotiation.fromJSON(
+          object.applicationLayerProtocolNegotiation,
+        )
+        : undefined,
+      compressCertificate: isSet(object.compressCertificate)
+        ? Browser_TLSFingerprint_ExtensionData_CompressCertificate.fromJSON(object.compressCertificate)
+        : undefined,
+      recordSizeLimit: isSet(object.recordSizeLimit)
+        ? Browser_TLSFingerprint_ExtensionData_RecordSizeLimit.fromJSON(object.recordSizeLimit)
+        : undefined,
+      supportedVersions: isSet(object.supportedVersions)
+        ? Browser_TLSFingerprint_ExtensionData_SupportedVersions.fromJSON(object.supportedVersions)
+        : undefined,
+      pskKeyExchangeModes: isSet(object.pskKeyExchangeModes)
+        ? Browser_TLSFingerprint_ExtensionData_PSKKeyExchangeModes.fromJSON(object.pskKeyExchangeModes)
+        : undefined,
+      keyShareExtension: isSet(object.keyShareExtension)
+        ? Browser_TLSFingerprint_ExtensionData_KeyShareExtension.fromJSON(object.keyShareExtension)
+        : undefined,
+      extensionApplicationsSettings: isSet(object.extensionApplicationsSettings)
+        ? Browser_TLSFingerprint_ExtensionData_ExtensionApplicationsSettings.fromJSON(
+          object.extensionApplicationsSettings,
+        )
+        : undefined,
+      extensionEncryptedClientHello: isSet(object.extensionEncryptedClientHello)
+        ? Browser_TLSFingerprint_ExtensionData_ExtensionEncryptedClientHello.fromJSON(
+          object.extensionEncryptedClientHello,
+        )
+        : undefined,
+      extensionRenegotiationInfo: isSet(object.extensionRenegotiationInfo)
+        ? Browser_TLSFingerprint_ExtensionData_ExtensionRenegotiationInfo.fromJSON(object.extensionRenegotiationInfo)
+        : undefined,
+    };
+  },
+
+  toJSON(message: Browser_TLSFingerprint_ExtensionData): unknown {
+    const obj: any = {};
+    message.extensionId !== undefined &&
+      (obj.extensionId = browser_TLSFingerprint_ExtensionToJSON(message.extensionId));
+    message.signatureAlgorithms !== undefined && (obj.signatureAlgorithms = message.signatureAlgorithms
+      ? Browser_TLSFingerprint_ExtensionData_SignatureAlgorithms.toJSON(message.signatureAlgorithms)
+      : undefined);
+    message.applicationLayerProtocolNegotiation !== undefined &&
+      (obj.applicationLayerProtocolNegotiation = message.applicationLayerProtocolNegotiation
+        ? Browser_TLSFingerprint_ExtensionData_ApplicationLayerProtocolNegotiation.toJSON(
+          message.applicationLayerProtocolNegotiation,
+        )
+        : undefined);
+    message.compressCertificate !== undefined && (obj.compressCertificate = message.compressCertificate
+      ? Browser_TLSFingerprint_ExtensionData_CompressCertificate.toJSON(message.compressCertificate)
+      : undefined);
+    message.recordSizeLimit !== undefined && (obj.recordSizeLimit = message.recordSizeLimit
+      ? Browser_TLSFingerprint_ExtensionData_RecordSizeLimit.toJSON(message.recordSizeLimit)
+      : undefined);
+    message.supportedVersions !== undefined && (obj.supportedVersions = message.supportedVersions
+      ? Browser_TLSFingerprint_ExtensionData_SupportedVersions.toJSON(message.supportedVersions)
+      : undefined);
+    message.pskKeyExchangeModes !== undefined && (obj.pskKeyExchangeModes = message.pskKeyExchangeModes
+      ? Browser_TLSFingerprint_ExtensionData_PSKKeyExchangeModes.toJSON(message.pskKeyExchangeModes)
+      : undefined);
+    message.keyShareExtension !== undefined && (obj.keyShareExtension = message.keyShareExtension
+      ? Browser_TLSFingerprint_ExtensionData_KeyShareExtension.toJSON(message.keyShareExtension)
+      : undefined);
+    message.extensionApplicationsSettings !== undefined &&
+      (obj.extensionApplicationsSettings = message.extensionApplicationsSettings
+        ? Browser_TLSFingerprint_ExtensionData_ExtensionApplicationsSettings.toJSON(
+          message.extensionApplicationsSettings,
+        )
+        : undefined);
+    message.extensionEncryptedClientHello !== undefined &&
+      (obj.extensionEncryptedClientHello = message.extensionEncryptedClientHello
+        ? Browser_TLSFingerprint_ExtensionData_ExtensionEncryptedClientHello.toJSON(
+          message.extensionEncryptedClientHello,
+        )
+        : undefined);
+    message.extensionRenegotiationInfo !== undefined &&
+      (obj.extensionRenegotiationInfo = message.extensionRenegotiationInfo
+        ? Browser_TLSFingerprint_ExtensionData_ExtensionRenegotiationInfo.toJSON(message.extensionRenegotiationInfo)
+        : undefined);
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<Browser_TLSFingerprint_ExtensionData>, I>>(
+    base?: I,
+  ): Browser_TLSFingerprint_ExtensionData {
+    return Browser_TLSFingerprint_ExtensionData.fromPartial(base ?? {});
+  },
+
+  fromPartial<I extends Exact<DeepPartial<Browser_TLSFingerprint_ExtensionData>, I>>(
+    object: I,
+  ): Browser_TLSFingerprint_ExtensionData {
+    const message = createBaseBrowser_TLSFingerprint_ExtensionData();
+    message.extensionId = object.extensionId ?? 0;
+    message.signatureAlgorithms = (object.signatureAlgorithms !== undefined && object.signatureAlgorithms !== null)
+      ? Browser_TLSFingerprint_ExtensionData_SignatureAlgorithms.fromPartial(object.signatureAlgorithms)
+      : undefined;
+    message.applicationLayerProtocolNegotiation =
+      (object.applicationLayerProtocolNegotiation !== undefined && object.applicationLayerProtocolNegotiation !== null)
+        ? Browser_TLSFingerprint_ExtensionData_ApplicationLayerProtocolNegotiation.fromPartial(
+          object.applicationLayerProtocolNegotiation,
+        )
+        : undefined;
+    message.compressCertificate = (object.compressCertificate !== undefined && object.compressCertificate !== null)
+      ? Browser_TLSFingerprint_ExtensionData_CompressCertificate.fromPartial(object.compressCertificate)
+      : undefined;
+    message.recordSizeLimit = (object.recordSizeLimit !== undefined && object.recordSizeLimit !== null)
+      ? Browser_TLSFingerprint_ExtensionData_RecordSizeLimit.fromPartial(object.recordSizeLimit)
+      : undefined;
+    message.supportedVersions = (object.supportedVersions !== undefined && object.supportedVersions !== null)
+      ? Browser_TLSFingerprint_ExtensionData_SupportedVersions.fromPartial(object.supportedVersions)
+      : undefined;
+    message.pskKeyExchangeModes = (object.pskKeyExchangeModes !== undefined && object.pskKeyExchangeModes !== null)
+      ? Browser_TLSFingerprint_ExtensionData_PSKKeyExchangeModes.fromPartial(object.pskKeyExchangeModes)
+      : undefined;
+    message.keyShareExtension = (object.keyShareExtension !== undefined && object.keyShareExtension !== null)
+      ? Browser_TLSFingerprint_ExtensionData_KeyShareExtension.fromPartial(object.keyShareExtension)
+      : undefined;
+    message.extensionApplicationsSettings =
+      (object.extensionApplicationsSettings !== undefined && object.extensionApplicationsSettings !== null)
+        ? Browser_TLSFingerprint_ExtensionData_ExtensionApplicationsSettings.fromPartial(
+          object.extensionApplicationsSettings,
+        )
+        : undefined;
+    message.extensionEncryptedClientHello =
+      (object.extensionEncryptedClientHello !== undefined && object.extensionEncryptedClientHello !== null)
+        ? Browser_TLSFingerprint_ExtensionData_ExtensionEncryptedClientHello.fromPartial(
+          object.extensionEncryptedClientHello,
+        )
+        : undefined;
+    message.extensionRenegotiationInfo =
+      (object.extensionRenegotiationInfo !== undefined && object.extensionRenegotiationInfo !== null)
+        ? Browser_TLSFingerprint_ExtensionData_ExtensionRenegotiationInfo.fromPartial(object.extensionRenegotiationInfo)
+        : undefined;
+    return message;
+  },
+};
+
+function createBaseBrowser_TLSFingerprint_ExtensionData_SignatureAlgorithms(): Browser_TLSFingerprint_ExtensionData_SignatureAlgorithms {
+  return { supportedSignatureAlgorithms: [] };
+}
+
+export const Browser_TLSFingerprint_ExtensionData_SignatureAlgorithms = {
+  encode(
+    message: Browser_TLSFingerprint_ExtensionData_SignatureAlgorithms,
+    writer: _m0.Writer = _m0.Writer.create(),
+  ): _m0.Writer {
+    if (message.supportedSignatureAlgorithms !== undefined && message.supportedSignatureAlgorithms.length !== 0) {
+      writer.uint32(10).fork();
+      for (const v of message.supportedSignatureAlgorithms) {
+        writer.int32(v);
+      }
+      writer.ldelim();
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): Browser_TLSFingerprint_ExtensionData_SignatureAlgorithms {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseBrowser_TLSFingerprint_ExtensionData_SignatureAlgorithms();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag == 8) {
+            message.supportedSignatureAlgorithms!.push(reader.int32() as any);
+            continue;
+          }
+
+          if (tag == 10) {
+            const end2 = reader.uint32() + reader.pos;
+            while (reader.pos < end2) {
+              message.supportedSignatureAlgorithms!.push(reader.int32() as any);
+            }
+
+            continue;
+          }
+
+          break;
+      }
+      if ((tag & 7) == 4 || tag == 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): Browser_TLSFingerprint_ExtensionData_SignatureAlgorithms {
+    return {
+      supportedSignatureAlgorithms: Array.isArray(object?.supportedSignatureAlgorithms)
+        ? object.supportedSignatureAlgorithms.map((e: any) => browser_TLSFingerprint_SignatureSchemeFromJSON(e))
+        : [],
+    };
+  },
+
+  toJSON(message: Browser_TLSFingerprint_ExtensionData_SignatureAlgorithms): unknown {
+    const obj: any = {};
+    if (message.supportedSignatureAlgorithms) {
+      obj.supportedSignatureAlgorithms = message.supportedSignatureAlgorithms.map((e) =>
+        browser_TLSFingerprint_SignatureSchemeToJSON(e)
+      );
+    } else {
+      obj.supportedSignatureAlgorithms = [];
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<Browser_TLSFingerprint_ExtensionData_SignatureAlgorithms>, I>>(
+    base?: I,
+  ): Browser_TLSFingerprint_ExtensionData_SignatureAlgorithms {
+    return Browser_TLSFingerprint_ExtensionData_SignatureAlgorithms.fromPartial(base ?? {});
+  },
+
+  fromPartial<I extends Exact<DeepPartial<Browser_TLSFingerprint_ExtensionData_SignatureAlgorithms>, I>>(
+    object: I,
+  ): Browser_TLSFingerprint_ExtensionData_SignatureAlgorithms {
+    const message = createBaseBrowser_TLSFingerprint_ExtensionData_SignatureAlgorithms();
+    message.supportedSignatureAlgorithms = object.supportedSignatureAlgorithms?.map((e) => e) || [];
+    return message;
+  },
+};
+
+function createBaseBrowser_TLSFingerprint_ExtensionData_ApplicationLayerProtocolNegotiation(): Browser_TLSFingerprint_ExtensionData_ApplicationLayerProtocolNegotiation {
+  return { protocols: [] };
+}
+
+export const Browser_TLSFingerprint_ExtensionData_ApplicationLayerProtocolNegotiation = {
+  encode(
+    message: Browser_TLSFingerprint_ExtensionData_ApplicationLayerProtocolNegotiation,
+    writer: _m0.Writer = _m0.Writer.create(),
+  ): _m0.Writer {
+    if (message.protocols !== undefined && message.protocols.length !== 0) {
+      for (const v of message.protocols) {
+        writer.uint32(10).string(v!);
+      }
+    }
+    return writer;
+  },
+
+  decode(
+    input: _m0.Reader | Uint8Array,
+    length?: number,
+  ): Browser_TLSFingerprint_ExtensionData_ApplicationLayerProtocolNegotiation {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseBrowser_TLSFingerprint_ExtensionData_ApplicationLayerProtocolNegotiation();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag != 10) {
+            break;
+          }
+
+          message.protocols!.push(reader.string());
+          continue;
+      }
+      if ((tag & 7) == 4 || tag == 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): Browser_TLSFingerprint_ExtensionData_ApplicationLayerProtocolNegotiation {
+    return { protocols: Array.isArray(object?.protocols) ? object.protocols.map((e: any) => String(e)) : [] };
+  },
+
+  toJSON(message: Browser_TLSFingerprint_ExtensionData_ApplicationLayerProtocolNegotiation): unknown {
+    const obj: any = {};
+    if (message.protocols) {
+      obj.protocols = message.protocols.map((e) => e);
+    } else {
+      obj.protocols = [];
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<Browser_TLSFingerprint_ExtensionData_ApplicationLayerProtocolNegotiation>, I>>(
+    base?: I,
+  ): Browser_TLSFingerprint_ExtensionData_ApplicationLayerProtocolNegotiation {
+    return Browser_TLSFingerprint_ExtensionData_ApplicationLayerProtocolNegotiation.fromPartial(base ?? {});
+  },
+
+  fromPartial<
+    I extends Exact<DeepPartial<Browser_TLSFingerprint_ExtensionData_ApplicationLayerProtocolNegotiation>, I>,
+  >(object: I): Browser_TLSFingerprint_ExtensionData_ApplicationLayerProtocolNegotiation {
+    const message = createBaseBrowser_TLSFingerprint_ExtensionData_ApplicationLayerProtocolNegotiation();
+    message.protocols = object.protocols?.map((e) => e) || [];
+    return message;
+  },
+};
+
+function createBaseBrowser_TLSFingerprint_ExtensionData_RecordSizeLimit(): Browser_TLSFingerprint_ExtensionData_RecordSizeLimit {
+  return { limit: 0 };
+}
+
+export const Browser_TLSFingerprint_ExtensionData_RecordSizeLimit = {
+  encode(
+    message: Browser_TLSFingerprint_ExtensionData_RecordSizeLimit,
+    writer: _m0.Writer = _m0.Writer.create(),
+  ): _m0.Writer {
+    if (message.limit !== undefined && message.limit !== 0) {
+      writer.uint32(8).uint32(message.limit);
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): Browser_TLSFingerprint_ExtensionData_RecordSizeLimit {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseBrowser_TLSFingerprint_ExtensionData_RecordSizeLimit();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag != 8) {
+            break;
+          }
+
+          message.limit = reader.uint32();
+          continue;
+      }
+      if ((tag & 7) == 4 || tag == 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): Browser_TLSFingerprint_ExtensionData_RecordSizeLimit {
+    return { limit: isSet(object.limit) ? Number(object.limit) : 0 };
+  },
+
+  toJSON(message: Browser_TLSFingerprint_ExtensionData_RecordSizeLimit): unknown {
+    const obj: any = {};
+    message.limit !== undefined && (obj.limit = Math.round(message.limit));
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<Browser_TLSFingerprint_ExtensionData_RecordSizeLimit>, I>>(
+    base?: I,
+  ): Browser_TLSFingerprint_ExtensionData_RecordSizeLimit {
+    return Browser_TLSFingerprint_ExtensionData_RecordSizeLimit.fromPartial(base ?? {});
+  },
+
+  fromPartial<I extends Exact<DeepPartial<Browser_TLSFingerprint_ExtensionData_RecordSizeLimit>, I>>(
+    object: I,
+  ): Browser_TLSFingerprint_ExtensionData_RecordSizeLimit {
+    const message = createBaseBrowser_TLSFingerprint_ExtensionData_RecordSizeLimit();
+    message.limit = object.limit ?? 0;
+    return message;
+  },
+};
+
+function createBaseBrowser_TLSFingerprint_ExtensionData_CompressCertificate(): Browser_TLSFingerprint_ExtensionData_CompressCertificate {
+  return { algorithms: [] };
+}
+
+export const Browser_TLSFingerprint_ExtensionData_CompressCertificate = {
+  encode(
+    message: Browser_TLSFingerprint_ExtensionData_CompressCertificate,
+    writer: _m0.Writer = _m0.Writer.create(),
+  ): _m0.Writer {
+    if (message.algorithms !== undefined && message.algorithms.length !== 0) {
+      writer.uint32(10).fork();
+      for (const v of message.algorithms) {
+        writer.int32(v);
+      }
+      writer.ldelim();
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): Browser_TLSFingerprint_ExtensionData_CompressCertificate {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseBrowser_TLSFingerprint_ExtensionData_CompressCertificate();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag == 8) {
+            message.algorithms!.push(reader.int32() as any);
+            continue;
+          }
+
+          if (tag == 10) {
+            const end2 = reader.uint32() + reader.pos;
+            while (reader.pos < end2) {
+              message.algorithms!.push(reader.int32() as any);
+            }
+
+            continue;
+          }
+
+          break;
+      }
+      if ((tag & 7) == 4 || tag == 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): Browser_TLSFingerprint_ExtensionData_CompressCertificate {
+    return {
+      algorithms: Array.isArray(object?.algorithms)
+        ? object.algorithms.map((e: any) =>
+          browser_TLSFingerprint_ExtensionData_CompressCertificate_CertificateCompressionFromJSON(e)
+        )
+        : [],
+    };
+  },
+
+  toJSON(message: Browser_TLSFingerprint_ExtensionData_CompressCertificate): unknown {
+    const obj: any = {};
+    if (message.algorithms) {
+      obj.algorithms = message.algorithms.map((e) =>
+        browser_TLSFingerprint_ExtensionData_CompressCertificate_CertificateCompressionToJSON(e)
+      );
+    } else {
+      obj.algorithms = [];
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<Browser_TLSFingerprint_ExtensionData_CompressCertificate>, I>>(
+    base?: I,
+  ): Browser_TLSFingerprint_ExtensionData_CompressCertificate {
+    return Browser_TLSFingerprint_ExtensionData_CompressCertificate.fromPartial(base ?? {});
+  },
+
+  fromPartial<I extends Exact<DeepPartial<Browser_TLSFingerprint_ExtensionData_CompressCertificate>, I>>(
+    object: I,
+  ): Browser_TLSFingerprint_ExtensionData_CompressCertificate {
+    const message = createBaseBrowser_TLSFingerprint_ExtensionData_CompressCertificate();
+    message.algorithms = object.algorithms?.map((e) => e) || [];
+    return message;
+  },
+};
+
+function createBaseBrowser_TLSFingerprint_ExtensionData_SupportedVersions(): Browser_TLSFingerprint_ExtensionData_SupportedVersions {
+  return { versions: [] };
+}
+
+export const Browser_TLSFingerprint_ExtensionData_SupportedVersions = {
+  encode(
+    message: Browser_TLSFingerprint_ExtensionData_SupportedVersions,
+    writer: _m0.Writer = _m0.Writer.create(),
+  ): _m0.Writer {
+    if (message.versions !== undefined && message.versions.length !== 0) {
+      writer.uint32(10).fork();
+      for (const v of message.versions) {
+        writer.int32(v);
+      }
+      writer.ldelim();
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): Browser_TLSFingerprint_ExtensionData_SupportedVersions {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseBrowser_TLSFingerprint_ExtensionData_SupportedVersions();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag == 8) {
+            message.versions!.push(reader.int32() as any);
+            continue;
+          }
+
+          if (tag == 10) {
+            const end2 = reader.uint32() + reader.pos;
+            while (reader.pos < end2) {
+              message.versions!.push(reader.int32() as any);
+            }
+
+            continue;
+          }
+
+          break;
+      }
+      if ((tag & 7) == 4 || tag == 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): Browser_TLSFingerprint_ExtensionData_SupportedVersions {
+    return {
+      versions: Array.isArray(object?.versions)
+        ? object.versions.map((e: any) => browser_TLSFingerprint_ProtocolVersionFromJSON(e))
+        : [],
+    };
+  },
+
+  toJSON(message: Browser_TLSFingerprint_ExtensionData_SupportedVersions): unknown {
+    const obj: any = {};
+    if (message.versions) {
+      obj.versions = message.versions.map((e) => browser_TLSFingerprint_ProtocolVersionToJSON(e));
+    } else {
+      obj.versions = [];
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<Browser_TLSFingerprint_ExtensionData_SupportedVersions>, I>>(
+    base?: I,
+  ): Browser_TLSFingerprint_ExtensionData_SupportedVersions {
+    return Browser_TLSFingerprint_ExtensionData_SupportedVersions.fromPartial(base ?? {});
+  },
+
+  fromPartial<I extends Exact<DeepPartial<Browser_TLSFingerprint_ExtensionData_SupportedVersions>, I>>(
+    object: I,
+  ): Browser_TLSFingerprint_ExtensionData_SupportedVersions {
+    const message = createBaseBrowser_TLSFingerprint_ExtensionData_SupportedVersions();
+    message.versions = object.versions?.map((e) => e) || [];
+    return message;
+  },
+};
+
+function createBaseBrowser_TLSFingerprint_ExtensionData_PSKKeyExchangeModes(): Browser_TLSFingerprint_ExtensionData_PSKKeyExchangeModes {
+  return { modes: [] };
+}
+
+export const Browser_TLSFingerprint_ExtensionData_PSKKeyExchangeModes = {
+  encode(
+    message: Browser_TLSFingerprint_ExtensionData_PSKKeyExchangeModes,
+    writer: _m0.Writer = _m0.Writer.create(),
+  ): _m0.Writer {
+    if (message.modes !== undefined && message.modes.length !== 0) {
+      writer.uint32(10).fork();
+      for (const v of message.modes) {
+        writer.int32(v);
+      }
+      writer.ldelim();
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): Browser_TLSFingerprint_ExtensionData_PSKKeyExchangeModes {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseBrowser_TLSFingerprint_ExtensionData_PSKKeyExchangeModes();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag == 8) {
+            message.modes!.push(reader.int32() as any);
+            continue;
+          }
+
+          if (tag == 10) {
+            const end2 = reader.uint32() + reader.pos;
+            while (reader.pos < end2) {
+              message.modes!.push(reader.int32() as any);
+            }
+
+            continue;
+          }
+
+          break;
+      }
+      if ((tag & 7) == 4 || tag == 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): Browser_TLSFingerprint_ExtensionData_PSKKeyExchangeModes {
+    return {
+      modes: Array.isArray(object?.modes)
+        ? object.modes.map((e: any) => browser_TLSFingerprint_ExtensionData_PSKKeyExchangeModes_ModeFromJSON(e))
+        : [],
+    };
+  },
+
+  toJSON(message: Browser_TLSFingerprint_ExtensionData_PSKKeyExchangeModes): unknown {
+    const obj: any = {};
+    if (message.modes) {
+      obj.modes = message.modes.map((e) => browser_TLSFingerprint_ExtensionData_PSKKeyExchangeModes_ModeToJSON(e));
+    } else {
+      obj.modes = [];
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<Browser_TLSFingerprint_ExtensionData_PSKKeyExchangeModes>, I>>(
+    base?: I,
+  ): Browser_TLSFingerprint_ExtensionData_PSKKeyExchangeModes {
+    return Browser_TLSFingerprint_ExtensionData_PSKKeyExchangeModes.fromPartial(base ?? {});
+  },
+
+  fromPartial<I extends Exact<DeepPartial<Browser_TLSFingerprint_ExtensionData_PSKKeyExchangeModes>, I>>(
+    object: I,
+  ): Browser_TLSFingerprint_ExtensionData_PSKKeyExchangeModes {
+    const message = createBaseBrowser_TLSFingerprint_ExtensionData_PSKKeyExchangeModes();
+    message.modes = object.modes?.map((e) => e) || [];
+    return message;
+  },
+};
+
+function createBaseBrowser_TLSFingerprint_ExtensionData_KeyShareExtension(): Browser_TLSFingerprint_ExtensionData_KeyShareExtension {
+  return { keyShares: [] };
+}
+
+export const Browser_TLSFingerprint_ExtensionData_KeyShareExtension = {
+  encode(
+    message: Browser_TLSFingerprint_ExtensionData_KeyShareExtension,
+    writer: _m0.Writer = _m0.Writer.create(),
+  ): _m0.Writer {
+    if (message.keyShares !== undefined && message.keyShares.length !== 0) {
+      for (const v of message.keyShares) {
+        Browser_TLSFingerprint_ExtensionData_KeyShareExtension_KeyShare.encode(v!, writer.uint32(10).fork()).ldelim();
+      }
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): Browser_TLSFingerprint_ExtensionData_KeyShareExtension {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseBrowser_TLSFingerprint_ExtensionData_KeyShareExtension();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag != 10) {
+            break;
+          }
+
+          message.keyShares!.push(
+            Browser_TLSFingerprint_ExtensionData_KeyShareExtension_KeyShare.decode(reader, reader.uint32()),
+          );
+          continue;
+      }
+      if ((tag & 7) == 4 || tag == 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): Browser_TLSFingerprint_ExtensionData_KeyShareExtension {
+    return {
+      keyShares: Array.isArray(object?.keyShares)
+        ? object.keyShares.map((e: any) => Browser_TLSFingerprint_ExtensionData_KeyShareExtension_KeyShare.fromJSON(e))
+        : [],
+    };
+  },
+
+  toJSON(message: Browser_TLSFingerprint_ExtensionData_KeyShareExtension): unknown {
+    const obj: any = {};
+    if (message.keyShares) {
+      obj.keyShares = message.keyShares.map((e) =>
+        e ? Browser_TLSFingerprint_ExtensionData_KeyShareExtension_KeyShare.toJSON(e) : undefined
+      );
+    } else {
+      obj.keyShares = [];
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<Browser_TLSFingerprint_ExtensionData_KeyShareExtension>, I>>(
+    base?: I,
+  ): Browser_TLSFingerprint_ExtensionData_KeyShareExtension {
+    return Browser_TLSFingerprint_ExtensionData_KeyShareExtension.fromPartial(base ?? {});
+  },
+
+  fromPartial<I extends Exact<DeepPartial<Browser_TLSFingerprint_ExtensionData_KeyShareExtension>, I>>(
+    object: I,
+  ): Browser_TLSFingerprint_ExtensionData_KeyShareExtension {
+    const message = createBaseBrowser_TLSFingerprint_ExtensionData_KeyShareExtension();
+    message.keyShares =
+      object.keyShares?.map((e) => Browser_TLSFingerprint_ExtensionData_KeyShareExtension_KeyShare.fromPartial(e)) ||
+      [];
+    return message;
+  },
+};
+
+function createBaseBrowser_TLSFingerprint_ExtensionData_KeyShareExtension_KeyShare(): Browser_TLSFingerprint_ExtensionData_KeyShareExtension_KeyShare {
+  return { group: 0, data: new Uint8Array() };
+}
+
+export const Browser_TLSFingerprint_ExtensionData_KeyShareExtension_KeyShare = {
+  encode(
+    message: Browser_TLSFingerprint_ExtensionData_KeyShareExtension_KeyShare,
+    writer: _m0.Writer = _m0.Writer.create(),
+  ): _m0.Writer {
+    if (message.group !== undefined && message.group !== 0) {
+      writer.uint32(8).int32(message.group);
+    }
+    if (message.data !== undefined && message.data.length !== 0) {
+      writer.uint32(18).bytes(message.data);
+    }
+    return writer;
+  },
+
+  decode(
+    input: _m0.Reader | Uint8Array,
+    length?: number,
+  ): Browser_TLSFingerprint_ExtensionData_KeyShareExtension_KeyShare {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseBrowser_TLSFingerprint_ExtensionData_KeyShareExtension_KeyShare();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag != 8) {
+            break;
+          }
+
+          message.group = reader.int32() as any;
+          continue;
+        case 2:
+          if (tag != 18) {
+            break;
+          }
+
+          message.data = reader.bytes();
+          continue;
+      }
+      if ((tag & 7) == 4 || tag == 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): Browser_TLSFingerprint_ExtensionData_KeyShareExtension_KeyShare {
+    return {
+      group: isSet(object.group) ? browser_TLSFingerprint_EllipticCurveFromJSON(object.group) : 0,
+      data: isSet(object.data) ? bytesFromBase64(object.data) : new Uint8Array(),
+    };
+  },
+
+  toJSON(message: Browser_TLSFingerprint_ExtensionData_KeyShareExtension_KeyShare): unknown {
+    const obj: any = {};
+    message.group !== undefined && (obj.group = browser_TLSFingerprint_EllipticCurveToJSON(message.group));
+    message.data !== undefined &&
+      (obj.data = base64FromBytes(message.data !== undefined ? message.data : new Uint8Array()));
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<Browser_TLSFingerprint_ExtensionData_KeyShareExtension_KeyShare>, I>>(
+    base?: I,
+  ): Browser_TLSFingerprint_ExtensionData_KeyShareExtension_KeyShare {
+    return Browser_TLSFingerprint_ExtensionData_KeyShareExtension_KeyShare.fromPartial(base ?? {});
+  },
+
+  fromPartial<I extends Exact<DeepPartial<Browser_TLSFingerprint_ExtensionData_KeyShareExtension_KeyShare>, I>>(
+    object: I,
+  ): Browser_TLSFingerprint_ExtensionData_KeyShareExtension_KeyShare {
+    const message = createBaseBrowser_TLSFingerprint_ExtensionData_KeyShareExtension_KeyShare();
+    message.group = object.group ?? 0;
+    message.data = object.data ?? new Uint8Array();
+    return message;
+  },
+};
+
+function createBaseBrowser_TLSFingerprint_ExtensionData_ExtensionApplicationsSettings(): Browser_TLSFingerprint_ExtensionData_ExtensionApplicationsSettings {
+  return { protocols: [] };
+}
+
+export const Browser_TLSFingerprint_ExtensionData_ExtensionApplicationsSettings = {
+  encode(
+    message: Browser_TLSFingerprint_ExtensionData_ExtensionApplicationsSettings,
+    writer: _m0.Writer = _m0.Writer.create(),
+  ): _m0.Writer {
+    if (message.protocols !== undefined && message.protocols.length !== 0) {
+      for (const v of message.protocols) {
+        writer.uint32(10).string(v!);
+      }
+    }
+    return writer;
+  },
+
+  decode(
+    input: _m0.Reader | Uint8Array,
+    length?: number,
+  ): Browser_TLSFingerprint_ExtensionData_ExtensionApplicationsSettings {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseBrowser_TLSFingerprint_ExtensionData_ExtensionApplicationsSettings();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag != 10) {
+            break;
+          }
+
+          message.protocols!.push(reader.string());
+          continue;
+      }
+      if ((tag & 7) == 4 || tag == 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): Browser_TLSFingerprint_ExtensionData_ExtensionApplicationsSettings {
+    return { protocols: Array.isArray(object?.protocols) ? object.protocols.map((e: any) => String(e)) : [] };
+  },
+
+  toJSON(message: Browser_TLSFingerprint_ExtensionData_ExtensionApplicationsSettings): unknown {
+    const obj: any = {};
+    if (message.protocols) {
+      obj.protocols = message.protocols.map((e) => e);
+    } else {
+      obj.protocols = [];
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<Browser_TLSFingerprint_ExtensionData_ExtensionApplicationsSettings>, I>>(
+    base?: I,
+  ): Browser_TLSFingerprint_ExtensionData_ExtensionApplicationsSettings {
+    return Browser_TLSFingerprint_ExtensionData_ExtensionApplicationsSettings.fromPartial(base ?? {});
+  },
+
+  fromPartial<I extends Exact<DeepPartial<Browser_TLSFingerprint_ExtensionData_ExtensionApplicationsSettings>, I>>(
+    object: I,
+  ): Browser_TLSFingerprint_ExtensionData_ExtensionApplicationsSettings {
+    const message = createBaseBrowser_TLSFingerprint_ExtensionData_ExtensionApplicationsSettings();
+    message.protocols = object.protocols?.map((e) => e) || [];
+    return message;
+  },
+};
+
+function createBaseBrowser_TLSFingerprint_ExtensionData_ExtensionRenegotiationInfo(): Browser_TLSFingerprint_ExtensionData_ExtensionRenegotiationInfo {
+  return { renegotiationSupport: 0 };
+}
+
+export const Browser_TLSFingerprint_ExtensionData_ExtensionRenegotiationInfo = {
+  encode(
+    message: Browser_TLSFingerprint_ExtensionData_ExtensionRenegotiationInfo,
+    writer: _m0.Writer = _m0.Writer.create(),
+  ): _m0.Writer {
+    if (message.renegotiationSupport !== undefined && message.renegotiationSupport !== 0) {
+      writer.uint32(8).int32(message.renegotiationSupport);
+    }
+    return writer;
+  },
+
+  decode(
+    input: _m0.Reader | Uint8Array,
+    length?: number,
+  ): Browser_TLSFingerprint_ExtensionData_ExtensionRenegotiationInfo {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseBrowser_TLSFingerprint_ExtensionData_ExtensionRenegotiationInfo();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag != 8) {
+            break;
+          }
+
+          message.renegotiationSupport = reader.int32() as any;
+          continue;
+      }
+      if ((tag & 7) == 4 || tag == 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): Browser_TLSFingerprint_ExtensionData_ExtensionRenegotiationInfo {
+    return {
+      renegotiationSupport: isSet(object.renegotiationSupport)
+        ? browser_TLSFingerprint_RenegotiationSupportFromJSON(object.renegotiationSupport)
+        : 0,
+    };
+  },
+
+  toJSON(message: Browser_TLSFingerprint_ExtensionData_ExtensionRenegotiationInfo): unknown {
+    const obj: any = {};
+    message.renegotiationSupport !== undefined &&
+      (obj.renegotiationSupport = browser_TLSFingerprint_RenegotiationSupportToJSON(message.renegotiationSupport));
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<Browser_TLSFingerprint_ExtensionData_ExtensionRenegotiationInfo>, I>>(
+    base?: I,
+  ): Browser_TLSFingerprint_ExtensionData_ExtensionRenegotiationInfo {
+    return Browser_TLSFingerprint_ExtensionData_ExtensionRenegotiationInfo.fromPartial(base ?? {});
+  },
+
+  fromPartial<I extends Exact<DeepPartial<Browser_TLSFingerprint_ExtensionData_ExtensionRenegotiationInfo>, I>>(
+    object: I,
+  ): Browser_TLSFingerprint_ExtensionData_ExtensionRenegotiationInfo {
+    const message = createBaseBrowser_TLSFingerprint_ExtensionData_ExtensionRenegotiationInfo();
+    message.renegotiationSupport = object.renegotiationSupport ?? 0;
+    return message;
+  },
+};
+
+function createBaseBrowser_TLSFingerprint_ExtensionData_ExtensionEncryptedClientHello(): Browser_TLSFingerprint_ExtensionData_ExtensionEncryptedClientHello {
+  return { candidateCipherSuites: [], candidatePayloadLens: [] };
+}
+
+export const Browser_TLSFingerprint_ExtensionData_ExtensionEncryptedClientHello = {
+  encode(
+    message: Browser_TLSFingerprint_ExtensionData_ExtensionEncryptedClientHello,
+    writer: _m0.Writer = _m0.Writer.create(),
+  ): _m0.Writer {
+    if (message.candidateCipherSuites !== undefined && message.candidateCipherSuites.length !== 0) {
+      for (const v of message.candidateCipherSuites) {
+        Browser_TLSFingerprint_ExtensionData_ExtensionEncryptedClientHello_HPKESymmetricCipherSuite.encode(
+          v!,
+          writer.uint32(10).fork(),
+        ).ldelim();
+      }
+    }
+    if (message.candidatePayloadLens !== undefined && message.candidatePayloadLens.length !== 0) {
+      writer.uint32(18).fork();
+      for (const v of message.candidatePayloadLens) {
+        writer.uint32(v);
+      }
+      writer.ldelim();
+    }
+    return writer;
+  },
+
+  decode(
+    input: _m0.Reader | Uint8Array,
+    length?: number,
+  ): Browser_TLSFingerprint_ExtensionData_ExtensionEncryptedClientHello {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseBrowser_TLSFingerprint_ExtensionData_ExtensionEncryptedClientHello();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag != 10) {
+            break;
+          }
+
+          message.candidateCipherSuites!.push(
+            Browser_TLSFingerprint_ExtensionData_ExtensionEncryptedClientHello_HPKESymmetricCipherSuite.decode(
+              reader,
+              reader.uint32(),
+            ),
+          );
+          continue;
+        case 2:
+          if (tag == 16) {
+            message.candidatePayloadLens!.push(reader.uint32());
+            continue;
+          }
+
+          if (tag == 18) {
+            const end2 = reader.uint32() + reader.pos;
+            while (reader.pos < end2) {
+              message.candidatePayloadLens!.push(reader.uint32());
+            }
+
+            continue;
+          }
+
+          break;
+      }
+      if ((tag & 7) == 4 || tag == 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): Browser_TLSFingerprint_ExtensionData_ExtensionEncryptedClientHello {
+    return {
+      candidateCipherSuites: Array.isArray(object?.candidateCipherSuites)
+        ? object.candidateCipherSuites.map((e: any) =>
+          Browser_TLSFingerprint_ExtensionData_ExtensionEncryptedClientHello_HPKESymmetricCipherSuite.fromJSON(e)
+        )
+        : [],
+      candidatePayloadLens: Array.isArray(object?.candidatePayloadLens)
+        ? object.candidatePayloadLens.map((e: any) => Number(e))
+        : [],
+    };
+  },
+
+  toJSON(message: Browser_TLSFingerprint_ExtensionData_ExtensionEncryptedClientHello): unknown {
+    const obj: any = {};
+    if (message.candidateCipherSuites) {
+      obj.candidateCipherSuites = message.candidateCipherSuites.map((e) => e
+        ? Browser_TLSFingerprint_ExtensionData_ExtensionEncryptedClientHello_HPKESymmetricCipherSuite.toJSON(e)
+        : undefined
+      );
+    } else {
+      obj.candidateCipherSuites = [];
+    }
+    if (message.candidatePayloadLens) {
+      obj.candidatePayloadLens = message.candidatePayloadLens.map((e) => Math.round(e));
+    } else {
+      obj.candidatePayloadLens = [];
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<Browser_TLSFingerprint_ExtensionData_ExtensionEncryptedClientHello>, I>>(
+    base?: I,
+  ): Browser_TLSFingerprint_ExtensionData_ExtensionEncryptedClientHello {
+    return Browser_TLSFingerprint_ExtensionData_ExtensionEncryptedClientHello.fromPartial(base ?? {});
+  },
+
+  fromPartial<I extends Exact<DeepPartial<Browser_TLSFingerprint_ExtensionData_ExtensionEncryptedClientHello>, I>>(
+    object: I,
+  ): Browser_TLSFingerprint_ExtensionData_ExtensionEncryptedClientHello {
+    const message = createBaseBrowser_TLSFingerprint_ExtensionData_ExtensionEncryptedClientHello();
+    message.candidateCipherSuites =
+      object.candidateCipherSuites?.map((e) =>
+        Browser_TLSFingerprint_ExtensionData_ExtensionEncryptedClientHello_HPKESymmetricCipherSuite.fromPartial(e)
+      ) || [];
+    message.candidatePayloadLens = object.candidatePayloadLens?.map((e) => e) || [];
+    return message;
+  },
+};
+
+function createBaseBrowser_TLSFingerprint_ExtensionData_ExtensionEncryptedClientHello_HPKESymmetricCipherSuite(): Browser_TLSFingerprint_ExtensionData_ExtensionEncryptedClientHello_HPKESymmetricCipherSuite {
+  return { kdfId: 0, aeadId: 0 };
+}
+
+export const Browser_TLSFingerprint_ExtensionData_ExtensionEncryptedClientHello_HPKESymmetricCipherSuite = {
+  encode(
+    message: Browser_TLSFingerprint_ExtensionData_ExtensionEncryptedClientHello_HPKESymmetricCipherSuite,
+    writer: _m0.Writer = _m0.Writer.create(),
+  ): _m0.Writer {
+    if (message.kdfId !== undefined && message.kdfId !== 0) {
+      writer.uint32(8).int32(message.kdfId);
+    }
+    if (message.aeadId !== undefined && message.aeadId !== 0) {
+      writer.uint32(16).int32(message.aeadId);
+    }
+    return writer;
+  },
+
+  decode(
+    input: _m0.Reader | Uint8Array,
+    length?: number,
+  ): Browser_TLSFingerprint_ExtensionData_ExtensionEncryptedClientHello_HPKESymmetricCipherSuite {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message =
+      createBaseBrowser_TLSFingerprint_ExtensionData_ExtensionEncryptedClientHello_HPKESymmetricCipherSuite();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag != 8) {
+            break;
+          }
+
+          message.kdfId = reader.int32() as any;
+          continue;
+        case 2:
+          if (tag != 16) {
+            break;
+          }
+
+          message.aeadId = reader.int32() as any;
+          continue;
+      }
+      if ((tag & 7) == 4 || tag == 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): Browser_TLSFingerprint_ExtensionData_ExtensionEncryptedClientHello_HPKESymmetricCipherSuite {
+    return {
+      kdfId: isSet(object.kdfId)
+        ? browser_TLSFingerprint_ExtensionData_ExtensionEncryptedClientHello_HKDFFromJSON(object.kdfId)
+        : 0,
+      aeadId: isSet(object.aeadId)
+        ? browser_TLSFingerprint_ExtensionData_ExtensionEncryptedClientHello_HPKEAEADFromJSON(object.aeadId)
+        : 0,
+    };
+  },
+
+  toJSON(
+    message: Browser_TLSFingerprint_ExtensionData_ExtensionEncryptedClientHello_HPKESymmetricCipherSuite,
+  ): unknown {
+    const obj: any = {};
+    message.kdfId !== undefined &&
+      (obj.kdfId = browser_TLSFingerprint_ExtensionData_ExtensionEncryptedClientHello_HKDFToJSON(message.kdfId));
+    message.aeadId !== undefined &&
+      (obj.aeadId = browser_TLSFingerprint_ExtensionData_ExtensionEncryptedClientHello_HPKEAEADToJSON(message.aeadId));
+    return obj;
+  },
+
+  create<
+    I extends Exact<
+      DeepPartial<Browser_TLSFingerprint_ExtensionData_ExtensionEncryptedClientHello_HPKESymmetricCipherSuite>,
+      I
+    >,
+  >(base?: I): Browser_TLSFingerprint_ExtensionData_ExtensionEncryptedClientHello_HPKESymmetricCipherSuite {
+    return Browser_TLSFingerprint_ExtensionData_ExtensionEncryptedClientHello_HPKESymmetricCipherSuite.fromPartial(
+      base ?? {},
+    );
+  },
+
+  fromPartial<
+    I extends Exact<
+      DeepPartial<Browser_TLSFingerprint_ExtensionData_ExtensionEncryptedClientHello_HPKESymmetricCipherSuite>,
+      I
+    >,
+  >(object: I): Browser_TLSFingerprint_ExtensionData_ExtensionEncryptedClientHello_HPKESymmetricCipherSuite {
+    const message =
+      createBaseBrowser_TLSFingerprint_ExtensionData_ExtensionEncryptedClientHello_HPKESymmetricCipherSuite();
+    message.kdfId = object.kdfId ?? 0;
+    message.aeadId = object.aeadId ?? 0;
+    return message;
+  },
+};
+
+function createBaseBrowser_HTTPFingerprint(): Browser_HTTPFingerprint {
+  return {
+    headerOrder: [],
+    pseudoHeaderOrder: [],
+    settingsFrame: undefined,
+    windowUpdateIncrement: 0,
+    priorityFrames: [],
+    headerFramePriority: undefined,
+  };
+}
+
+export const Browser_HTTPFingerprint = {
+  encode(message: Browser_HTTPFingerprint, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.headerOrder !== undefined && message.headerOrder.length !== 0) {
+      for (const v of message.headerOrder) {
+        writer.uint32(10).string(v!);
+      }
+    }
+    if (message.pseudoHeaderOrder !== undefined && message.pseudoHeaderOrder.length !== 0) {
+      for (const v of message.pseudoHeaderOrder) {
+        writer.uint32(18).string(v!);
+      }
+    }
+    if (message.settingsFrame !== undefined) {
+      Browser_HTTPFingerprint_SettingsFrameOpts.encode(message.settingsFrame, writer.uint32(26).fork()).ldelim();
+    }
+    if (message.windowUpdateIncrement !== undefined && message.windowUpdateIncrement !== 0) {
+      writer.uint32(32).int64(message.windowUpdateIncrement);
+    }
+    if (message.priorityFrames !== undefined && message.priorityFrames.length !== 0) {
+      for (const v of message.priorityFrames) {
+        Browser_HTTPFingerprint_PriorityFrameOpts.encode(v!, writer.uint32(42).fork()).ldelim();
+      }
+    }
+    if (message.headerFramePriority !== undefined) {
+      Browser_HTTPFingerprint_PriorityFrameOpts.encode(message.headerFramePriority, writer.uint32(50).fork()).ldelim();
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): Browser_HTTPFingerprint {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseBrowser_HTTPFingerprint();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag != 10) {
+            break;
+          }
+
+          message.headerOrder!.push(reader.string());
+          continue;
+        case 2:
+          if (tag != 18) {
+            break;
+          }
+
+          message.pseudoHeaderOrder!.push(reader.string());
+          continue;
+        case 3:
+          if (tag != 26) {
+            break;
+          }
+
+          message.settingsFrame = Browser_HTTPFingerprint_SettingsFrameOpts.decode(reader, reader.uint32());
+          continue;
+        case 4:
+          if (tag != 32) {
+            break;
+          }
+
+          message.windowUpdateIncrement = longToNumber(reader.int64() as Long);
+          continue;
+        case 5:
+          if (tag != 42) {
+            break;
+          }
+
+          message.priorityFrames!.push(Browser_HTTPFingerprint_PriorityFrameOpts.decode(reader, reader.uint32()));
+          continue;
+        case 6:
+          if (tag != 50) {
+            break;
+          }
+
+          message.headerFramePriority = Browser_HTTPFingerprint_PriorityFrameOpts.decode(reader, reader.uint32());
+          continue;
+      }
+      if ((tag & 7) == 4 || tag == 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): Browser_HTTPFingerprint {
+    return {
+      headerOrder: Array.isArray(object?.headerOrder) ? object.headerOrder.map((e: any) => String(e)) : [],
+      pseudoHeaderOrder: Array.isArray(object?.pseudoHeaderOrder)
+        ? object.pseudoHeaderOrder.map((e: any) => String(e))
+        : [],
+      settingsFrame: isSet(object.settingsFrame)
+        ? Browser_HTTPFingerprint_SettingsFrameOpts.fromJSON(object.settingsFrame)
+        : undefined,
+      windowUpdateIncrement: isSet(object.windowUpdateIncrement) ? Number(object.windowUpdateIncrement) : 0,
+      priorityFrames: Array.isArray(object?.priorityFrames)
+        ? object.priorityFrames.map((e: any) => Browser_HTTPFingerprint_PriorityFrameOpts.fromJSON(e))
+        : [],
+      headerFramePriority: isSet(object.headerFramePriority)
+        ? Browser_HTTPFingerprint_PriorityFrameOpts.fromJSON(object.headerFramePriority)
+        : undefined,
+    };
+  },
+
+  toJSON(message: Browser_HTTPFingerprint): unknown {
+    const obj: any = {};
+    if (message.headerOrder) {
+      obj.headerOrder = message.headerOrder.map((e) => e);
+    } else {
+      obj.headerOrder = [];
+    }
+    if (message.pseudoHeaderOrder) {
+      obj.pseudoHeaderOrder = message.pseudoHeaderOrder.map((e) => e);
+    } else {
+      obj.pseudoHeaderOrder = [];
+    }
+    message.settingsFrame !== undefined && (obj.settingsFrame = message.settingsFrame
+      ? Browser_HTTPFingerprint_SettingsFrameOpts.toJSON(message.settingsFrame)
+      : undefined);
+    message.windowUpdateIncrement !== undefined &&
+      (obj.windowUpdateIncrement = Math.round(message.windowUpdateIncrement));
+    if (message.priorityFrames) {
+      obj.priorityFrames = message.priorityFrames.map((e) =>
+        e ? Browser_HTTPFingerprint_PriorityFrameOpts.toJSON(e) : undefined
+      );
+    } else {
+      obj.priorityFrames = [];
+    }
+    message.headerFramePriority !== undefined && (obj.headerFramePriority = message.headerFramePriority
+      ? Browser_HTTPFingerprint_PriorityFrameOpts.toJSON(message.headerFramePriority)
+      : undefined);
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<Browser_HTTPFingerprint>, I>>(base?: I): Browser_HTTPFingerprint {
+    return Browser_HTTPFingerprint.fromPartial(base ?? {});
+  },
+
+  fromPartial<I extends Exact<DeepPartial<Browser_HTTPFingerprint>, I>>(object: I): Browser_HTTPFingerprint {
+    const message = createBaseBrowser_HTTPFingerprint();
+    message.headerOrder = object.headerOrder?.map((e) => e) || [];
+    message.pseudoHeaderOrder = object.pseudoHeaderOrder?.map((e) => e) || [];
+    message.settingsFrame = (object.settingsFrame !== undefined && object.settingsFrame !== null)
+      ? Browser_HTTPFingerprint_SettingsFrameOpts.fromPartial(object.settingsFrame)
+      : undefined;
+    message.windowUpdateIncrement = object.windowUpdateIncrement ?? 0;
+    message.priorityFrames =
+      object.priorityFrames?.map((e) => Browser_HTTPFingerprint_PriorityFrameOpts.fromPartial(e)) || [];
+    message.headerFramePriority = (object.headerFramePriority !== undefined && object.headerFramePriority !== null)
+      ? Browser_HTTPFingerprint_PriorityFrameOpts.fromPartial(object.headerFramePriority)
+      : undefined;
+    return message;
+  },
+};
+
+function createBaseBrowser_HTTPFingerprint_PriorityFrameOpts(): Browser_HTTPFingerprint_PriorityFrameOpts {
+  return { streamId: 0, streamDep: 0, exclusive: false, weight: 0 };
+}
+
+export const Browser_HTTPFingerprint_PriorityFrameOpts = {
+  encode(message: Browser_HTTPFingerprint_PriorityFrameOpts, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.streamId !== undefined && message.streamId !== 0) {
+      writer.uint32(8).int64(message.streamId);
+    }
+    if (message.streamDep !== undefined && message.streamDep !== 0) {
+      writer.uint32(16).int64(message.streamDep);
+    }
+    if (message.exclusive === true) {
+      writer.uint32(24).bool(message.exclusive);
+    }
+    if (message.weight !== undefined && message.weight !== 0) {
+      writer.uint32(32).int32(message.weight);
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): Browser_HTTPFingerprint_PriorityFrameOpts {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseBrowser_HTTPFingerprint_PriorityFrameOpts();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag != 8) {
+            break;
+          }
+
+          message.streamId = longToNumber(reader.int64() as Long);
+          continue;
+        case 2:
+          if (tag != 16) {
+            break;
+          }
+
+          message.streamDep = longToNumber(reader.int64() as Long);
+          continue;
+        case 3:
+          if (tag != 24) {
+            break;
+          }
+
+          message.exclusive = reader.bool();
+          continue;
+        case 4:
+          if (tag != 32) {
+            break;
+          }
+
+          message.weight = reader.int32();
+          continue;
+      }
+      if ((tag & 7) == 4 || tag == 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): Browser_HTTPFingerprint_PriorityFrameOpts {
+    return {
+      streamId: isSet(object.streamId) ? Number(object.streamId) : 0,
+      streamDep: isSet(object.streamDep) ? Number(object.streamDep) : 0,
+      exclusive: isSet(object.exclusive) ? Boolean(object.exclusive) : false,
+      weight: isSet(object.weight) ? Number(object.weight) : 0,
+    };
+  },
+
+  toJSON(message: Browser_HTTPFingerprint_PriorityFrameOpts): unknown {
+    const obj: any = {};
+    message.streamId !== undefined && (obj.streamId = Math.round(message.streamId));
+    message.streamDep !== undefined && (obj.streamDep = Math.round(message.streamDep));
+    message.exclusive !== undefined && (obj.exclusive = message.exclusive);
+    message.weight !== undefined && (obj.weight = Math.round(message.weight));
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<Browser_HTTPFingerprint_PriorityFrameOpts>, I>>(
+    base?: I,
+  ): Browser_HTTPFingerprint_PriorityFrameOpts {
+    return Browser_HTTPFingerprint_PriorityFrameOpts.fromPartial(base ?? {});
+  },
+
+  fromPartial<I extends Exact<DeepPartial<Browser_HTTPFingerprint_PriorityFrameOpts>, I>>(
+    object: I,
+  ): Browser_HTTPFingerprint_PriorityFrameOpts {
+    const message = createBaseBrowser_HTTPFingerprint_PriorityFrameOpts();
+    message.streamId = object.streamId ?? 0;
+    message.streamDep = object.streamDep ?? 0;
+    message.exclusive = object.exclusive ?? false;
+    message.weight = object.weight ?? 0;
+    return message;
+  },
+};
+
+function createBaseBrowser_HTTPFingerprint_SettingsFrameOpts(): Browser_HTTPFingerprint_SettingsFrameOpts {
+  return {
+    headerTableSize: 0,
+    enablePush: 0,
+    maxConcurrentStreams: 0,
+    initialWindowSize: 0,
+    maxFrameSize: 0,
+    maxHeaderListSize: 0,
+  };
+}
+
+export const Browser_HTTPFingerprint_SettingsFrameOpts = {
+  encode(message: Browser_HTTPFingerprint_SettingsFrameOpts, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.headerTableSize !== undefined && message.headerTableSize !== 0) {
+      writer.uint32(8).int64(message.headerTableSize);
+    }
+    if (message.enablePush !== undefined && message.enablePush !== 0) {
+      writer.uint32(16).int64(message.enablePush);
+    }
+    if (message.maxConcurrentStreams !== undefined && message.maxConcurrentStreams !== 0) {
+      writer.uint32(24).int64(message.maxConcurrentStreams);
+    }
+    if (message.initialWindowSize !== undefined && message.initialWindowSize !== 0) {
+      writer.uint32(32).int64(message.initialWindowSize);
+    }
+    if (message.maxFrameSize !== undefined && message.maxFrameSize !== 0) {
+      writer.uint32(40).int64(message.maxFrameSize);
+    }
+    if (message.maxHeaderListSize !== undefined && message.maxHeaderListSize !== 0) {
+      writer.uint32(48).int64(message.maxHeaderListSize);
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): Browser_HTTPFingerprint_SettingsFrameOpts {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseBrowser_HTTPFingerprint_SettingsFrameOpts();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag != 8) {
+            break;
+          }
+
+          message.headerTableSize = longToNumber(reader.int64() as Long);
+          continue;
+        case 2:
+          if (tag != 16) {
+            break;
+          }
+
+          message.enablePush = longToNumber(reader.int64() as Long);
+          continue;
+        case 3:
+          if (tag != 24) {
+            break;
+          }
+
+          message.maxConcurrentStreams = longToNumber(reader.int64() as Long);
+          continue;
+        case 4:
+          if (tag != 32) {
+            break;
+          }
+
+          message.initialWindowSize = longToNumber(reader.int64() as Long);
+          continue;
+        case 5:
+          if (tag != 40) {
+            break;
+          }
+
+          message.maxFrameSize = longToNumber(reader.int64() as Long);
+          continue;
+        case 6:
+          if (tag != 48) {
+            break;
+          }
+
+          message.maxHeaderListSize = longToNumber(reader.int64() as Long);
+          continue;
+      }
+      if ((tag & 7) == 4 || tag == 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): Browser_HTTPFingerprint_SettingsFrameOpts {
+    return {
+      headerTableSize: isSet(object.headerTableSize) ? Number(object.headerTableSize) : 0,
+      enablePush: isSet(object.enablePush) ? Number(object.enablePush) : 0,
+      maxConcurrentStreams: isSet(object.maxConcurrentStreams) ? Number(object.maxConcurrentStreams) : 0,
+      initialWindowSize: isSet(object.initialWindowSize) ? Number(object.initialWindowSize) : 0,
+      maxFrameSize: isSet(object.maxFrameSize) ? Number(object.maxFrameSize) : 0,
+      maxHeaderListSize: isSet(object.maxHeaderListSize) ? Number(object.maxHeaderListSize) : 0,
+    };
+  },
+
+  toJSON(message: Browser_HTTPFingerprint_SettingsFrameOpts): unknown {
+    const obj: any = {};
+    message.headerTableSize !== undefined && (obj.headerTableSize = Math.round(message.headerTableSize));
+    message.enablePush !== undefined && (obj.enablePush = Math.round(message.enablePush));
+    message.maxConcurrentStreams !== undefined && (obj.maxConcurrentStreams = Math.round(message.maxConcurrentStreams));
+    message.initialWindowSize !== undefined && (obj.initialWindowSize = Math.round(message.initialWindowSize));
+    message.maxFrameSize !== undefined && (obj.maxFrameSize = Math.round(message.maxFrameSize));
+    message.maxHeaderListSize !== undefined && (obj.maxHeaderListSize = Math.round(message.maxHeaderListSize));
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<Browser_HTTPFingerprint_SettingsFrameOpts>, I>>(
+    base?: I,
+  ): Browser_HTTPFingerprint_SettingsFrameOpts {
+    return Browser_HTTPFingerprint_SettingsFrameOpts.fromPartial(base ?? {});
+  },
+
+  fromPartial<I extends Exact<DeepPartial<Browser_HTTPFingerprint_SettingsFrameOpts>, I>>(
+    object: I,
+  ): Browser_HTTPFingerprint_SettingsFrameOpts {
+    const message = createBaseBrowser_HTTPFingerprint_SettingsFrameOpts();
+    message.headerTableSize = object.headerTableSize ?? 0;
+    message.enablePush = object.enablePush ?? 0;
+    message.maxConcurrentStreams = object.maxConcurrentStreams ?? 0;
+    message.initialWindowSize = object.initialWindowSize ?? 0;
+    message.maxFrameSize = object.maxFrameSize ?? 0;
+    message.maxHeaderListSize = object.maxHeaderListSize ?? 0;
+    return message;
+  },
+};
+
+function createBaseBrowser_GLCapability(): Browser_GLCapability {
+  return { boolValue: [], intValue: [], floatValue: [], stringValue: [], enumValue: 0, enumName: "" };
+}
+
+export const Browser_GLCapability = {
+  encode(message: Browser_GLCapability, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.boolValue !== undefined && message.boolValue.length !== 0) {
+      writer.uint32(10).fork();
+      for (const v of message.boolValue) {
+        writer.bool(v);
+      }
+      writer.ldelim();
+    }
+    if (message.intValue !== undefined && message.intValue.length !== 0) {
+      writer.uint32(18).fork();
+      for (const v of message.intValue) {
+        writer.int64(v);
+      }
+      writer.ldelim();
+    }
+    if (message.floatValue !== undefined && message.floatValue.length !== 0) {
+      writer.uint32(26).fork();
+      for (const v of message.floatValue) {
+        writer.double(v);
+      }
+      writer.ldelim();
+    }
+    if (message.stringValue !== undefined && message.stringValue.length !== 0) {
+      for (const v of message.stringValue) {
+        writer.uint32(34).string(v!);
+      }
+    }
+    if (message.enumValue !== undefined && message.enumValue !== 0) {
+      writer.uint32(80).int64(message.enumValue);
+    }
+    if (message.enumName !== undefined && message.enumName !== "") {
+      writer.uint32(90).string(message.enumName);
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): Browser_GLCapability {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseBrowser_GLCapability();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag == 8) {
+            message.boolValue!.push(reader.bool());
+            continue;
+          }
+
+          if (tag == 10) {
+            const end2 = reader.uint32() + reader.pos;
+            while (reader.pos < end2) {
+              message.boolValue!.push(reader.bool());
+            }
+
+            continue;
+          }
+
+          break;
+        case 2:
+          if (tag == 16) {
+            message.intValue!.push(longToNumber(reader.int64() as Long));
+            continue;
+          }
+
+          if (tag == 18) {
+            const end2 = reader.uint32() + reader.pos;
+            while (reader.pos < end2) {
+              message.intValue!.push(longToNumber(reader.int64() as Long));
+            }
+
+            continue;
+          }
+
+          break;
+        case 3:
+          if (tag == 25) {
+            message.floatValue!.push(reader.double());
+            continue;
+          }
+
+          if (tag == 26) {
+            const end2 = reader.uint32() + reader.pos;
+            while (reader.pos < end2) {
+              message.floatValue!.push(reader.double());
+            }
+
+            continue;
+          }
+
+          break;
+        case 4:
+          if (tag != 34) {
+            break;
+          }
+
+          message.stringValue!.push(reader.string());
+          continue;
+        case 10:
+          if (tag != 80) {
+            break;
+          }
+
+          message.enumValue = longToNumber(reader.int64() as Long);
+          continue;
+        case 11:
+          if (tag != 90) {
+            break;
+          }
+
+          message.enumName = reader.string();
+          continue;
+      }
+      if ((tag & 7) == 4 || tag == 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): Browser_GLCapability {
+    return {
+      boolValue: Array.isArray(object?.boolValue) ? object.boolValue.map((e: any) => Boolean(e)) : [],
+      intValue: Array.isArray(object?.intValue) ? object.intValue.map((e: any) => Number(e)) : [],
+      floatValue: Array.isArray(object?.floatValue) ? object.floatValue.map((e: any) => Number(e)) : [],
+      stringValue: Array.isArray(object?.stringValue) ? object.stringValue.map((e: any) => String(e)) : [],
+      enumValue: isSet(object.enumValue) ? Number(object.enumValue) : 0,
+      enumName: isSet(object.enumName) ? String(object.enumName) : "",
+    };
+  },
+
+  toJSON(message: Browser_GLCapability): unknown {
+    const obj: any = {};
+    if (message.boolValue) {
+      obj.boolValue = message.boolValue.map((e) => e);
+    } else {
+      obj.boolValue = [];
+    }
+    if (message.intValue) {
+      obj.intValue = message.intValue.map((e) => Math.round(e));
+    } else {
+      obj.intValue = [];
+    }
+    if (message.floatValue) {
+      obj.floatValue = message.floatValue.map((e) => e);
+    } else {
+      obj.floatValue = [];
+    }
+    if (message.stringValue) {
+      obj.stringValue = message.stringValue.map((e) => e);
+    } else {
+      obj.stringValue = [];
+    }
+    message.enumValue !== undefined && (obj.enumValue = Math.round(message.enumValue));
+    message.enumName !== undefined && (obj.enumName = message.enumName);
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<Browser_GLCapability>, I>>(base?: I): Browser_GLCapability {
+    return Browser_GLCapability.fromPartial(base ?? {});
+  },
+
+  fromPartial<I extends Exact<DeepPartial<Browser_GLCapability>, I>>(object: I): Browser_GLCapability {
+    const message = createBaseBrowser_GLCapability();
+    message.boolValue = object.boolValue?.map((e) => e) || [];
+    message.intValue = object.intValue?.map((e) => e) || [];
+    message.floatValue = object.floatValue?.map((e) => e) || [];
+    message.stringValue = object.stringValue?.map((e) => e) || [];
+    message.enumValue = object.enumValue ?? 0;
+    message.enumName = object.enumName ?? "";
     return message;
   },
 };
 
 function createBaseBrowser_BrowserCollection(): Browser_BrowserCollection {
-  return { hash: "", listData: [], mapData: {} };
+  return { id: 0, hash: "", listData: [], mapData: {}, glCapabilities: {} };
 }
 
 export const Browser_BrowserCollection = {
   encode(message: Browser_BrowserCollection, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.hash !== "") {
-      writer.uint32(10).string(message.hash);
+    if (message.id !== undefined && message.id !== 0) {
+      writer.uint32(8).int64(message.id);
     }
-    for (const v of message.listData) {
-      writer.uint32(18).string(v!);
+    if (message.hash !== undefined && message.hash !== "") {
+      writer.uint32(18).string(message.hash);
     }
-    Object.entries(message.mapData).forEach(([key, value]) => {
-      Browser_BrowserCollection_MapDataEntry.encode({ key: key as any, value }, writer.uint32(26).fork()).ldelim();
+    if (message.listData !== undefined && message.listData.length !== 0) {
+      for (const v of message.listData) {
+        writer.uint32(26).string(v!);
+      }
+    }
+    Object.entries(message.mapData || {}).forEach(([key, value]) => {
+      Browser_BrowserCollection_MapDataEntry.encode({ key: key as any, value }, writer.uint32(34).fork()).ldelim();
+    });
+    Object.entries(message.glCapabilities || {}).forEach(([key, value]) => {
+      Browser_BrowserCollection_GlCapabilitiesEntry.encode({ key: key as any, value }, writer.uint32(42).fork())
+        .ldelim();
     });
     return writer;
   },
@@ -4475,27 +7132,44 @@ export const Browser_BrowserCollection = {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          if (tag != 10) {
+          if (tag != 8) {
             break;
           }
 
-          message.hash = reader.string();
+          message.id = longToNumber(reader.int64() as Long);
           continue;
         case 2:
           if (tag != 18) {
             break;
           }
 
-          message.listData.push(reader.string());
+          message.hash = reader.string();
           continue;
         case 3:
           if (tag != 26) {
             break;
           }
 
-          const entry3 = Browser_BrowserCollection_MapDataEntry.decode(reader, reader.uint32());
-          if (entry3.value !== undefined) {
-            message.mapData[entry3.key] = entry3.value;
+          message.listData!.push(reader.string());
+          continue;
+        case 4:
+          if (tag != 34) {
+            break;
+          }
+
+          const entry4 = Browser_BrowserCollection_MapDataEntry.decode(reader, reader.uint32());
+          if (entry4.value !== undefined) {
+            message.mapData![entry4.key] = entry4.value;
+          }
+          continue;
+        case 5:
+          if (tag != 42) {
+            break;
+          }
+
+          const entry5 = Browser_BrowserCollection_GlCapabilitiesEntry.decode(reader, reader.uint32());
+          if (entry5.value !== undefined) {
+            message.glCapabilities![entry5.key] = entry5.value;
           }
           continue;
       }
@@ -4509,6 +7183,7 @@ export const Browser_BrowserCollection = {
 
   fromJSON(object: any): Browser_BrowserCollection {
     return {
+      id: isSet(object.id) ? Number(object.id) : 0,
       hash: isSet(object.hash) ? String(object.hash) : "",
       listData: Array.isArray(object?.listData) ? object.listData.map((e: any) => String(e)) : [],
       mapData: isObject(object.mapData)
@@ -4517,11 +7192,18 @@ export const Browser_BrowserCollection = {
           return acc;
         }, {})
         : {},
+      glCapabilities: isObject(object.glCapabilities)
+        ? Object.entries(object.glCapabilities).reduce<{ [key: string]: Browser_GLCapability }>((acc, [key, value]) => {
+          acc[key] = Browser_GLCapability.fromJSON(value);
+          return acc;
+        }, {})
+        : {},
     };
   },
 
   toJSON(message: Browser_BrowserCollection): unknown {
     const obj: any = {};
+    message.id !== undefined && (obj.id = Math.round(message.id));
     message.hash !== undefined && (obj.hash = message.hash);
     if (message.listData) {
       obj.listData = message.listData.map((e) => e);
@@ -4534,6 +7216,12 @@ export const Browser_BrowserCollection = {
         obj.mapData[k] = v;
       });
     }
+    obj.glCapabilities = {};
+    if (message.glCapabilities) {
+      Object.entries(message.glCapabilities).forEach(([k, v]) => {
+        obj.glCapabilities[k] = Browser_GLCapability.toJSON(v);
+      });
+    }
     return obj;
   },
 
@@ -4543,11 +7231,20 @@ export const Browser_BrowserCollection = {
 
   fromPartial<I extends Exact<DeepPartial<Browser_BrowserCollection>, I>>(object: I): Browser_BrowserCollection {
     const message = createBaseBrowser_BrowserCollection();
+    message.id = object.id ?? 0;
     message.hash = object.hash ?? "";
     message.listData = object.listData?.map((e) => e) || [];
     message.mapData = Object.entries(object.mapData ?? {}).reduce<{ [key: string]: string }>((acc, [key, value]) => {
       if (value !== undefined) {
         acc[key] = String(value);
+      }
+      return acc;
+    }, {});
+    message.glCapabilities = Object.entries(object.glCapabilities ?? {}).reduce<
+      { [key: string]: Browser_GLCapability }
+    >((acc, [key, value]) => {
+      if (value !== undefined) {
+        acc[key] = Browser_GLCapability.fromPartial(value);
       }
       return acc;
     }, {});
@@ -4627,6 +7324,83 @@ export const Browser_BrowserCollection_MapDataEntry = {
   },
 };
 
+function createBaseBrowser_BrowserCollection_GlCapabilitiesEntry(): Browser_BrowserCollection_GlCapabilitiesEntry {
+  return { key: "", value: undefined };
+}
+
+export const Browser_BrowserCollection_GlCapabilitiesEntry = {
+  encode(message: Browser_BrowserCollection_GlCapabilitiesEntry, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.key !== "") {
+      writer.uint32(10).string(message.key);
+    }
+    if (message.value !== undefined) {
+      Browser_GLCapability.encode(message.value, writer.uint32(18).fork()).ldelim();
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): Browser_BrowserCollection_GlCapabilitiesEntry {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseBrowser_BrowserCollection_GlCapabilitiesEntry();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag != 10) {
+            break;
+          }
+
+          message.key = reader.string();
+          continue;
+        case 2:
+          if (tag != 18) {
+            break;
+          }
+
+          message.value = Browser_GLCapability.decode(reader, reader.uint32());
+          continue;
+      }
+      if ((tag & 7) == 4 || tag == 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): Browser_BrowserCollection_GlCapabilitiesEntry {
+    return {
+      key: isSet(object.key) ? String(object.key) : "",
+      value: isSet(object.value) ? Browser_GLCapability.fromJSON(object.value) : undefined,
+    };
+  },
+
+  toJSON(message: Browser_BrowserCollection_GlCapabilitiesEntry): unknown {
+    const obj: any = {};
+    message.key !== undefined && (obj.key = message.key);
+    message.value !== undefined && (obj.value = message.value ? Browser_GLCapability.toJSON(message.value) : undefined);
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<Browser_BrowserCollection_GlCapabilitiesEntry>, I>>(
+    base?: I,
+  ): Browser_BrowserCollection_GlCapabilitiesEntry {
+    return Browser_BrowserCollection_GlCapabilitiesEntry.fromPartial(base ?? {});
+  },
+
+  fromPartial<I extends Exact<DeepPartial<Browser_BrowserCollection_GlCapabilitiesEntry>, I>>(
+    object: I,
+  ): Browser_BrowserCollection_GlCapabilitiesEntry {
+    const message = createBaseBrowser_BrowserCollection_GlCapabilitiesEntry();
+    message.key = object.key ?? "";
+    message.value = (object.value !== undefined && object.value !== null)
+      ? Browser_GLCapability.fromPartial(object.value)
+      : undefined;
+    return message;
+  },
+};
+
 function createBaseBrowser_BrowserScreen(): Browser_BrowserScreen {
   return {
     availWidth: 0,
@@ -4644,28 +7418,28 @@ function createBaseBrowser_BrowserScreen(): Browser_BrowserScreen {
 
 export const Browser_BrowserScreen = {
   encode(message: Browser_BrowserScreen, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.availWidth !== 0) {
+    if (message.availWidth !== undefined && message.availWidth !== 0) {
       writer.uint32(8).int32(message.availWidth);
     }
-    if (message.availHeight !== 0) {
+    if (message.availHeight !== undefined && message.availHeight !== 0) {
       writer.uint32(16).int32(message.availHeight);
     }
-    if (message.width !== 0) {
+    if (message.width !== undefined && message.width !== 0) {
       writer.uint32(24).int32(message.width);
     }
-    if (message.height !== 0) {
+    if (message.height !== undefined && message.height !== 0) {
       writer.uint32(32).int32(message.height);
     }
-    if (message.colorDepth !== 0) {
+    if (message.colorDepth !== undefined && message.colorDepth !== 0) {
       writer.uint32(40).int32(message.colorDepth);
     }
-    if (message.pixelDepth !== 0) {
+    if (message.pixelDepth !== undefined && message.pixelDepth !== 0) {
       writer.uint32(48).int32(message.pixelDepth);
     }
-    if (message.availLeft !== 0) {
+    if (message.availLeft !== undefined && message.availLeft !== 0) {
       writer.uint32(56).int32(message.availLeft);
     }
-    if (message.availTop !== 0) {
+    if (message.availTop !== undefined && message.availTop !== 0) {
       writer.uint32(64).int32(message.availTop);
     }
     if (message.isExtended === true) {
@@ -4826,10 +7600,10 @@ function createBaseBrowser_BrowserScreen_Orientation(): Browser_BrowserScreen_Or
 
 export const Browser_BrowserScreen_Orientation = {
   encode(message: Browser_BrowserScreen_Orientation, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.angle !== 0) {
+    if (message.angle !== undefined && message.angle !== 0) {
       writer.uint32(8).int32(message.angle);
     }
-    if (message.type !== "") {
+    if (message.type !== undefined && message.type !== "") {
       writer.uint32(18).string(message.type);
     }
     return writer;
@@ -4898,7 +7672,7 @@ export const Browser_BrowserScreen_Orientation = {
 function createBaseBrowser_WebGPU(): Browser_WebGPU {
   return {
     features: undefined,
-    limits: undefined,
+    limits: {},
     isFallbackAdapter: false,
     vendor: "",
     architecture: "",
@@ -4912,22 +7686,22 @@ export const Browser_WebGPU = {
     if (message.features !== undefined) {
       Browser_WebGPU_Features.encode(message.features, writer.uint32(10).fork()).ldelim();
     }
-    if (message.limits !== undefined) {
-      Browser_WebGPU_Limits.encode(message.limits, writer.uint32(18).fork()).ldelim();
-    }
+    Object.entries(message.limits || {}).forEach(([key, value]) => {
+      Browser_WebGPU_LimitsEntry.encode({ key: key as any, value }, writer.uint32(18).fork()).ldelim();
+    });
     if (message.isFallbackAdapter === true) {
       writer.uint32(24).bool(message.isFallbackAdapter);
     }
-    if (message.vendor !== "") {
+    if (message.vendor !== undefined && message.vendor !== "") {
       writer.uint32(34).string(message.vendor);
     }
-    if (message.architecture !== "") {
+    if (message.architecture !== undefined && message.architecture !== "") {
       writer.uint32(42).string(message.architecture);
     }
-    if (message.device !== "") {
+    if (message.device !== undefined && message.device !== "") {
       writer.uint32(50).string(message.device);
     }
-    if (message.description !== "") {
+    if (message.description !== undefined && message.description !== "") {
       writer.uint32(58).string(message.description);
     }
     return writer;
@@ -4952,7 +7726,10 @@ export const Browser_WebGPU = {
             break;
           }
 
-          message.limits = Browser_WebGPU_Limits.decode(reader, reader.uint32());
+          const entry2 = Browser_WebGPU_LimitsEntry.decode(reader, reader.uint32());
+          if (entry2.value !== undefined) {
+            message.limits![entry2.key] = entry2.value;
+          }
           continue;
         case 3:
           if (tag != 24) {
@@ -5001,7 +7778,12 @@ export const Browser_WebGPU = {
   fromJSON(object: any): Browser_WebGPU {
     return {
       features: isSet(object.features) ? Browser_WebGPU_Features.fromJSON(object.features) : undefined,
-      limits: isSet(object.limits) ? Browser_WebGPU_Limits.fromJSON(object.limits) : undefined,
+      limits: isObject(object.limits)
+        ? Object.entries(object.limits).reduce<{ [key: string]: number }>((acc, [key, value]) => {
+          acc[key] = Number(value);
+          return acc;
+        }, {})
+        : {},
       isFallbackAdapter: isSet(object.isFallbackAdapter) ? Boolean(object.isFallbackAdapter) : false,
       vendor: isSet(object.vendor) ? String(object.vendor) : "",
       architecture: isSet(object.architecture) ? String(object.architecture) : "",
@@ -5014,8 +7796,12 @@ export const Browser_WebGPU = {
     const obj: any = {};
     message.features !== undefined &&
       (obj.features = message.features ? Browser_WebGPU_Features.toJSON(message.features) : undefined);
-    message.limits !== undefined &&
-      (obj.limits = message.limits ? Browser_WebGPU_Limits.toJSON(message.limits) : undefined);
+    obj.limits = {};
+    if (message.limits) {
+      Object.entries(message.limits).forEach(([k, v]) => {
+        obj.limits[k] = Math.round(v);
+      });
+    }
     message.isFallbackAdapter !== undefined && (obj.isFallbackAdapter = message.isFallbackAdapter);
     message.vendor !== undefined && (obj.vendor = message.vendor);
     message.architecture !== undefined && (obj.architecture = message.architecture);
@@ -5033,9 +7819,12 @@ export const Browser_WebGPU = {
     message.features = (object.features !== undefined && object.features !== null)
       ? Browser_WebGPU_Features.fromPartial(object.features)
       : undefined;
-    message.limits = (object.limits !== undefined && object.limits !== null)
-      ? Browser_WebGPU_Limits.fromPartial(object.limits)
-      : undefined;
+    message.limits = Object.entries(object.limits ?? {}).reduce<{ [key: string]: number }>((acc, [key, value]) => {
+      if (value !== undefined) {
+        acc[key] = Number(value);
+      }
+      return acc;
+    }, {});
     message.isFallbackAdapter = object.isFallbackAdapter ?? false;
     message.vendor = object.vendor ?? "";
     message.architecture = object.architecture ?? "";
@@ -5051,8 +7840,8 @@ function createBaseBrowser_WebGPU_Features(): Browser_WebGPU_Features {
 
 export const Browser_WebGPU_Features = {
   encode(message: Browser_WebGPU_Features, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.size !== 0) {
-      writer.uint32(8).int32(message.size);
+    if (message.size !== undefined && message.size !== 0) {
+      writer.uint32(8).int64(message.size);
     }
     return writer;
   },
@@ -5069,7 +7858,7 @@ export const Browser_WebGPU_Features = {
             break;
           }
 
-          message.size = reader.int32();
+          message.size = longToNumber(reader.int64() as Long);
           continue;
       }
       if ((tag & 7) == 4 || tag == 0) {
@@ -5101,363 +7890,41 @@ export const Browser_WebGPU_Features = {
   },
 };
 
-function createBaseBrowser_WebGPU_Limits(): Browser_WebGPU_Limits {
-  return {
-    maxTextureDimension1D: 0,
-    maxTextureDimension2D: 0,
-    maxTextureDimension3D: 0,
-    maxTextureArrayLayers: 0,
-    maxBindGroups: 0,
-    maxBindingsPerBindGroup: 0,
-    maxDynamicUniformBuffersPerPipelineLayout: 0,
-    maxDynamicStorageBuffersPerPipelineLayout: 0,
-    maxSampledTexturesPerShaderStage: 0,
-    maxSamplersPerShaderStage: 0,
-    maxStorageBuffersPerShaderStage: 0,
-    maxStorageTexturesPerShaderStage: 0,
-    maxUniformBuffersPerShaderStage: 0,
-    maxUniformBufferBindingSize: 0,
-    maxStorageBufferBindingSize: 0,
-    minUniformBufferOffsetAlignment: 0,
-    minStorageBufferOffsetAlignment: 0,
-    maxVertexBuffers: 0,
-    maxBufferSize: 0,
-    maxVertexAttributes: 0,
-    maxVertexBufferArrayStride: 0,
-    maxInterStageShaderComponents: 0,
-    maxInterStageShaderVariables: 0,
-    maxColorAttachments: 0,
-    maxColorAttachmentBytesPerSample: 0,
-    maxComputeWorkgroupStorageSize: 0,
-    maxComputeInvocationsPerWorkgroup: 0,
-    maxComputeWorkgroupSizeX: 0,
-    maxComputeWorkgroupSizeY: 0,
-    maxComputeWorkgroupSizeZ: 0,
-    maxComputeWorkgroupsPerDimension: 0,
-  };
+function createBaseBrowser_WebGPU_LimitsEntry(): Browser_WebGPU_LimitsEntry {
+  return { key: "", value: 0 };
 }
 
-export const Browser_WebGPU_Limits = {
-  encode(message: Browser_WebGPU_Limits, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.maxTextureDimension1D !== 0) {
-      writer.uint32(8).int32(message.maxTextureDimension1D);
+export const Browser_WebGPU_LimitsEntry = {
+  encode(message: Browser_WebGPU_LimitsEntry, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.key !== "") {
+      writer.uint32(10).string(message.key);
     }
-    if (message.maxTextureDimension2D !== 0) {
-      writer.uint32(16).int32(message.maxTextureDimension2D);
-    }
-    if (message.maxTextureDimension3D !== 0) {
-      writer.uint32(24).int32(message.maxTextureDimension3D);
-    }
-    if (message.maxTextureArrayLayers !== 0) {
-      writer.uint32(32).int32(message.maxTextureArrayLayers);
-    }
-    if (message.maxBindGroups !== 0) {
-      writer.uint32(40).int32(message.maxBindGroups);
-    }
-    if (message.maxBindingsPerBindGroup !== 0) {
-      writer.uint32(48).int32(message.maxBindingsPerBindGroup);
-    }
-    if (message.maxDynamicUniformBuffersPerPipelineLayout !== 0) {
-      writer.uint32(56).int32(message.maxDynamicUniformBuffersPerPipelineLayout);
-    }
-    if (message.maxDynamicStorageBuffersPerPipelineLayout !== 0) {
-      writer.uint32(64).int32(message.maxDynamicStorageBuffersPerPipelineLayout);
-    }
-    if (message.maxSampledTexturesPerShaderStage !== 0) {
-      writer.uint32(72).int32(message.maxSampledTexturesPerShaderStage);
-    }
-    if (message.maxSamplersPerShaderStage !== 0) {
-      writer.uint32(80).int32(message.maxSamplersPerShaderStage);
-    }
-    if (message.maxStorageBuffersPerShaderStage !== 0) {
-      writer.uint32(88).int32(message.maxStorageBuffersPerShaderStage);
-    }
-    if (message.maxStorageTexturesPerShaderStage !== 0) {
-      writer.uint32(96).int32(message.maxStorageTexturesPerShaderStage);
-    }
-    if (message.maxUniformBuffersPerShaderStage !== 0) {
-      writer.uint32(104).int32(message.maxUniformBuffersPerShaderStage);
-    }
-    if (message.maxUniformBufferBindingSize !== 0) {
-      writer.uint32(112).int32(message.maxUniformBufferBindingSize);
-    }
-    if (message.maxStorageBufferBindingSize !== 0) {
-      writer.uint32(120).int32(message.maxStorageBufferBindingSize);
-    }
-    if (message.minUniformBufferOffsetAlignment !== 0) {
-      writer.uint32(128).int32(message.minUniformBufferOffsetAlignment);
-    }
-    if (message.minStorageBufferOffsetAlignment !== 0) {
-      writer.uint32(136).int32(message.minStorageBufferOffsetAlignment);
-    }
-    if (message.maxVertexBuffers !== 0) {
-      writer.uint32(144).int32(message.maxVertexBuffers);
-    }
-    if (message.maxBufferSize !== 0) {
-      writer.uint32(152).int32(message.maxBufferSize);
-    }
-    if (message.maxVertexAttributes !== 0) {
-      writer.uint32(160).int32(message.maxVertexAttributes);
-    }
-    if (message.maxVertexBufferArrayStride !== 0) {
-      writer.uint32(168).int32(message.maxVertexBufferArrayStride);
-    }
-    if (message.maxInterStageShaderComponents !== 0) {
-      writer.uint32(176).int32(message.maxInterStageShaderComponents);
-    }
-    if (message.maxInterStageShaderVariables !== 0) {
-      writer.uint32(184).int32(message.maxInterStageShaderVariables);
-    }
-    if (message.maxColorAttachments !== 0) {
-      writer.uint32(192).int32(message.maxColorAttachments);
-    }
-    if (message.maxColorAttachmentBytesPerSample !== 0) {
-      writer.uint32(200).int32(message.maxColorAttachmentBytesPerSample);
-    }
-    if (message.maxComputeWorkgroupStorageSize !== 0) {
-      writer.uint32(208).int32(message.maxComputeWorkgroupStorageSize);
-    }
-    if (message.maxComputeInvocationsPerWorkgroup !== 0) {
-      writer.uint32(216).int32(message.maxComputeInvocationsPerWorkgroup);
-    }
-    if (message.maxComputeWorkgroupSizeX !== 0) {
-      writer.uint32(224).int32(message.maxComputeWorkgroupSizeX);
-    }
-    if (message.maxComputeWorkgroupSizeY !== 0) {
-      writer.uint32(232).int32(message.maxComputeWorkgroupSizeY);
-    }
-    if (message.maxComputeWorkgroupSizeZ !== 0) {
-      writer.uint32(240).int32(message.maxComputeWorkgroupSizeZ);
-    }
-    if (message.maxComputeWorkgroupsPerDimension !== 0) {
-      writer.uint32(248).int32(message.maxComputeWorkgroupsPerDimension);
+    if (message.value !== 0) {
+      writer.uint32(16).int64(message.value);
     }
     return writer;
   },
 
-  decode(input: _m0.Reader | Uint8Array, length?: number): Browser_WebGPU_Limits {
+  decode(input: _m0.Reader | Uint8Array, length?: number): Browser_WebGPU_LimitsEntry {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseBrowser_WebGPU_Limits();
+    const message = createBaseBrowser_WebGPU_LimitsEntry();
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          if (tag != 8) {
+          if (tag != 10) {
             break;
           }
 
-          message.maxTextureDimension1D = reader.int32();
+          message.key = reader.string();
           continue;
         case 2:
           if (tag != 16) {
             break;
           }
 
-          message.maxTextureDimension2D = reader.int32();
-          continue;
-        case 3:
-          if (tag != 24) {
-            break;
-          }
-
-          message.maxTextureDimension3D = reader.int32();
-          continue;
-        case 4:
-          if (tag != 32) {
-            break;
-          }
-
-          message.maxTextureArrayLayers = reader.int32();
-          continue;
-        case 5:
-          if (tag != 40) {
-            break;
-          }
-
-          message.maxBindGroups = reader.int32();
-          continue;
-        case 6:
-          if (tag != 48) {
-            break;
-          }
-
-          message.maxBindingsPerBindGroup = reader.int32();
-          continue;
-        case 7:
-          if (tag != 56) {
-            break;
-          }
-
-          message.maxDynamicUniformBuffersPerPipelineLayout = reader.int32();
-          continue;
-        case 8:
-          if (tag != 64) {
-            break;
-          }
-
-          message.maxDynamicStorageBuffersPerPipelineLayout = reader.int32();
-          continue;
-        case 9:
-          if (tag != 72) {
-            break;
-          }
-
-          message.maxSampledTexturesPerShaderStage = reader.int32();
-          continue;
-        case 10:
-          if (tag != 80) {
-            break;
-          }
-
-          message.maxSamplersPerShaderStage = reader.int32();
-          continue;
-        case 11:
-          if (tag != 88) {
-            break;
-          }
-
-          message.maxStorageBuffersPerShaderStage = reader.int32();
-          continue;
-        case 12:
-          if (tag != 96) {
-            break;
-          }
-
-          message.maxStorageTexturesPerShaderStage = reader.int32();
-          continue;
-        case 13:
-          if (tag != 104) {
-            break;
-          }
-
-          message.maxUniformBuffersPerShaderStage = reader.int32();
-          continue;
-        case 14:
-          if (tag != 112) {
-            break;
-          }
-
-          message.maxUniformBufferBindingSize = reader.int32();
-          continue;
-        case 15:
-          if (tag != 120) {
-            break;
-          }
-
-          message.maxStorageBufferBindingSize = reader.int32();
-          continue;
-        case 16:
-          if (tag != 128) {
-            break;
-          }
-
-          message.minUniformBufferOffsetAlignment = reader.int32();
-          continue;
-        case 17:
-          if (tag != 136) {
-            break;
-          }
-
-          message.minStorageBufferOffsetAlignment = reader.int32();
-          continue;
-        case 18:
-          if (tag != 144) {
-            break;
-          }
-
-          message.maxVertexBuffers = reader.int32();
-          continue;
-        case 19:
-          if (tag != 152) {
-            break;
-          }
-
-          message.maxBufferSize = reader.int32();
-          continue;
-        case 20:
-          if (tag != 160) {
-            break;
-          }
-
-          message.maxVertexAttributes = reader.int32();
-          continue;
-        case 21:
-          if (tag != 168) {
-            break;
-          }
-
-          message.maxVertexBufferArrayStride = reader.int32();
-          continue;
-        case 22:
-          if (tag != 176) {
-            break;
-          }
-
-          message.maxInterStageShaderComponents = reader.int32();
-          continue;
-        case 23:
-          if (tag != 184) {
-            break;
-          }
-
-          message.maxInterStageShaderVariables = reader.int32();
-          continue;
-        case 24:
-          if (tag != 192) {
-            break;
-          }
-
-          message.maxColorAttachments = reader.int32();
-          continue;
-        case 25:
-          if (tag != 200) {
-            break;
-          }
-
-          message.maxColorAttachmentBytesPerSample = reader.int32();
-          continue;
-        case 26:
-          if (tag != 208) {
-            break;
-          }
-
-          message.maxComputeWorkgroupStorageSize = reader.int32();
-          continue;
-        case 27:
-          if (tag != 216) {
-            break;
-          }
-
-          message.maxComputeInvocationsPerWorkgroup = reader.int32();
-          continue;
-        case 28:
-          if (tag != 224) {
-            break;
-          }
-
-          message.maxComputeWorkgroupSizeX = reader.int32();
-          continue;
-        case 29:
-          if (tag != 232) {
-            break;
-          }
-
-          message.maxComputeWorkgroupSizeY = reader.int32();
-          continue;
-        case 30:
-          if (tag != 240) {
-            break;
-          }
-
-          message.maxComputeWorkgroupSizeZ = reader.int32();
-          continue;
-        case 31:
-          if (tag != 248) {
-            break;
-          }
-
-          message.maxComputeWorkgroupsPerDimension = reader.int32();
+          message.value = longToNumber(reader.int64() as Long);
           continue;
       }
       if ((tag & 7) == 4 || tag == 0) {
@@ -5468,175 +7935,25 @@ export const Browser_WebGPU_Limits = {
     return message;
   },
 
-  fromJSON(object: any): Browser_WebGPU_Limits {
-    return {
-      maxTextureDimension1D: isSet(object.maxTextureDimension1D) ? Number(object.maxTextureDimension1D) : 0,
-      maxTextureDimension2D: isSet(object.maxTextureDimension2D) ? Number(object.maxTextureDimension2D) : 0,
-      maxTextureDimension3D: isSet(object.maxTextureDimension3D) ? Number(object.maxTextureDimension3D) : 0,
-      maxTextureArrayLayers: isSet(object.maxTextureArrayLayers) ? Number(object.maxTextureArrayLayers) : 0,
-      maxBindGroups: isSet(object.maxBindGroups) ? Number(object.maxBindGroups) : 0,
-      maxBindingsPerBindGroup: isSet(object.maxBindingsPerBindGroup) ? Number(object.maxBindingsPerBindGroup) : 0,
-      maxDynamicUniformBuffersPerPipelineLayout: isSet(object.maxDynamicUniformBuffersPerPipelineLayout)
-        ? Number(object.maxDynamicUniformBuffersPerPipelineLayout)
-        : 0,
-      maxDynamicStorageBuffersPerPipelineLayout: isSet(object.maxDynamicStorageBuffersPerPipelineLayout)
-        ? Number(object.maxDynamicStorageBuffersPerPipelineLayout)
-        : 0,
-      maxSampledTexturesPerShaderStage: isSet(object.maxSampledTexturesPerShaderStage)
-        ? Number(object.maxSampledTexturesPerShaderStage)
-        : 0,
-      maxSamplersPerShaderStage: isSet(object.maxSamplersPerShaderStage) ? Number(object.maxSamplersPerShaderStage) : 0,
-      maxStorageBuffersPerShaderStage: isSet(object.maxStorageBuffersPerShaderStage)
-        ? Number(object.maxStorageBuffersPerShaderStage)
-        : 0,
-      maxStorageTexturesPerShaderStage: isSet(object.maxStorageTexturesPerShaderStage)
-        ? Number(object.maxStorageTexturesPerShaderStage)
-        : 0,
-      maxUniformBuffersPerShaderStage: isSet(object.maxUniformBuffersPerShaderStage)
-        ? Number(object.maxUniformBuffersPerShaderStage)
-        : 0,
-      maxUniformBufferBindingSize: isSet(object.maxUniformBufferBindingSize)
-        ? Number(object.maxUniformBufferBindingSize)
-        : 0,
-      maxStorageBufferBindingSize: isSet(object.maxStorageBufferBindingSize)
-        ? Number(object.maxStorageBufferBindingSize)
-        : 0,
-      minUniformBufferOffsetAlignment: isSet(object.minUniformBufferOffsetAlignment)
-        ? Number(object.minUniformBufferOffsetAlignment)
-        : 0,
-      minStorageBufferOffsetAlignment: isSet(object.minStorageBufferOffsetAlignment)
-        ? Number(object.minStorageBufferOffsetAlignment)
-        : 0,
-      maxVertexBuffers: isSet(object.maxVertexBuffers) ? Number(object.maxVertexBuffers) : 0,
-      maxBufferSize: isSet(object.maxBufferSize) ? Number(object.maxBufferSize) : 0,
-      maxVertexAttributes: isSet(object.maxVertexAttributes) ? Number(object.maxVertexAttributes) : 0,
-      maxVertexBufferArrayStride: isSet(object.maxVertexBufferArrayStride)
-        ? Number(object.maxVertexBufferArrayStride)
-        : 0,
-      maxInterStageShaderComponents: isSet(object.maxInterStageShaderComponents)
-        ? Number(object.maxInterStageShaderComponents)
-        : 0,
-      maxInterStageShaderVariables: isSet(object.maxInterStageShaderVariables)
-        ? Number(object.maxInterStageShaderVariables)
-        : 0,
-      maxColorAttachments: isSet(object.maxColorAttachments) ? Number(object.maxColorAttachments) : 0,
-      maxColorAttachmentBytesPerSample: isSet(object.maxColorAttachmentBytesPerSample)
-        ? Number(object.maxColorAttachmentBytesPerSample)
-        : 0,
-      maxComputeWorkgroupStorageSize: isSet(object.maxComputeWorkgroupStorageSize)
-        ? Number(object.maxComputeWorkgroupStorageSize)
-        : 0,
-      maxComputeInvocationsPerWorkgroup: isSet(object.maxComputeInvocationsPerWorkgroup)
-        ? Number(object.maxComputeInvocationsPerWorkgroup)
-        : 0,
-      maxComputeWorkgroupSizeX: isSet(object.maxComputeWorkgroupSizeX) ? Number(object.maxComputeWorkgroupSizeX) : 0,
-      maxComputeWorkgroupSizeY: isSet(object.maxComputeWorkgroupSizeY) ? Number(object.maxComputeWorkgroupSizeY) : 0,
-      maxComputeWorkgroupSizeZ: isSet(object.maxComputeWorkgroupSizeZ) ? Number(object.maxComputeWorkgroupSizeZ) : 0,
-      maxComputeWorkgroupsPerDimension: isSet(object.maxComputeWorkgroupsPerDimension)
-        ? Number(object.maxComputeWorkgroupsPerDimension)
-        : 0,
-    };
+  fromJSON(object: any): Browser_WebGPU_LimitsEntry {
+    return { key: isSet(object.key) ? String(object.key) : "", value: isSet(object.value) ? Number(object.value) : 0 };
   },
 
-  toJSON(message: Browser_WebGPU_Limits): unknown {
+  toJSON(message: Browser_WebGPU_LimitsEntry): unknown {
     const obj: any = {};
-    message.maxTextureDimension1D !== undefined &&
-      (obj.maxTextureDimension1D = Math.round(message.maxTextureDimension1D));
-    message.maxTextureDimension2D !== undefined &&
-      (obj.maxTextureDimension2D = Math.round(message.maxTextureDimension2D));
-    message.maxTextureDimension3D !== undefined &&
-      (obj.maxTextureDimension3D = Math.round(message.maxTextureDimension3D));
-    message.maxTextureArrayLayers !== undefined &&
-      (obj.maxTextureArrayLayers = Math.round(message.maxTextureArrayLayers));
-    message.maxBindGroups !== undefined && (obj.maxBindGroups = Math.round(message.maxBindGroups));
-    message.maxBindingsPerBindGroup !== undefined &&
-      (obj.maxBindingsPerBindGroup = Math.round(message.maxBindingsPerBindGroup));
-    message.maxDynamicUniformBuffersPerPipelineLayout !== undefined &&
-      (obj.maxDynamicUniformBuffersPerPipelineLayout = Math.round(message.maxDynamicUniformBuffersPerPipelineLayout));
-    message.maxDynamicStorageBuffersPerPipelineLayout !== undefined &&
-      (obj.maxDynamicStorageBuffersPerPipelineLayout = Math.round(message.maxDynamicStorageBuffersPerPipelineLayout));
-    message.maxSampledTexturesPerShaderStage !== undefined &&
-      (obj.maxSampledTexturesPerShaderStage = Math.round(message.maxSampledTexturesPerShaderStage));
-    message.maxSamplersPerShaderStage !== undefined &&
-      (obj.maxSamplersPerShaderStage = Math.round(message.maxSamplersPerShaderStage));
-    message.maxStorageBuffersPerShaderStage !== undefined &&
-      (obj.maxStorageBuffersPerShaderStage = Math.round(message.maxStorageBuffersPerShaderStage));
-    message.maxStorageTexturesPerShaderStage !== undefined &&
-      (obj.maxStorageTexturesPerShaderStage = Math.round(message.maxStorageTexturesPerShaderStage));
-    message.maxUniformBuffersPerShaderStage !== undefined &&
-      (obj.maxUniformBuffersPerShaderStage = Math.round(message.maxUniformBuffersPerShaderStage));
-    message.maxUniformBufferBindingSize !== undefined &&
-      (obj.maxUniformBufferBindingSize = Math.round(message.maxUniformBufferBindingSize));
-    message.maxStorageBufferBindingSize !== undefined &&
-      (obj.maxStorageBufferBindingSize = Math.round(message.maxStorageBufferBindingSize));
-    message.minUniformBufferOffsetAlignment !== undefined &&
-      (obj.minUniformBufferOffsetAlignment = Math.round(message.minUniformBufferOffsetAlignment));
-    message.minStorageBufferOffsetAlignment !== undefined &&
-      (obj.minStorageBufferOffsetAlignment = Math.round(message.minStorageBufferOffsetAlignment));
-    message.maxVertexBuffers !== undefined && (obj.maxVertexBuffers = Math.round(message.maxVertexBuffers));
-    message.maxBufferSize !== undefined && (obj.maxBufferSize = Math.round(message.maxBufferSize));
-    message.maxVertexAttributes !== undefined && (obj.maxVertexAttributes = Math.round(message.maxVertexAttributes));
-    message.maxVertexBufferArrayStride !== undefined &&
-      (obj.maxVertexBufferArrayStride = Math.round(message.maxVertexBufferArrayStride));
-    message.maxInterStageShaderComponents !== undefined &&
-      (obj.maxInterStageShaderComponents = Math.round(message.maxInterStageShaderComponents));
-    message.maxInterStageShaderVariables !== undefined &&
-      (obj.maxInterStageShaderVariables = Math.round(message.maxInterStageShaderVariables));
-    message.maxColorAttachments !== undefined && (obj.maxColorAttachments = Math.round(message.maxColorAttachments));
-    message.maxColorAttachmentBytesPerSample !== undefined &&
-      (obj.maxColorAttachmentBytesPerSample = Math.round(message.maxColorAttachmentBytesPerSample));
-    message.maxComputeWorkgroupStorageSize !== undefined &&
-      (obj.maxComputeWorkgroupStorageSize = Math.round(message.maxComputeWorkgroupStorageSize));
-    message.maxComputeInvocationsPerWorkgroup !== undefined &&
-      (obj.maxComputeInvocationsPerWorkgroup = Math.round(message.maxComputeInvocationsPerWorkgroup));
-    message.maxComputeWorkgroupSizeX !== undefined &&
-      (obj.maxComputeWorkgroupSizeX = Math.round(message.maxComputeWorkgroupSizeX));
-    message.maxComputeWorkgroupSizeY !== undefined &&
-      (obj.maxComputeWorkgroupSizeY = Math.round(message.maxComputeWorkgroupSizeY));
-    message.maxComputeWorkgroupSizeZ !== undefined &&
-      (obj.maxComputeWorkgroupSizeZ = Math.round(message.maxComputeWorkgroupSizeZ));
-    message.maxComputeWorkgroupsPerDimension !== undefined &&
-      (obj.maxComputeWorkgroupsPerDimension = Math.round(message.maxComputeWorkgroupsPerDimension));
+    message.key !== undefined && (obj.key = message.key);
+    message.value !== undefined && (obj.value = Math.round(message.value));
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<Browser_WebGPU_Limits>, I>>(base?: I): Browser_WebGPU_Limits {
-    return Browser_WebGPU_Limits.fromPartial(base ?? {});
+  create<I extends Exact<DeepPartial<Browser_WebGPU_LimitsEntry>, I>>(base?: I): Browser_WebGPU_LimitsEntry {
+    return Browser_WebGPU_LimitsEntry.fromPartial(base ?? {});
   },
 
-  fromPartial<I extends Exact<DeepPartial<Browser_WebGPU_Limits>, I>>(object: I): Browser_WebGPU_Limits {
-    const message = createBaseBrowser_WebGPU_Limits();
-    message.maxTextureDimension1D = object.maxTextureDimension1D ?? 0;
-    message.maxTextureDimension2D = object.maxTextureDimension2D ?? 0;
-    message.maxTextureDimension3D = object.maxTextureDimension3D ?? 0;
-    message.maxTextureArrayLayers = object.maxTextureArrayLayers ?? 0;
-    message.maxBindGroups = object.maxBindGroups ?? 0;
-    message.maxBindingsPerBindGroup = object.maxBindingsPerBindGroup ?? 0;
-    message.maxDynamicUniformBuffersPerPipelineLayout = object.maxDynamicUniformBuffersPerPipelineLayout ?? 0;
-    message.maxDynamicStorageBuffersPerPipelineLayout = object.maxDynamicStorageBuffersPerPipelineLayout ?? 0;
-    message.maxSampledTexturesPerShaderStage = object.maxSampledTexturesPerShaderStage ?? 0;
-    message.maxSamplersPerShaderStage = object.maxSamplersPerShaderStage ?? 0;
-    message.maxStorageBuffersPerShaderStage = object.maxStorageBuffersPerShaderStage ?? 0;
-    message.maxStorageTexturesPerShaderStage = object.maxStorageTexturesPerShaderStage ?? 0;
-    message.maxUniformBuffersPerShaderStage = object.maxUniformBuffersPerShaderStage ?? 0;
-    message.maxUniformBufferBindingSize = object.maxUniformBufferBindingSize ?? 0;
-    message.maxStorageBufferBindingSize = object.maxStorageBufferBindingSize ?? 0;
-    message.minUniformBufferOffsetAlignment = object.minUniformBufferOffsetAlignment ?? 0;
-    message.minStorageBufferOffsetAlignment = object.minStorageBufferOffsetAlignment ?? 0;
-    message.maxVertexBuffers = object.maxVertexBuffers ?? 0;
-    message.maxBufferSize = object.maxBufferSize ?? 0;
-    message.maxVertexAttributes = object.maxVertexAttributes ?? 0;
-    message.maxVertexBufferArrayStride = object.maxVertexBufferArrayStride ?? 0;
-    message.maxInterStageShaderComponents = object.maxInterStageShaderComponents ?? 0;
-    message.maxInterStageShaderVariables = object.maxInterStageShaderVariables ?? 0;
-    message.maxColorAttachments = object.maxColorAttachments ?? 0;
-    message.maxColorAttachmentBytesPerSample = object.maxColorAttachmentBytesPerSample ?? 0;
-    message.maxComputeWorkgroupStorageSize = object.maxComputeWorkgroupStorageSize ?? 0;
-    message.maxComputeInvocationsPerWorkgroup = object.maxComputeInvocationsPerWorkgroup ?? 0;
-    message.maxComputeWorkgroupSizeX = object.maxComputeWorkgroupSizeX ?? 0;
-    message.maxComputeWorkgroupSizeY = object.maxComputeWorkgroupSizeY ?? 0;
-    message.maxComputeWorkgroupSizeZ = object.maxComputeWorkgroupSizeZ ?? 0;
-    message.maxComputeWorkgroupsPerDimension = object.maxComputeWorkgroupsPerDimension ?? 0;
+  fromPartial<I extends Exact<DeepPartial<Browser_WebGPU_LimitsEntry>, I>>(object: I): Browser_WebGPU_LimitsEntry {
+    const message = createBaseBrowser_WebGPU_LimitsEntry();
+    message.key = object.key ?? "";
+    message.value = object.value ?? 0;
     return message;
   },
 };
@@ -5647,13 +7964,13 @@ function createBaseBrowser_SpeechSynthesis(): Browser_SpeechSynthesis {
 
 export const Browser_SpeechSynthesis = {
   encode(message: Browser_SpeechSynthesis, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.voiceURI !== "") {
+    if (message.voiceURI !== undefined && message.voiceURI !== "") {
       writer.uint32(10).string(message.voiceURI);
     }
-    if (message.name !== "") {
+    if (message.name !== undefined && message.name !== "") {
       writer.uint32(18).string(message.name);
     }
-    if (message.lang !== "") {
+    if (message.lang !== undefined && message.lang !== "") {
       writer.uint32(26).string(message.lang);
     }
     if (message.localService === true) {
@@ -5751,22 +8068,903 @@ export const Browser_SpeechSynthesis = {
   },
 };
 
+function createBaseBrowser_Plugin(): Browser_Plugin {
+  return { name: "", fileName: "", description: "", supportedMIMETypes: {} };
+}
+
+export const Browser_Plugin = {
+  encode(message: Browser_Plugin, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.name !== undefined && message.name !== "") {
+      writer.uint32(10).string(message.name);
+    }
+    if (message.fileName !== undefined && message.fileName !== "") {
+      writer.uint32(18).string(message.fileName);
+    }
+    if (message.description !== undefined && message.description !== "") {
+      writer.uint32(26).string(message.description);
+    }
+    Object.entries(message.supportedMIMETypes || {}).forEach(([key, value]) => {
+      Browser_Plugin_SupportedMIMETypesEntry.encode({ key: key as any, value }, writer.uint32(34).fork()).ldelim();
+    });
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): Browser_Plugin {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseBrowser_Plugin();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag != 10) {
+            break;
+          }
+
+          message.name = reader.string();
+          continue;
+        case 2:
+          if (tag != 18) {
+            break;
+          }
+
+          message.fileName = reader.string();
+          continue;
+        case 3:
+          if (tag != 26) {
+            break;
+          }
+
+          message.description = reader.string();
+          continue;
+        case 4:
+          if (tag != 34) {
+            break;
+          }
+
+          const entry4 = Browser_Plugin_SupportedMIMETypesEntry.decode(reader, reader.uint32());
+          if (entry4.value !== undefined) {
+            message.supportedMIMETypes![entry4.key] = entry4.value;
+          }
+          continue;
+      }
+      if ((tag & 7) == 4 || tag == 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): Browser_Plugin {
+    return {
+      name: isSet(object.name) ? String(object.name) : "",
+      fileName: isSet(object.fileName) ? String(object.fileName) : "",
+      description: isSet(object.description) ? String(object.description) : "",
+      supportedMIMETypes: isObject(object.supportedMIMETypes)
+        ? Object.entries(object.supportedMIMETypes).reduce<{ [key: string]: Browser_Plugin_MIMEType }>(
+          (acc, [key, value]) => {
+            acc[key] = Browser_Plugin_MIMEType.fromJSON(value);
+            return acc;
+          },
+          {},
+        )
+        : {},
+    };
+  },
+
+  toJSON(message: Browser_Plugin): unknown {
+    const obj: any = {};
+    message.name !== undefined && (obj.name = message.name);
+    message.fileName !== undefined && (obj.fileName = message.fileName);
+    message.description !== undefined && (obj.description = message.description);
+    obj.supportedMIMETypes = {};
+    if (message.supportedMIMETypes) {
+      Object.entries(message.supportedMIMETypes).forEach(([k, v]) => {
+        obj.supportedMIMETypes[k] = Browser_Plugin_MIMEType.toJSON(v);
+      });
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<Browser_Plugin>, I>>(base?: I): Browser_Plugin {
+    return Browser_Plugin.fromPartial(base ?? {});
+  },
+
+  fromPartial<I extends Exact<DeepPartial<Browser_Plugin>, I>>(object: I): Browser_Plugin {
+    const message = createBaseBrowser_Plugin();
+    message.name = object.name ?? "";
+    message.fileName = object.fileName ?? "";
+    message.description = object.description ?? "";
+    message.supportedMIMETypes = Object.entries(object.supportedMIMETypes ?? {}).reduce<
+      { [key: string]: Browser_Plugin_MIMEType }
+    >((acc, [key, value]) => {
+      if (value !== undefined) {
+        acc[key] = Browser_Plugin_MIMEType.fromPartial(value);
+      }
+      return acc;
+    }, {});
+    return message;
+  },
+};
+
+function createBaseBrowser_Plugin_MIMEType(): Browser_Plugin_MIMEType {
+  return { type: "", suffixes: "", description: "" };
+}
+
+export const Browser_Plugin_MIMEType = {
+  encode(message: Browser_Plugin_MIMEType, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.type !== undefined && message.type !== "") {
+      writer.uint32(10).string(message.type);
+    }
+    if (message.suffixes !== undefined && message.suffixes !== "") {
+      writer.uint32(18).string(message.suffixes);
+    }
+    if (message.description !== undefined && message.description !== "") {
+      writer.uint32(26).string(message.description);
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): Browser_Plugin_MIMEType {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseBrowser_Plugin_MIMEType();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag != 10) {
+            break;
+          }
+
+          message.type = reader.string();
+          continue;
+        case 2:
+          if (tag != 18) {
+            break;
+          }
+
+          message.suffixes = reader.string();
+          continue;
+        case 3:
+          if (tag != 26) {
+            break;
+          }
+
+          message.description = reader.string();
+          continue;
+      }
+      if ((tag & 7) == 4 || tag == 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): Browser_Plugin_MIMEType {
+    return {
+      type: isSet(object.type) ? String(object.type) : "",
+      suffixes: isSet(object.suffixes) ? String(object.suffixes) : "",
+      description: isSet(object.description) ? String(object.description) : "",
+    };
+  },
+
+  toJSON(message: Browser_Plugin_MIMEType): unknown {
+    const obj: any = {};
+    message.type !== undefined && (obj.type = message.type);
+    message.suffixes !== undefined && (obj.suffixes = message.suffixes);
+    message.description !== undefined && (obj.description = message.description);
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<Browser_Plugin_MIMEType>, I>>(base?: I): Browser_Plugin_MIMEType {
+    return Browser_Plugin_MIMEType.fromPartial(base ?? {});
+  },
+
+  fromPartial<I extends Exact<DeepPartial<Browser_Plugin_MIMEType>, I>>(object: I): Browser_Plugin_MIMEType {
+    const message = createBaseBrowser_Plugin_MIMEType();
+    message.type = object.type ?? "";
+    message.suffixes = object.suffixes ?? "";
+    message.description = object.description ?? "";
+    return message;
+  },
+};
+
+function createBaseBrowser_Plugin_SupportedMIMETypesEntry(): Browser_Plugin_SupportedMIMETypesEntry {
+  return { key: "", value: undefined };
+}
+
+export const Browser_Plugin_SupportedMIMETypesEntry = {
+  encode(message: Browser_Plugin_SupportedMIMETypesEntry, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.key !== "") {
+      writer.uint32(10).string(message.key);
+    }
+    if (message.value !== undefined) {
+      Browser_Plugin_MIMEType.encode(message.value, writer.uint32(18).fork()).ldelim();
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): Browser_Plugin_SupportedMIMETypesEntry {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseBrowser_Plugin_SupportedMIMETypesEntry();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag != 10) {
+            break;
+          }
+
+          message.key = reader.string();
+          continue;
+        case 2:
+          if (tag != 18) {
+            break;
+          }
+
+          message.value = Browser_Plugin_MIMEType.decode(reader, reader.uint32());
+          continue;
+      }
+      if ((tag & 7) == 4 || tag == 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): Browser_Plugin_SupportedMIMETypesEntry {
+    return {
+      key: isSet(object.key) ? String(object.key) : "",
+      value: isSet(object.value) ? Browser_Plugin_MIMEType.fromJSON(object.value) : undefined,
+    };
+  },
+
+  toJSON(message: Browser_Plugin_SupportedMIMETypesEntry): unknown {
+    const obj: any = {};
+    message.key !== undefined && (obj.key = message.key);
+    message.value !== undefined &&
+      (obj.value = message.value ? Browser_Plugin_MIMEType.toJSON(message.value) : undefined);
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<Browser_Plugin_SupportedMIMETypesEntry>, I>>(
+    base?: I,
+  ): Browser_Plugin_SupportedMIMETypesEntry {
+    return Browser_Plugin_SupportedMIMETypesEntry.fromPartial(base ?? {});
+  },
+
+  fromPartial<I extends Exact<DeepPartial<Browser_Plugin_SupportedMIMETypesEntry>, I>>(
+    object: I,
+  ): Browser_Plugin_SupportedMIMETypesEntry {
+    const message = createBaseBrowser_Plugin_SupportedMIMETypesEntry();
+    message.key = object.key ?? "";
+    message.value = (object.value !== undefined && object.value !== null)
+      ? Browser_Plugin_MIMEType.fromPartial(object.value)
+      : undefined;
+    return message;
+  },
+};
+
+function createBaseBrowser_HighEntropyValues(): Browser_HighEntropyValues {
+  return {
+    architecture: "",
+    bitness: "",
+    mobile: false,
+    model: "",
+    platform: "",
+    platformVersion: "",
+    usFullVersion: "",
+    brands: [],
+    fullVersionList: [],
+  };
+}
+
+export const Browser_HighEntropyValues = {
+  encode(message: Browser_HighEntropyValues, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.architecture !== undefined && message.architecture !== "") {
+      writer.uint32(10).string(message.architecture);
+    }
+    if (message.bitness !== undefined && message.bitness !== "") {
+      writer.uint32(18).string(message.bitness);
+    }
+    if (message.mobile === true) {
+      writer.uint32(24).bool(message.mobile);
+    }
+    if (message.model !== undefined && message.model !== "") {
+      writer.uint32(34).string(message.model);
+    }
+    if (message.platform !== undefined && message.platform !== "") {
+      writer.uint32(42).string(message.platform);
+    }
+    if (message.platformVersion !== undefined && message.platformVersion !== "") {
+      writer.uint32(50).string(message.platformVersion);
+    }
+    if (message.usFullVersion !== undefined && message.usFullVersion !== "") {
+      writer.uint32(58).string(message.usFullVersion);
+    }
+    if (message.brands !== undefined && message.brands.length !== 0) {
+      for (const v of message.brands) {
+        Browser_HighEntropyValues_Brand.encode(v!, writer.uint32(66).fork()).ldelim();
+      }
+    }
+    if (message.fullVersionList !== undefined && message.fullVersionList.length !== 0) {
+      for (const v of message.fullVersionList) {
+        Browser_HighEntropyValues_Brand.encode(v!, writer.uint32(74).fork()).ldelim();
+      }
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): Browser_HighEntropyValues {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseBrowser_HighEntropyValues();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag != 10) {
+            break;
+          }
+
+          message.architecture = reader.string();
+          continue;
+        case 2:
+          if (tag != 18) {
+            break;
+          }
+
+          message.bitness = reader.string();
+          continue;
+        case 3:
+          if (tag != 24) {
+            break;
+          }
+
+          message.mobile = reader.bool();
+          continue;
+        case 4:
+          if (tag != 34) {
+            break;
+          }
+
+          message.model = reader.string();
+          continue;
+        case 5:
+          if (tag != 42) {
+            break;
+          }
+
+          message.platform = reader.string();
+          continue;
+        case 6:
+          if (tag != 50) {
+            break;
+          }
+
+          message.platformVersion = reader.string();
+          continue;
+        case 7:
+          if (tag != 58) {
+            break;
+          }
+
+          message.usFullVersion = reader.string();
+          continue;
+        case 8:
+          if (tag != 66) {
+            break;
+          }
+
+          message.brands!.push(Browser_HighEntropyValues_Brand.decode(reader, reader.uint32()));
+          continue;
+        case 9:
+          if (tag != 74) {
+            break;
+          }
+
+          message.fullVersionList!.push(Browser_HighEntropyValues_Brand.decode(reader, reader.uint32()));
+          continue;
+      }
+      if ((tag & 7) == 4 || tag == 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): Browser_HighEntropyValues {
+    return {
+      architecture: isSet(object.architecture) ? String(object.architecture) : "",
+      bitness: isSet(object.bitness) ? String(object.bitness) : "",
+      mobile: isSet(object.mobile) ? Boolean(object.mobile) : false,
+      model: isSet(object.model) ? String(object.model) : "",
+      platform: isSet(object.platform) ? String(object.platform) : "",
+      platformVersion: isSet(object.platformVersion) ? String(object.platformVersion) : "",
+      usFullVersion: isSet(object.usFullVersion) ? String(object.usFullVersion) : "",
+      brands: Array.isArray(object?.brands)
+        ? object.brands.map((e: any) => Browser_HighEntropyValues_Brand.fromJSON(e))
+        : [],
+      fullVersionList: Array.isArray(object?.fullVersionList)
+        ? object.fullVersionList.map((e: any) => Browser_HighEntropyValues_Brand.fromJSON(e))
+        : [],
+    };
+  },
+
+  toJSON(message: Browser_HighEntropyValues): unknown {
+    const obj: any = {};
+    message.architecture !== undefined && (obj.architecture = message.architecture);
+    message.bitness !== undefined && (obj.bitness = message.bitness);
+    message.mobile !== undefined && (obj.mobile = message.mobile);
+    message.model !== undefined && (obj.model = message.model);
+    message.platform !== undefined && (obj.platform = message.platform);
+    message.platformVersion !== undefined && (obj.platformVersion = message.platformVersion);
+    message.usFullVersion !== undefined && (obj.usFullVersion = message.usFullVersion);
+    if (message.brands) {
+      obj.brands = message.brands.map((e) => e ? Browser_HighEntropyValues_Brand.toJSON(e) : undefined);
+    } else {
+      obj.brands = [];
+    }
+    if (message.fullVersionList) {
+      obj.fullVersionList = message.fullVersionList.map((e) =>
+        e ? Browser_HighEntropyValues_Brand.toJSON(e) : undefined
+      );
+    } else {
+      obj.fullVersionList = [];
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<Browser_HighEntropyValues>, I>>(base?: I): Browser_HighEntropyValues {
+    return Browser_HighEntropyValues.fromPartial(base ?? {});
+  },
+
+  fromPartial<I extends Exact<DeepPartial<Browser_HighEntropyValues>, I>>(object: I): Browser_HighEntropyValues {
+    const message = createBaseBrowser_HighEntropyValues();
+    message.architecture = object.architecture ?? "";
+    message.bitness = object.bitness ?? "";
+    message.mobile = object.mobile ?? false;
+    message.model = object.model ?? "";
+    message.platform = object.platform ?? "";
+    message.platformVersion = object.platformVersion ?? "";
+    message.usFullVersion = object.usFullVersion ?? "";
+    message.brands = object.brands?.map((e) => Browser_HighEntropyValues_Brand.fromPartial(e)) || [];
+    message.fullVersionList = object.fullVersionList?.map((e) => Browser_HighEntropyValues_Brand.fromPartial(e)) || [];
+    return message;
+  },
+};
+
+function createBaseBrowser_HighEntropyValues_Brand(): Browser_HighEntropyValues_Brand {
+  return { brand: "", version: "" };
+}
+
+export const Browser_HighEntropyValues_Brand = {
+  encode(message: Browser_HighEntropyValues_Brand, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.brand !== undefined && message.brand !== "") {
+      writer.uint32(10).string(message.brand);
+    }
+    if (message.version !== undefined && message.version !== "") {
+      writer.uint32(18).string(message.version);
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): Browser_HighEntropyValues_Brand {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseBrowser_HighEntropyValues_Brand();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag != 10) {
+            break;
+          }
+
+          message.brand = reader.string();
+          continue;
+        case 2:
+          if (tag != 18) {
+            break;
+          }
+
+          message.version = reader.string();
+          continue;
+      }
+      if ((tag & 7) == 4 || tag == 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): Browser_HighEntropyValues_Brand {
+    return {
+      brand: isSet(object.brand) ? String(object.brand) : "",
+      version: isSet(object.version) ? String(object.version) : "",
+    };
+  },
+
+  toJSON(message: Browser_HighEntropyValues_Brand): unknown {
+    const obj: any = {};
+    message.brand !== undefined && (obj.brand = message.brand);
+    message.version !== undefined && (obj.version = message.version);
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<Browser_HighEntropyValues_Brand>, I>>(base?: I): Browser_HighEntropyValues_Brand {
+    return Browser_HighEntropyValues_Brand.fromPartial(base ?? {});
+  },
+
+  fromPartial<I extends Exact<DeepPartial<Browser_HighEntropyValues_Brand>, I>>(
+    object: I,
+  ): Browser_HighEntropyValues_Brand {
+    const message = createBaseBrowser_HighEntropyValues_Brand();
+    message.brand = object.brand ?? "";
+    message.version = object.version ?? "";
+    return message;
+  },
+};
+
+function createBaseBrowser_WebRTC(): Browser_WebRTC {
+  return { video: undefined, audio: undefined };
+}
+
+export const Browser_WebRTC = {
+  encode(message: Browser_WebRTC, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.video !== undefined) {
+      Browser_WebRTC_CodecInformation.encode(message.video, writer.uint32(10).fork()).ldelim();
+    }
+    if (message.audio !== undefined) {
+      Browser_WebRTC_CodecInformation.encode(message.audio, writer.uint32(18).fork()).ldelim();
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): Browser_WebRTC {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseBrowser_WebRTC();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag != 10) {
+            break;
+          }
+
+          message.video = Browser_WebRTC_CodecInformation.decode(reader, reader.uint32());
+          continue;
+        case 2:
+          if (tag != 18) {
+            break;
+          }
+
+          message.audio = Browser_WebRTC_CodecInformation.decode(reader, reader.uint32());
+          continue;
+      }
+      if ((tag & 7) == 4 || tag == 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): Browser_WebRTC {
+    return {
+      video: isSet(object.video) ? Browser_WebRTC_CodecInformation.fromJSON(object.video) : undefined,
+      audio: isSet(object.audio) ? Browser_WebRTC_CodecInformation.fromJSON(object.audio) : undefined,
+    };
+  },
+
+  toJSON(message: Browser_WebRTC): unknown {
+    const obj: any = {};
+    message.video !== undefined &&
+      (obj.video = message.video ? Browser_WebRTC_CodecInformation.toJSON(message.video) : undefined);
+    message.audio !== undefined &&
+      (obj.audio = message.audio ? Browser_WebRTC_CodecInformation.toJSON(message.audio) : undefined);
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<Browser_WebRTC>, I>>(base?: I): Browser_WebRTC {
+    return Browser_WebRTC.fromPartial(base ?? {});
+  },
+
+  fromPartial<I extends Exact<DeepPartial<Browser_WebRTC>, I>>(object: I): Browser_WebRTC {
+    const message = createBaseBrowser_WebRTC();
+    message.video = (object.video !== undefined && object.video !== null)
+      ? Browser_WebRTC_CodecInformation.fromPartial(object.video)
+      : undefined;
+    message.audio = (object.audio !== undefined && object.audio !== null)
+      ? Browser_WebRTC_CodecInformation.fromPartial(object.audio)
+      : undefined;
+    return message;
+  },
+};
+
+function createBaseBrowser_WebRTC_Codec(): Browser_WebRTC_Codec {
+  return { channels: 0, clockRate: 0, mimeType: "", sdpFmtLine: "" };
+}
+
+export const Browser_WebRTC_Codec = {
+  encode(message: Browser_WebRTC_Codec, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.channels !== undefined && message.channels !== 0) {
+      writer.uint32(8).int32(message.channels);
+    }
+    if (message.clockRate !== undefined && message.clockRate !== 0) {
+      writer.uint32(16).int64(message.clockRate);
+    }
+    if (message.mimeType !== undefined && message.mimeType !== "") {
+      writer.uint32(26).string(message.mimeType);
+    }
+    if (message.sdpFmtLine !== undefined && message.sdpFmtLine !== "") {
+      writer.uint32(34).string(message.sdpFmtLine);
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): Browser_WebRTC_Codec {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseBrowser_WebRTC_Codec();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag != 8) {
+            break;
+          }
+
+          message.channels = reader.int32();
+          continue;
+        case 2:
+          if (tag != 16) {
+            break;
+          }
+
+          message.clockRate = longToNumber(reader.int64() as Long);
+          continue;
+        case 3:
+          if (tag != 26) {
+            break;
+          }
+
+          message.mimeType = reader.string();
+          continue;
+        case 4:
+          if (tag != 34) {
+            break;
+          }
+
+          message.sdpFmtLine = reader.string();
+          continue;
+      }
+      if ((tag & 7) == 4 || tag == 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): Browser_WebRTC_Codec {
+    return {
+      channels: isSet(object.channels) ? Number(object.channels) : 0,
+      clockRate: isSet(object.clockRate) ? Number(object.clockRate) : 0,
+      mimeType: isSet(object.mimeType) ? String(object.mimeType) : "",
+      sdpFmtLine: isSet(object.sdpFmtLine) ? String(object.sdpFmtLine) : "",
+    };
+  },
+
+  toJSON(message: Browser_WebRTC_Codec): unknown {
+    const obj: any = {};
+    message.channels !== undefined && (obj.channels = Math.round(message.channels));
+    message.clockRate !== undefined && (obj.clockRate = Math.round(message.clockRate));
+    message.mimeType !== undefined && (obj.mimeType = message.mimeType);
+    message.sdpFmtLine !== undefined && (obj.sdpFmtLine = message.sdpFmtLine);
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<Browser_WebRTC_Codec>, I>>(base?: I): Browser_WebRTC_Codec {
+    return Browser_WebRTC_Codec.fromPartial(base ?? {});
+  },
+
+  fromPartial<I extends Exact<DeepPartial<Browser_WebRTC_Codec>, I>>(object: I): Browser_WebRTC_Codec {
+    const message = createBaseBrowser_WebRTC_Codec();
+    message.channels = object.channels ?? 0;
+    message.clockRate = object.clockRate ?? 0;
+    message.mimeType = object.mimeType ?? "";
+    message.sdpFmtLine = object.sdpFmtLine ?? "";
+    return message;
+  },
+};
+
+function createBaseBrowser_WebRTC_HeaderExtension(): Browser_WebRTC_HeaderExtension {
+  return { direction: "", uri: "" };
+}
+
+export const Browser_WebRTC_HeaderExtension = {
+  encode(message: Browser_WebRTC_HeaderExtension, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.direction !== undefined && message.direction !== "") {
+      writer.uint32(10).string(message.direction);
+    }
+    if (message.uri !== undefined && message.uri !== "") {
+      writer.uint32(18).string(message.uri);
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): Browser_WebRTC_HeaderExtension {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseBrowser_WebRTC_HeaderExtension();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag != 10) {
+            break;
+          }
+
+          message.direction = reader.string();
+          continue;
+        case 2:
+          if (tag != 18) {
+            break;
+          }
+
+          message.uri = reader.string();
+          continue;
+      }
+      if ((tag & 7) == 4 || tag == 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): Browser_WebRTC_HeaderExtension {
+    return {
+      direction: isSet(object.direction) ? String(object.direction) : "",
+      uri: isSet(object.uri) ? String(object.uri) : "",
+    };
+  },
+
+  toJSON(message: Browser_WebRTC_HeaderExtension): unknown {
+    const obj: any = {};
+    message.direction !== undefined && (obj.direction = message.direction);
+    message.uri !== undefined && (obj.uri = message.uri);
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<Browser_WebRTC_HeaderExtension>, I>>(base?: I): Browser_WebRTC_HeaderExtension {
+    return Browser_WebRTC_HeaderExtension.fromPartial(base ?? {});
+  },
+
+  fromPartial<I extends Exact<DeepPartial<Browser_WebRTC_HeaderExtension>, I>>(
+    object: I,
+  ): Browser_WebRTC_HeaderExtension {
+    const message = createBaseBrowser_WebRTC_HeaderExtension();
+    message.direction = object.direction ?? "";
+    message.uri = object.uri ?? "";
+    return message;
+  },
+};
+
+function createBaseBrowser_WebRTC_CodecInformation(): Browser_WebRTC_CodecInformation {
+  return { codecs: [], headerExtensions: [] };
+}
+
+export const Browser_WebRTC_CodecInformation = {
+  encode(message: Browser_WebRTC_CodecInformation, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.codecs !== undefined && message.codecs.length !== 0) {
+      for (const v of message.codecs) {
+        Browser_WebRTC_Codec.encode(v!, writer.uint32(10).fork()).ldelim();
+      }
+    }
+    if (message.headerExtensions !== undefined && message.headerExtensions.length !== 0) {
+      for (const v of message.headerExtensions) {
+        Browser_WebRTC_HeaderExtension.encode(v!, writer.uint32(18).fork()).ldelim();
+      }
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): Browser_WebRTC_CodecInformation {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseBrowser_WebRTC_CodecInformation();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag != 10) {
+            break;
+          }
+
+          message.codecs!.push(Browser_WebRTC_Codec.decode(reader, reader.uint32()));
+          continue;
+        case 2:
+          if (tag != 18) {
+            break;
+          }
+
+          message.headerExtensions!.push(Browser_WebRTC_HeaderExtension.decode(reader, reader.uint32()));
+          continue;
+      }
+      if ((tag & 7) == 4 || tag == 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): Browser_WebRTC_CodecInformation {
+    return {
+      codecs: Array.isArray(object?.codecs) ? object.codecs.map((e: any) => Browser_WebRTC_Codec.fromJSON(e)) : [],
+      headerExtensions: Array.isArray(object?.headerExtensions)
+        ? object.headerExtensions.map((e: any) => Browser_WebRTC_HeaderExtension.fromJSON(e))
+        : [],
+    };
+  },
+
+  toJSON(message: Browser_WebRTC_CodecInformation): unknown {
+    const obj: any = {};
+    if (message.codecs) {
+      obj.codecs = message.codecs.map((e) => e ? Browser_WebRTC_Codec.toJSON(e) : undefined);
+    } else {
+      obj.codecs = [];
+    }
+    if (message.headerExtensions) {
+      obj.headerExtensions = message.headerExtensions.map((e) =>
+        e ? Browser_WebRTC_HeaderExtension.toJSON(e) : undefined
+      );
+    } else {
+      obj.headerExtensions = [];
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<Browser_WebRTC_CodecInformation>, I>>(base?: I): Browser_WebRTC_CodecInformation {
+    return Browser_WebRTC_CodecInformation.fromPartial(base ?? {});
+  },
+
+  fromPartial<I extends Exact<DeepPartial<Browser_WebRTC_CodecInformation>, I>>(
+    object: I,
+  ): Browser_WebRTC_CodecInformation {
+    const message = createBaseBrowser_WebRTC_CodecInformation();
+    message.codecs = object.codecs?.map((e) => Browser_WebRTC_Codec.fromPartial(e)) || [];
+    message.headerExtensions = object.headerExtensions?.map((e) => Browser_WebRTC_HeaderExtension.fromPartial(e)) || [];
+    return message;
+  },
+};
+
 function createBaseGPSLocation(): GPSLocation {
   return { longitude: 0, latitude: 0, altitude: 0, provider: 0 };
 }
 
 export const GPSLocation = {
   encode(message: GPSLocation, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.longitude !== 0) {
+    if (message.longitude !== undefined && message.longitude !== 0) {
       writer.uint32(9).double(message.longitude);
     }
-    if (message.latitude !== 0) {
+    if (message.latitude !== undefined && message.latitude !== 0) {
       writer.uint32(17).double(message.latitude);
     }
-    if (message.altitude !== 0) {
+    if (message.altitude !== undefined && message.altitude !== 0) {
       writer.uint32(25).double(message.altitude);
     }
-    if (message.provider !== 0) {
+    if (message.provider !== undefined && message.provider !== 0) {
       writer.uint32(32).int32(message.provider);
     }
     return writer;
@@ -5854,10 +9052,10 @@ function createBaseLocale(): Locale {
 
 export const Locale = {
   encode(message: Locale, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.language !== "") {
+    if (message.language !== undefined && message.language !== "") {
       writer.uint32(10).string(message.language);
     }
-    if (message.countryISO !== "") {
+    if (message.countryISO !== undefined && message.countryISO !== "") {
       writer.uint32(18).string(message.countryISO);
     }
     return writer;
@@ -5934,22 +9132,22 @@ function createBaseSIMCard(): SIMCard {
 
 export const SIMCard = {
   encode(message: SIMCard, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.phoneNumber !== "") {
+    if (message.phoneNumber !== undefined && message.phoneNumber !== "") {
       writer.uint32(10).string(message.phoneNumber);
     }
-    if (message.MCC !== "") {
+    if (message.MCC !== undefined && message.MCC !== "") {
       writer.uint32(18).string(message.MCC);
     }
-    if (message.MNC !== "") {
+    if (message.MNC !== undefined && message.MNC !== "") {
       writer.uint32(26).string(message.MNC);
     }
-    if (message.carrier !== "") {
+    if (message.carrier !== undefined && message.carrier !== "") {
       writer.uint32(34).string(message.carrier);
     }
-    if (message.countryISO !== "") {
+    if (message.countryISO !== undefined && message.countryISO !== "") {
       writer.uint32(42).string(message.countryISO);
     }
-    if (message.countryCode !== "") {
+    if (message.countryCode !== undefined && message.countryCode !== "") {
       writer.uint32(50).string(message.countryCode);
     }
     if (message.imei !== undefined) {
@@ -6087,10 +9285,10 @@ function createBaseSIMCard_IMEI(): SIMCard_IMEI {
 
 export const SIMCard_IMEI = {
   encode(message: SIMCard_IMEI, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.TAC !== "") {
+    if (message.TAC !== undefined && message.TAC !== "") {
       writer.uint32(10).string(message.TAC);
     }
-    if (message.imei !== "") {
+    if (message.imei !== undefined && message.imei !== "") {
       writer.uint32(18).string(message.imei);
     }
     return writer;
@@ -6155,13 +9353,13 @@ function createBaseSIMCard_MEID(): SIMCard_MEID {
 
 export const SIMCard_MEID = {
   encode(message: SIMCard_MEID, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.RegionCode !== "") {
+    if (message.RegionCode !== undefined && message.RegionCode !== "") {
       writer.uint32(10).string(message.RegionCode);
     }
-    if (message.ManufacturerCode !== "") {
+    if (message.ManufacturerCode !== undefined && message.ManufacturerCode !== "") {
       writer.uint32(18).string(message.ManufacturerCode);
     }
-    if (message.meid !== "") {
+    if (message.meid !== undefined && message.meid !== "") {
       writer.uint32(26).string(message.meid);
     }
     return writer;
@@ -6239,10 +9437,10 @@ function createBaseMAC(): MAC {
 
 export const MAC = {
   encode(message: MAC, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.OUI !== "") {
+    if (message.OUI !== undefined && message.OUI !== "") {
       writer.uint32(10).string(message.OUI);
     }
-    if (message.address !== "") {
+    if (message.address !== undefined && message.address !== "") {
       writer.uint32(18).string(message.address);
     }
     return writer;
@@ -6310,7 +9508,7 @@ function createBaseTimezone(): Timezone {
 
 export const Timezone = {
   encode(message: Timezone, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.name !== "") {
+    if (message.name !== undefined && message.name !== "") {
       writer.uint32(10).string(message.name);
     }
     return writer;
@@ -6366,13 +9564,13 @@ function createBaseScreenData(): ScreenData {
 
 export const ScreenData = {
   encode(message: ScreenData, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.density !== 0) {
+    if (message.density !== undefined && message.density !== 0) {
       writer.uint32(8).int32(message.density);
     }
-    if (message.resolutionHorizontal !== 0) {
+    if (message.resolutionHorizontal !== undefined && message.resolutionHorizontal !== 0) {
       writer.uint32(16).int32(message.resolutionHorizontal);
     }
-    if (message.resolutionVertical !== 0) {
+    if (message.resolutionVertical !== undefined && message.resolutionVertical !== 0) {
       writer.uint32(24).int32(message.resolutionVertical);
     }
     return writer;
@@ -6450,23 +9648,25 @@ function createBaseCPUData(): CPUData {
 
 export const CPUData = {
   encode(message: CPUData, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.arch !== 0) {
+    if (message.arch !== undefined && message.arch !== 0) {
       writer.uint32(8).int32(message.arch);
     }
-    if (message.archName !== "") {
+    if (message.archName !== undefined && message.archName !== "") {
       writer.uint32(18).string(message.archName);
     }
-    if (message.model !== "") {
+    if (message.model !== undefined && message.model !== "") {
       writer.uint32(26).string(message.model);
     }
-    if (message.brand !== "") {
+    if (message.brand !== undefined && message.brand !== "") {
       writer.uint32(34).string(message.brand);
     }
-    if (message.board !== "") {
+    if (message.board !== undefined && message.board !== "") {
       writer.uint32(42).string(message.board);
     }
-    for (const v of message.abiList) {
-      writer.uint32(50).string(v!);
+    if (message.abiList !== undefined && message.abiList.length !== 0) {
+      for (const v of message.abiList) {
+        writer.uint32(50).string(v!);
+      }
     }
     return writer;
   },
@@ -6518,7 +9718,7 @@ export const CPUData = {
             break;
           }
 
-          message.abiList.push(reader.string());
+          message.abiList!.push(reader.string());
           continue;
       }
       if ((tag & 7) == 4 || tag == 0) {
@@ -6592,7 +9792,7 @@ export const AndroidDevice = {
     if (message.id !== undefined) {
       AndroidDevice_ID.encode(message.id, writer.uint32(10).fork()).ldelim();
     }
-    if (message.version !== 0) {
+    if (message.version !== undefined && message.version !== 0) {
       writer.uint32(16).int32(message.version);
     }
     if (message.build !== undefined) {
@@ -6619,8 +9819,10 @@ export const AndroidDevice = {
     if (message.macAddress !== undefined) {
       MAC.encode(message.macAddress, writer.uint32(82).fork()).ldelim();
     }
-    for (const v of message.simSlots) {
-      SIMCard.encode(v!, writer.uint32(90).fork()).ldelim();
+    if (message.simSlots !== undefined && message.simSlots.length !== 0) {
+      for (const v of message.simSlots) {
+        SIMCard.encode(v!, writer.uint32(90).fork()).ldelim();
+      }
     }
     return writer;
   },
@@ -6707,7 +9909,7 @@ export const AndroidDevice = {
             break;
           }
 
-          message.simSlots.push(SIMCard.decode(reader, reader.uint32()));
+          message.simSlots!.push(SIMCard.decode(reader, reader.uint32()));
           continue;
       }
       if ((tag & 7) == 4 || tag == 0) {
@@ -6799,7 +10001,7 @@ function createBaseAndroidDevice_ID(): AndroidDevice_ID {
 
 export const AndroidDevice_ID = {
   encode(message: AndroidDevice_ID, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.id !== 0) {
+    if (message.id !== undefined && message.id !== 0) {
       writer.uint32(8).uint64(message.id);
     }
     return writer;
@@ -6874,58 +10076,58 @@ function createBaseAndroidDevice_BuildData(): AndroidDevice_BuildData {
 
 export const AndroidDevice_BuildData = {
   encode(message: AndroidDevice_BuildData, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.board !== "") {
+    if (message.board !== undefined && message.board !== "") {
       writer.uint32(10).string(message.board);
     }
-    if (message.bootloader !== "") {
+    if (message.bootloader !== undefined && message.bootloader !== "") {
       writer.uint32(18).string(message.bootloader);
     }
-    if (message.brand !== "") {
+    if (message.brand !== undefined && message.brand !== "") {
       writer.uint32(26).string(message.brand);
     }
-    if (message.device !== "") {
+    if (message.device !== undefined && message.device !== "") {
       writer.uint32(34).string(message.device);
     }
-    if (message.display !== "") {
+    if (message.display !== undefined && message.display !== "") {
       writer.uint32(42).string(message.display);
     }
-    if (message.fingerprint !== "") {
+    if (message.fingerprint !== undefined && message.fingerprint !== "") {
       writer.uint32(50).string(message.fingerprint);
     }
-    if (message.hardware !== "") {
+    if (message.hardware !== undefined && message.hardware !== "") {
       writer.uint32(58).string(message.hardware);
     }
-    if (message.id !== "") {
+    if (message.id !== undefined && message.id !== "") {
       writer.uint32(66).string(message.id);
     }
-    if (message.manufacturer !== "") {
+    if (message.manufacturer !== undefined && message.manufacturer !== "") {
       writer.uint32(74).string(message.manufacturer);
     }
-    if (message.model !== "") {
+    if (message.model !== undefined && message.model !== "") {
       writer.uint32(82).string(message.model);
     }
-    if (message.odmSku !== "") {
+    if (message.odmSku !== undefined && message.odmSku !== "") {
       writer.uint32(90).string(message.odmSku);
     }
-    if (message.product !== "") {
+    if (message.product !== undefined && message.product !== "") {
       writer.uint32(98).string(message.product);
     }
-    if (message.sku !== "") {
+    if (message.sku !== undefined && message.sku !== "") {
       writer.uint32(106).string(message.sku);
     }
-    if (message.socManufacturer !== "") {
+    if (message.socManufacturer !== undefined && message.socManufacturer !== "") {
       writer.uint32(114).string(message.socManufacturer);
     }
-    if (message.socModel !== "") {
+    if (message.socModel !== undefined && message.socModel !== "") {
       writer.uint32(122).string(message.socModel);
     }
-    if (message.tags !== "") {
+    if (message.tags !== undefined && message.tags !== "") {
       writer.uint32(130).string(message.tags);
     }
-    if (message.type !== "") {
+    if (message.type !== undefined && message.type !== "") {
       writer.uint32(138).string(message.type);
     }
-    if (message.incrementalVersion !== "") {
+    if (message.incrementalVersion !== undefined && message.incrementalVersion !== "") {
       writer.uint32(146).string(message.incrementalVersion);
     }
     return writer;
@@ -7153,11 +10355,11 @@ function createBaseAndroidDevice_DeviceSoftware(): AndroidDevice_DeviceSoftware 
 
 export const AndroidDevice_DeviceSoftware = {
   encode(message: AndroidDevice_DeviceSoftware, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    Object.entries(message.softwareMetaData).forEach(([key, value]) => {
+    Object.entries(message.softwareMetaData || {}).forEach(([key, value]) => {
       AndroidDevice_DeviceSoftware_SoftwareMetaDataEntry.encode({ key: key as any, value }, writer.uint32(10).fork())
         .ldelim();
     });
-    Object.entries(message.appMetaData).forEach(([key, value]) => {
+    Object.entries(message.appMetaData || {}).forEach(([key, value]) => {
       AndroidDevice_DeviceSoftware_AppMetaDataEntry.encode({ key: key as any, value }, writer.uint32(18).fork())
         .ldelim();
     });
@@ -7178,7 +10380,7 @@ export const AndroidDevice_DeviceSoftware = {
 
           const entry1 = AndroidDevice_DeviceSoftware_SoftwareMetaDataEntry.decode(reader, reader.uint32());
           if (entry1.value !== undefined) {
-            message.softwareMetaData[entry1.key] = entry1.value;
+            message.softwareMetaData![entry1.key] = entry1.value;
           }
           continue;
         case 2:
@@ -7188,7 +10390,7 @@ export const AndroidDevice_DeviceSoftware = {
 
           const entry2 = AndroidDevice_DeviceSoftware_AppMetaDataEntry.decode(reader, reader.uint32());
           if (entry2.value !== undefined) {
-            message.appMetaData[entry2.key] = entry2.value;
+            message.appMetaData![entry2.key] = entry2.value;
           }
           continue;
       }
@@ -7427,6 +10629,31 @@ var tsProtoGlobalThis: any = (() => {
   }
   throw "Unable to locate global object";
 })();
+
+function bytesFromBase64(b64: string): Uint8Array {
+  if (tsProtoGlobalThis.Buffer) {
+    return Uint8Array.from(tsProtoGlobalThis.Buffer.from(b64, "base64"));
+  } else {
+    const bin = tsProtoGlobalThis.atob(b64);
+    const arr = new Uint8Array(bin.length);
+    for (let i = 0; i < bin.length; ++i) {
+      arr[i] = bin.charCodeAt(i);
+    }
+    return arr;
+  }
+}
+
+function base64FromBytes(arr: Uint8Array): string {
+  if (tsProtoGlobalThis.Buffer) {
+    return tsProtoGlobalThis.Buffer.from(arr).toString("base64");
+  } else {
+    const bin: string[] = [];
+    arr.forEach((byte) => {
+      bin.push(String.fromCharCode(byte));
+    });
+    return tsProtoGlobalThis.btoa(bin.join(""));
+  }
+}
 
 type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
 
