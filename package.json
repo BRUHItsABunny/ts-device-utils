@@ -24,9 +24,13 @@
   "devDependencies": {
     "@types/jest": "^29.5.1",
     "ts-jest": "^29.1.0",
-    "typescript": "^5.0.4"
+    "typescript": "^5.0.4",
+    "ts-proto": "2.2.0"
   },
   "dependencies": {
+    "@bufbuild/protobuf": "^2.0.0",
+    "nice-grpc": "^2.1.9",
+    "nice-grpc-common": "^2.0.2",
     "protobufjs": "^7.2.6"
   }
 }
