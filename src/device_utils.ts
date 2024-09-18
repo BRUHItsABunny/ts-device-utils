@@ -4956,10 +4956,10 @@ export const Browser: MessageFns<Browser> = {
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<Browser>, I>>(base?: I): Browser {
-    return Browser.fromPartial(base ?? ({} as any));
+  create(base?: DeepPartial<Browser>): Browser {
+    return Browser.fromPartial(base ?? {});
   },
-  fromPartial<I extends Exact<DeepPartial<Browser>, I>>(object: I): Browser {
+  fromPartial(object: DeepPartial<Browser>): Browser {
     const message = createBaseBrowser();
     message.version = object.version ?? "";
     message.name = object.name ?? "";
@@ -5242,10 +5242,10 @@ export const Browser_TLSFingerprint: MessageFns<Browser_TLSFingerprint> = {
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<Browser_TLSFingerprint>, I>>(base?: I): Browser_TLSFingerprint {
-    return Browser_TLSFingerprint.fromPartial(base ?? ({} as any));
+  create(base?: DeepPartial<Browser_TLSFingerprint>): Browser_TLSFingerprint {
+    return Browser_TLSFingerprint.fromPartial(base ?? {});
   },
-  fromPartial<I extends Exact<DeepPartial<Browser_TLSFingerprint>, I>>(object: I): Browser_TLSFingerprint {
+  fromPartial(object: DeepPartial<Browser_TLSFingerprint>): Browser_TLSFingerprint {
     const message = createBaseBrowser_TLSFingerprint();
     message.version = object.version ?? 0;
     message.cipherSuites = object.cipherSuites?.map((e) => e) || [];
@@ -5549,14 +5549,10 @@ export const Browser_TLSFingerprint_ExtensionData: MessageFns<Browser_TLSFingerp
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<Browser_TLSFingerprint_ExtensionData>, I>>(
-    base?: I,
-  ): Browser_TLSFingerprint_ExtensionData {
-    return Browser_TLSFingerprint_ExtensionData.fromPartial(base ?? ({} as any));
+  create(base?: DeepPartial<Browser_TLSFingerprint_ExtensionData>): Browser_TLSFingerprint_ExtensionData {
+    return Browser_TLSFingerprint_ExtensionData.fromPartial(base ?? {});
   },
-  fromPartial<I extends Exact<DeepPartial<Browser_TLSFingerprint_ExtensionData>, I>>(
-    object: I,
-  ): Browser_TLSFingerprint_ExtensionData {
+  fromPartial(object: DeepPartial<Browser_TLSFingerprint_ExtensionData>): Browser_TLSFingerprint_ExtensionData {
     const message = createBaseBrowser_TLSFingerprint_ExtensionData();
     message.extensionId = object.extensionId ?? 0;
     message.signatureAlgorithms = (object.signatureAlgorithms !== undefined && object.signatureAlgorithms !== null)
@@ -5675,13 +5671,13 @@ export const Browser_TLSFingerprint_ExtensionData_SignatureAlgorithms: MessageFn
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<Browser_TLSFingerprint_ExtensionData_SignatureAlgorithms>, I>>(
-    base?: I,
+  create(
+    base?: DeepPartial<Browser_TLSFingerprint_ExtensionData_SignatureAlgorithms>,
   ): Browser_TLSFingerprint_ExtensionData_SignatureAlgorithms {
-    return Browser_TLSFingerprint_ExtensionData_SignatureAlgorithms.fromPartial(base ?? ({} as any));
+    return Browser_TLSFingerprint_ExtensionData_SignatureAlgorithms.fromPartial(base ?? {});
   },
-  fromPartial<I extends Exact<DeepPartial<Browser_TLSFingerprint_ExtensionData_SignatureAlgorithms>, I>>(
-    object: I,
+  fromPartial(
+    object: DeepPartial<Browser_TLSFingerprint_ExtensionData_SignatureAlgorithms>,
   ): Browser_TLSFingerprint_ExtensionData_SignatureAlgorithms {
     const message = createBaseBrowser_TLSFingerprint_ExtensionData_SignatureAlgorithms();
     message.supportedSignatureAlgorithms = object.supportedSignatureAlgorithms?.map((e) => e) || [];
@@ -5750,14 +5746,14 @@ export const Browser_TLSFingerprint_ExtensionData_ApplicationLayerProtocolNegoti
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<Browser_TLSFingerprint_ExtensionData_ApplicationLayerProtocolNegotiation>, I>>(
-    base?: I,
+  create(
+    base?: DeepPartial<Browser_TLSFingerprint_ExtensionData_ApplicationLayerProtocolNegotiation>,
   ): Browser_TLSFingerprint_ExtensionData_ApplicationLayerProtocolNegotiation {
-    return Browser_TLSFingerprint_ExtensionData_ApplicationLayerProtocolNegotiation.fromPartial(base ?? ({} as any));
+    return Browser_TLSFingerprint_ExtensionData_ApplicationLayerProtocolNegotiation.fromPartial(base ?? {});
   },
-  fromPartial<
-    I extends Exact<DeepPartial<Browser_TLSFingerprint_ExtensionData_ApplicationLayerProtocolNegotiation>, I>,
-  >(object: I): Browser_TLSFingerprint_ExtensionData_ApplicationLayerProtocolNegotiation {
+  fromPartial(
+    object: DeepPartial<Browser_TLSFingerprint_ExtensionData_ApplicationLayerProtocolNegotiation>,
+  ): Browser_TLSFingerprint_ExtensionData_ApplicationLayerProtocolNegotiation {
     const message = createBaseBrowser_TLSFingerprint_ExtensionData_ApplicationLayerProtocolNegotiation();
     message.protocols = object.protocols?.map((e) => e) || [];
     return message;
@@ -5816,13 +5812,13 @@ export const Browser_TLSFingerprint_ExtensionData_RecordSizeLimit: MessageFns<
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<Browser_TLSFingerprint_ExtensionData_RecordSizeLimit>, I>>(
-    base?: I,
+  create(
+    base?: DeepPartial<Browser_TLSFingerprint_ExtensionData_RecordSizeLimit>,
   ): Browser_TLSFingerprint_ExtensionData_RecordSizeLimit {
-    return Browser_TLSFingerprint_ExtensionData_RecordSizeLimit.fromPartial(base ?? ({} as any));
+    return Browser_TLSFingerprint_ExtensionData_RecordSizeLimit.fromPartial(base ?? {});
   },
-  fromPartial<I extends Exact<DeepPartial<Browser_TLSFingerprint_ExtensionData_RecordSizeLimit>, I>>(
-    object: I,
+  fromPartial(
+    object: DeepPartial<Browser_TLSFingerprint_ExtensionData_RecordSizeLimit>,
   ): Browser_TLSFingerprint_ExtensionData_RecordSizeLimit {
     const message = createBaseBrowser_TLSFingerprint_ExtensionData_RecordSizeLimit();
     message.limit = object.limit ?? 0;
@@ -5904,13 +5900,13 @@ export const Browser_TLSFingerprint_ExtensionData_CompressCertificate: MessageFn
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<Browser_TLSFingerprint_ExtensionData_CompressCertificate>, I>>(
-    base?: I,
+  create(
+    base?: DeepPartial<Browser_TLSFingerprint_ExtensionData_CompressCertificate>,
   ): Browser_TLSFingerprint_ExtensionData_CompressCertificate {
-    return Browser_TLSFingerprint_ExtensionData_CompressCertificate.fromPartial(base ?? ({} as any));
+    return Browser_TLSFingerprint_ExtensionData_CompressCertificate.fromPartial(base ?? {});
   },
-  fromPartial<I extends Exact<DeepPartial<Browser_TLSFingerprint_ExtensionData_CompressCertificate>, I>>(
-    object: I,
+  fromPartial(
+    object: DeepPartial<Browser_TLSFingerprint_ExtensionData_CompressCertificate>,
   ): Browser_TLSFingerprint_ExtensionData_CompressCertificate {
     const message = createBaseBrowser_TLSFingerprint_ExtensionData_CompressCertificate();
     message.algorithms = object.algorithms?.map((e) => e) || [];
@@ -5988,13 +5984,13 @@ export const Browser_TLSFingerprint_ExtensionData_SupportedVersions: MessageFns<
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<Browser_TLSFingerprint_ExtensionData_SupportedVersions>, I>>(
-    base?: I,
+  create(
+    base?: DeepPartial<Browser_TLSFingerprint_ExtensionData_SupportedVersions>,
   ): Browser_TLSFingerprint_ExtensionData_SupportedVersions {
-    return Browser_TLSFingerprint_ExtensionData_SupportedVersions.fromPartial(base ?? ({} as any));
+    return Browser_TLSFingerprint_ExtensionData_SupportedVersions.fromPartial(base ?? {});
   },
-  fromPartial<I extends Exact<DeepPartial<Browser_TLSFingerprint_ExtensionData_SupportedVersions>, I>>(
-    object: I,
+  fromPartial(
+    object: DeepPartial<Browser_TLSFingerprint_ExtensionData_SupportedVersions>,
   ): Browser_TLSFingerprint_ExtensionData_SupportedVersions {
     const message = createBaseBrowser_TLSFingerprint_ExtensionData_SupportedVersions();
     message.versions = object.versions?.map((e) => e) || [];
@@ -6072,13 +6068,13 @@ export const Browser_TLSFingerprint_ExtensionData_PSKKeyExchangeModes: MessageFn
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<Browser_TLSFingerprint_ExtensionData_PSKKeyExchangeModes>, I>>(
-    base?: I,
+  create(
+    base?: DeepPartial<Browser_TLSFingerprint_ExtensionData_PSKKeyExchangeModes>,
   ): Browser_TLSFingerprint_ExtensionData_PSKKeyExchangeModes {
-    return Browser_TLSFingerprint_ExtensionData_PSKKeyExchangeModes.fromPartial(base ?? ({} as any));
+    return Browser_TLSFingerprint_ExtensionData_PSKKeyExchangeModes.fromPartial(base ?? {});
   },
-  fromPartial<I extends Exact<DeepPartial<Browser_TLSFingerprint_ExtensionData_PSKKeyExchangeModes>, I>>(
-    object: I,
+  fromPartial(
+    object: DeepPartial<Browser_TLSFingerprint_ExtensionData_PSKKeyExchangeModes>,
   ): Browser_TLSFingerprint_ExtensionData_PSKKeyExchangeModes {
     const message = createBaseBrowser_TLSFingerprint_ExtensionData_PSKKeyExchangeModes();
     message.modes = object.modes?.map((e) => e) || [];
@@ -6148,13 +6144,13 @@ export const Browser_TLSFingerprint_ExtensionData_KeyShareExtension: MessageFns<
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<Browser_TLSFingerprint_ExtensionData_KeyShareExtension>, I>>(
-    base?: I,
+  create(
+    base?: DeepPartial<Browser_TLSFingerprint_ExtensionData_KeyShareExtension>,
   ): Browser_TLSFingerprint_ExtensionData_KeyShareExtension {
-    return Browser_TLSFingerprint_ExtensionData_KeyShareExtension.fromPartial(base ?? ({} as any));
+    return Browser_TLSFingerprint_ExtensionData_KeyShareExtension.fromPartial(base ?? {});
   },
-  fromPartial<I extends Exact<DeepPartial<Browser_TLSFingerprint_ExtensionData_KeyShareExtension>, I>>(
-    object: I,
+  fromPartial(
+    object: DeepPartial<Browser_TLSFingerprint_ExtensionData_KeyShareExtension>,
   ): Browser_TLSFingerprint_ExtensionData_KeyShareExtension {
     const message = createBaseBrowser_TLSFingerprint_ExtensionData_KeyShareExtension();
     message.keyShares =
@@ -6235,13 +6231,13 @@ export const Browser_TLSFingerprint_ExtensionData_KeyShareExtension_KeyShare: Me
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<Browser_TLSFingerprint_ExtensionData_KeyShareExtension_KeyShare>, I>>(
-    base?: I,
+  create(
+    base?: DeepPartial<Browser_TLSFingerprint_ExtensionData_KeyShareExtension_KeyShare>,
   ): Browser_TLSFingerprint_ExtensionData_KeyShareExtension_KeyShare {
-    return Browser_TLSFingerprint_ExtensionData_KeyShareExtension_KeyShare.fromPartial(base ?? ({} as any));
+    return Browser_TLSFingerprint_ExtensionData_KeyShareExtension_KeyShare.fromPartial(base ?? {});
   },
-  fromPartial<I extends Exact<DeepPartial<Browser_TLSFingerprint_ExtensionData_KeyShareExtension_KeyShare>, I>>(
-    object: I,
+  fromPartial(
+    object: DeepPartial<Browser_TLSFingerprint_ExtensionData_KeyShareExtension_KeyShare>,
   ): Browser_TLSFingerprint_ExtensionData_KeyShareExtension_KeyShare {
     const message = createBaseBrowser_TLSFingerprint_ExtensionData_KeyShareExtension_KeyShare();
     message.group = object.group ?? 0;
@@ -6311,13 +6307,13 @@ export const Browser_TLSFingerprint_ExtensionData_ExtensionApplicationsSettings:
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<Browser_TLSFingerprint_ExtensionData_ExtensionApplicationsSettings>, I>>(
-    base?: I,
+  create(
+    base?: DeepPartial<Browser_TLSFingerprint_ExtensionData_ExtensionApplicationsSettings>,
   ): Browser_TLSFingerprint_ExtensionData_ExtensionApplicationsSettings {
-    return Browser_TLSFingerprint_ExtensionData_ExtensionApplicationsSettings.fromPartial(base ?? ({} as any));
+    return Browser_TLSFingerprint_ExtensionData_ExtensionApplicationsSettings.fromPartial(base ?? {});
   },
-  fromPartial<I extends Exact<DeepPartial<Browser_TLSFingerprint_ExtensionData_ExtensionApplicationsSettings>, I>>(
-    object: I,
+  fromPartial(
+    object: DeepPartial<Browser_TLSFingerprint_ExtensionData_ExtensionApplicationsSettings>,
   ): Browser_TLSFingerprint_ExtensionData_ExtensionApplicationsSettings {
     const message = createBaseBrowser_TLSFingerprint_ExtensionData_ExtensionApplicationsSettings();
     message.protocols = object.protocols?.map((e) => e) || [];
@@ -6384,13 +6380,13 @@ export const Browser_TLSFingerprint_ExtensionData_ExtensionRenegotiationInfo: Me
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<Browser_TLSFingerprint_ExtensionData_ExtensionRenegotiationInfo>, I>>(
-    base?: I,
+  create(
+    base?: DeepPartial<Browser_TLSFingerprint_ExtensionData_ExtensionRenegotiationInfo>,
   ): Browser_TLSFingerprint_ExtensionData_ExtensionRenegotiationInfo {
-    return Browser_TLSFingerprint_ExtensionData_ExtensionRenegotiationInfo.fromPartial(base ?? ({} as any));
+    return Browser_TLSFingerprint_ExtensionData_ExtensionRenegotiationInfo.fromPartial(base ?? {});
   },
-  fromPartial<I extends Exact<DeepPartial<Browser_TLSFingerprint_ExtensionData_ExtensionRenegotiationInfo>, I>>(
-    object: I,
+  fromPartial(
+    object: DeepPartial<Browser_TLSFingerprint_ExtensionData_ExtensionRenegotiationInfo>,
   ): Browser_TLSFingerprint_ExtensionData_ExtensionRenegotiationInfo {
     const message = createBaseBrowser_TLSFingerprint_ExtensionData_ExtensionRenegotiationInfo();
     message.renegotiationSupport = object.renegotiationSupport ?? 0;
@@ -6501,13 +6497,13 @@ export const Browser_TLSFingerprint_ExtensionData_ExtensionEncryptedClientHello:
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<Browser_TLSFingerprint_ExtensionData_ExtensionEncryptedClientHello>, I>>(
-    base?: I,
+  create(
+    base?: DeepPartial<Browser_TLSFingerprint_ExtensionData_ExtensionEncryptedClientHello>,
   ): Browser_TLSFingerprint_ExtensionData_ExtensionEncryptedClientHello {
-    return Browser_TLSFingerprint_ExtensionData_ExtensionEncryptedClientHello.fromPartial(base ?? ({} as any));
+    return Browser_TLSFingerprint_ExtensionData_ExtensionEncryptedClientHello.fromPartial(base ?? {});
   },
-  fromPartial<I extends Exact<DeepPartial<Browser_TLSFingerprint_ExtensionData_ExtensionEncryptedClientHello>, I>>(
-    object: I,
+  fromPartial(
+    object: DeepPartial<Browser_TLSFingerprint_ExtensionData_ExtensionEncryptedClientHello>,
   ): Browser_TLSFingerprint_ExtensionData_ExtensionEncryptedClientHello {
     const message = createBaseBrowser_TLSFingerprint_ExtensionData_ExtensionEncryptedClientHello();
     message.candidateCipherSuites =
@@ -6597,22 +6593,16 @@ export const Browser_TLSFingerprint_ExtensionData_ExtensionEncryptedClientHello_
     return obj;
   },
 
-  create<
-    I extends Exact<
-      DeepPartial<Browser_TLSFingerprint_ExtensionData_ExtensionEncryptedClientHello_HPKESymmetricCipherSuite>,
-      I
-    >,
-  >(base?: I): Browser_TLSFingerprint_ExtensionData_ExtensionEncryptedClientHello_HPKESymmetricCipherSuite {
+  create(
+    base?: DeepPartial<Browser_TLSFingerprint_ExtensionData_ExtensionEncryptedClientHello_HPKESymmetricCipherSuite>,
+  ): Browser_TLSFingerprint_ExtensionData_ExtensionEncryptedClientHello_HPKESymmetricCipherSuite {
     return Browser_TLSFingerprint_ExtensionData_ExtensionEncryptedClientHello_HPKESymmetricCipherSuite.fromPartial(
-      base ?? ({} as any),
+      base ?? {},
     );
   },
-  fromPartial<
-    I extends Exact<
-      DeepPartial<Browser_TLSFingerprint_ExtensionData_ExtensionEncryptedClientHello_HPKESymmetricCipherSuite>,
-      I
-    >,
-  >(object: I): Browser_TLSFingerprint_ExtensionData_ExtensionEncryptedClientHello_HPKESymmetricCipherSuite {
+  fromPartial(
+    object: DeepPartial<Browser_TLSFingerprint_ExtensionData_ExtensionEncryptedClientHello_HPKESymmetricCipherSuite>,
+  ): Browser_TLSFingerprint_ExtensionData_ExtensionEncryptedClientHello_HPKESymmetricCipherSuite {
     const message =
       createBaseBrowser_TLSFingerprint_ExtensionData_ExtensionEncryptedClientHello_HPKESymmetricCipherSuite();
     message.kdfId = object.kdfId ?? 0;
@@ -6763,10 +6753,10 @@ export const Browser_HTTPFingerprint: MessageFns<Browser_HTTPFingerprint> = {
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<Browser_HTTPFingerprint>, I>>(base?: I): Browser_HTTPFingerprint {
-    return Browser_HTTPFingerprint.fromPartial(base ?? ({} as any));
+  create(base?: DeepPartial<Browser_HTTPFingerprint>): Browser_HTTPFingerprint {
+    return Browser_HTTPFingerprint.fromPartial(base ?? {});
   },
-  fromPartial<I extends Exact<DeepPartial<Browser_HTTPFingerprint>, I>>(object: I): Browser_HTTPFingerprint {
+  fromPartial(object: DeepPartial<Browser_HTTPFingerprint>): Browser_HTTPFingerprint {
     const message = createBaseBrowser_HTTPFingerprint();
     message.headerOrder = object.headerOrder?.map((e) => e) || [];
     message.pseudoHeaderOrder = object.pseudoHeaderOrder?.map((e) => e) || [];
@@ -6874,13 +6864,11 @@ export const Browser_HTTPFingerprint_PriorityFrameOpts: MessageFns<Browser_HTTPF
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<Browser_HTTPFingerprint_PriorityFrameOpts>, I>>(
-    base?: I,
-  ): Browser_HTTPFingerprint_PriorityFrameOpts {
-    return Browser_HTTPFingerprint_PriorityFrameOpts.fromPartial(base ?? ({} as any));
+  create(base?: DeepPartial<Browser_HTTPFingerprint_PriorityFrameOpts>): Browser_HTTPFingerprint_PriorityFrameOpts {
+    return Browser_HTTPFingerprint_PriorityFrameOpts.fromPartial(base ?? {});
   },
-  fromPartial<I extends Exact<DeepPartial<Browser_HTTPFingerprint_PriorityFrameOpts>, I>>(
-    object: I,
+  fromPartial(
+    object: DeepPartial<Browser_HTTPFingerprint_PriorityFrameOpts>,
   ): Browser_HTTPFingerprint_PriorityFrameOpts {
     const message = createBaseBrowser_HTTPFingerprint_PriorityFrameOpts();
     message.streamId = object.streamId ?? 0;
@@ -7017,13 +7005,11 @@ export const Browser_HTTPFingerprint_SettingsFrameOpts: MessageFns<Browser_HTTPF
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<Browser_HTTPFingerprint_SettingsFrameOpts>, I>>(
-    base?: I,
-  ): Browser_HTTPFingerprint_SettingsFrameOpts {
-    return Browser_HTTPFingerprint_SettingsFrameOpts.fromPartial(base ?? ({} as any));
+  create(base?: DeepPartial<Browser_HTTPFingerprint_SettingsFrameOpts>): Browser_HTTPFingerprint_SettingsFrameOpts {
+    return Browser_HTTPFingerprint_SettingsFrameOpts.fromPartial(base ?? {});
   },
-  fromPartial<I extends Exact<DeepPartial<Browser_HTTPFingerprint_SettingsFrameOpts>, I>>(
-    object: I,
+  fromPartial(
+    object: DeepPartial<Browser_HTTPFingerprint_SettingsFrameOpts>,
   ): Browser_HTTPFingerprint_SettingsFrameOpts {
     const message = createBaseBrowser_HTTPFingerprint_SettingsFrameOpts();
     message.headerTableSize = object.headerTableSize ?? 0;
@@ -7205,10 +7191,10 @@ export const Browser_GLCapability: MessageFns<Browser_GLCapability> = {
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<Browser_GLCapability>, I>>(base?: I): Browser_GLCapability {
-    return Browser_GLCapability.fromPartial(base ?? ({} as any));
+  create(base?: DeepPartial<Browser_GLCapability>): Browser_GLCapability {
+    return Browser_GLCapability.fromPartial(base ?? {});
   },
-  fromPartial<I extends Exact<DeepPartial<Browser_GLCapability>, I>>(object: I): Browser_GLCapability {
+  fromPartial(object: DeepPartial<Browser_GLCapability>): Browser_GLCapability {
     const message = createBaseBrowser_GLCapability();
     message.boolValue = object.boolValue?.map((e) => e) || [];
     message.intValue = object.intValue?.map((e) => e) || [];
@@ -7355,10 +7341,10 @@ export const Browser_BrowserCollection: MessageFns<Browser_BrowserCollection> = 
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<Browser_BrowserCollection>, I>>(base?: I): Browser_BrowserCollection {
-    return Browser_BrowserCollection.fromPartial(base ?? ({} as any));
+  create(base?: DeepPartial<Browser_BrowserCollection>): Browser_BrowserCollection {
+    return Browser_BrowserCollection.fromPartial(base ?? {});
   },
-  fromPartial<I extends Exact<DeepPartial<Browser_BrowserCollection>, I>>(object: I): Browser_BrowserCollection {
+  fromPartial(object: DeepPartial<Browser_BrowserCollection>): Browser_BrowserCollection {
     const message = createBaseBrowser_BrowserCollection();
     message.id = object.id ?? 0;
     message.hash = object.hash ?? "";
@@ -7444,14 +7430,10 @@ export const Browser_BrowserCollection_MapDataEntry: MessageFns<Browser_BrowserC
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<Browser_BrowserCollection_MapDataEntry>, I>>(
-    base?: I,
-  ): Browser_BrowserCollection_MapDataEntry {
-    return Browser_BrowserCollection_MapDataEntry.fromPartial(base ?? ({} as any));
+  create(base?: DeepPartial<Browser_BrowserCollection_MapDataEntry>): Browser_BrowserCollection_MapDataEntry {
+    return Browser_BrowserCollection_MapDataEntry.fromPartial(base ?? {});
   },
-  fromPartial<I extends Exact<DeepPartial<Browser_BrowserCollection_MapDataEntry>, I>>(
-    object: I,
-  ): Browser_BrowserCollection_MapDataEntry {
+  fromPartial(object: DeepPartial<Browser_BrowserCollection_MapDataEntry>): Browser_BrowserCollection_MapDataEntry {
     const message = createBaseBrowser_BrowserCollection_MapDataEntry();
     message.key = object.key ?? "";
     message.value = object.value ?? "";
@@ -7526,13 +7508,13 @@ export const Browser_BrowserCollection_GlCapabilitiesEntry: MessageFns<Browser_B
       return obj;
     },
 
-    create<I extends Exact<DeepPartial<Browser_BrowserCollection_GlCapabilitiesEntry>, I>>(
-      base?: I,
+    create(
+      base?: DeepPartial<Browser_BrowserCollection_GlCapabilitiesEntry>,
     ): Browser_BrowserCollection_GlCapabilitiesEntry {
-      return Browser_BrowserCollection_GlCapabilitiesEntry.fromPartial(base ?? ({} as any));
+      return Browser_BrowserCollection_GlCapabilitiesEntry.fromPartial(base ?? {});
     },
-    fromPartial<I extends Exact<DeepPartial<Browser_BrowserCollection_GlCapabilitiesEntry>, I>>(
-      object: I,
+    fromPartial(
+      object: DeepPartial<Browser_BrowserCollection_GlCapabilitiesEntry>,
     ): Browser_BrowserCollection_GlCapabilitiesEntry {
       const message = createBaseBrowser_BrowserCollection_GlCapabilitiesEntry();
       message.key = object.key ?? "";
@@ -7731,10 +7713,10 @@ export const Browser_BrowserScreen: MessageFns<Browser_BrowserScreen> = {
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<Browser_BrowserScreen>, I>>(base?: I): Browser_BrowserScreen {
-    return Browser_BrowserScreen.fromPartial(base ?? ({} as any));
+  create(base?: DeepPartial<Browser_BrowserScreen>): Browser_BrowserScreen {
+    return Browser_BrowserScreen.fromPartial(base ?? {});
   },
-  fromPartial<I extends Exact<DeepPartial<Browser_BrowserScreen>, I>>(object: I): Browser_BrowserScreen {
+  fromPartial(object: DeepPartial<Browser_BrowserScreen>): Browser_BrowserScreen {
     const message = createBaseBrowser_BrowserScreen();
     message.availWidth = object.availWidth ?? 0;
     message.availHeight = object.availHeight ?? 0;
@@ -7815,14 +7797,10 @@ export const Browser_BrowserScreen_Orientation: MessageFns<Browser_BrowserScreen
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<Browser_BrowserScreen_Orientation>, I>>(
-    base?: I,
-  ): Browser_BrowserScreen_Orientation {
-    return Browser_BrowserScreen_Orientation.fromPartial(base ?? ({} as any));
+  create(base?: DeepPartial<Browser_BrowserScreen_Orientation>): Browser_BrowserScreen_Orientation {
+    return Browser_BrowserScreen_Orientation.fromPartial(base ?? {});
   },
-  fromPartial<I extends Exact<DeepPartial<Browser_BrowserScreen_Orientation>, I>>(
-    object: I,
-  ): Browser_BrowserScreen_Orientation {
+  fromPartial(object: DeepPartial<Browser_BrowserScreen_Orientation>): Browser_BrowserScreen_Orientation {
     const message = createBaseBrowser_BrowserScreen_Orientation();
     message.angle = object.angle ?? 0;
     message.type = object.type ?? "";
@@ -7985,10 +7963,10 @@ export const Browser_WebGPU: MessageFns<Browser_WebGPU> = {
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<Browser_WebGPU>, I>>(base?: I): Browser_WebGPU {
-    return Browser_WebGPU.fromPartial(base ?? ({} as any));
+  create(base?: DeepPartial<Browser_WebGPU>): Browser_WebGPU {
+    return Browser_WebGPU.fromPartial(base ?? {});
   },
-  fromPartial<I extends Exact<DeepPartial<Browser_WebGPU>, I>>(object: I): Browser_WebGPU {
+  fromPartial(object: DeepPartial<Browser_WebGPU>): Browser_WebGPU {
     const message = createBaseBrowser_WebGPU();
     message.features = (object.features !== undefined && object.features !== null)
       ? Browser_WebGPU_Features.fromPartial(object.features)
@@ -8055,10 +8033,10 @@ export const Browser_WebGPU_Features: MessageFns<Browser_WebGPU_Features> = {
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<Browser_WebGPU_Features>, I>>(base?: I): Browser_WebGPU_Features {
-    return Browser_WebGPU_Features.fromPartial(base ?? ({} as any));
+  create(base?: DeepPartial<Browser_WebGPU_Features>): Browser_WebGPU_Features {
+    return Browser_WebGPU_Features.fromPartial(base ?? {});
   },
-  fromPartial<I extends Exact<DeepPartial<Browser_WebGPU_Features>, I>>(object: I): Browser_WebGPU_Features {
+  fromPartial(object: DeepPartial<Browser_WebGPU_Features>): Browser_WebGPU_Features {
     const message = createBaseBrowser_WebGPU_Features();
     message.size = object.size ?? 0;
     return message;
@@ -8128,10 +8106,10 @@ export const Browser_WebGPU_LimitsEntry: MessageFns<Browser_WebGPU_LimitsEntry> 
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<Browser_WebGPU_LimitsEntry>, I>>(base?: I): Browser_WebGPU_LimitsEntry {
-    return Browser_WebGPU_LimitsEntry.fromPartial(base ?? ({} as any));
+  create(base?: DeepPartial<Browser_WebGPU_LimitsEntry>): Browser_WebGPU_LimitsEntry {
+    return Browser_WebGPU_LimitsEntry.fromPartial(base ?? {});
   },
-  fromPartial<I extends Exact<DeepPartial<Browser_WebGPU_LimitsEntry>, I>>(object: I): Browser_WebGPU_LimitsEntry {
+  fromPartial(object: DeepPartial<Browser_WebGPU_LimitsEntry>): Browser_WebGPU_LimitsEntry {
     const message = createBaseBrowser_WebGPU_LimitsEntry();
     message.key = object.key ?? "";
     message.value = object.value ?? 0;
@@ -8244,10 +8222,10 @@ export const Browser_SpeechSynthesis: MessageFns<Browser_SpeechSynthesis> = {
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<Browser_SpeechSynthesis>, I>>(base?: I): Browser_SpeechSynthesis {
-    return Browser_SpeechSynthesis.fromPartial(base ?? ({} as any));
+  create(base?: DeepPartial<Browser_SpeechSynthesis>): Browser_SpeechSynthesis {
+    return Browser_SpeechSynthesis.fromPartial(base ?? {});
   },
-  fromPartial<I extends Exact<DeepPartial<Browser_SpeechSynthesis>, I>>(object: I): Browser_SpeechSynthesis {
+  fromPartial(object: DeepPartial<Browser_SpeechSynthesis>): Browser_SpeechSynthesis {
     const message = createBaseBrowser_SpeechSynthesis();
     message.voiceURI = object.voiceURI ?? "";
     message.name = object.name ?? "";
@@ -8366,10 +8344,10 @@ export const Browser_Plugin: MessageFns<Browser_Plugin> = {
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<Browser_Plugin>, I>>(base?: I): Browser_Plugin {
-    return Browser_Plugin.fromPartial(base ?? ({} as any));
+  create(base?: DeepPartial<Browser_Plugin>): Browser_Plugin {
+    return Browser_Plugin.fromPartial(base ?? {});
   },
-  fromPartial<I extends Exact<DeepPartial<Browser_Plugin>, I>>(object: I): Browser_Plugin {
+  fromPartial(object: DeepPartial<Browser_Plugin>): Browser_Plugin {
     const message = createBaseBrowser_Plugin();
     message.name = object.name ?? "";
     message.fileName = object.fileName ?? "";
@@ -8463,10 +8441,10 @@ export const Browser_Plugin_MIMEType: MessageFns<Browser_Plugin_MIMEType> = {
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<Browser_Plugin_MIMEType>, I>>(base?: I): Browser_Plugin_MIMEType {
-    return Browser_Plugin_MIMEType.fromPartial(base ?? ({} as any));
+  create(base?: DeepPartial<Browser_Plugin_MIMEType>): Browser_Plugin_MIMEType {
+    return Browser_Plugin_MIMEType.fromPartial(base ?? {});
   },
-  fromPartial<I extends Exact<DeepPartial<Browser_Plugin_MIMEType>, I>>(object: I): Browser_Plugin_MIMEType {
+  fromPartial(object: DeepPartial<Browser_Plugin_MIMEType>): Browser_Plugin_MIMEType {
     const message = createBaseBrowser_Plugin_MIMEType();
     message.type = object.type ?? "";
     message.suffixes = object.suffixes ?? "";
@@ -8538,14 +8516,10 @@ export const Browser_Plugin_SupportedMIMETypesEntry: MessageFns<Browser_Plugin_S
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<Browser_Plugin_SupportedMIMETypesEntry>, I>>(
-    base?: I,
-  ): Browser_Plugin_SupportedMIMETypesEntry {
-    return Browser_Plugin_SupportedMIMETypesEntry.fromPartial(base ?? ({} as any));
+  create(base?: DeepPartial<Browser_Plugin_SupportedMIMETypesEntry>): Browser_Plugin_SupportedMIMETypesEntry {
+    return Browser_Plugin_SupportedMIMETypesEntry.fromPartial(base ?? {});
   },
-  fromPartial<I extends Exact<DeepPartial<Browser_Plugin_SupportedMIMETypesEntry>, I>>(
-    object: I,
-  ): Browser_Plugin_SupportedMIMETypesEntry {
+  fromPartial(object: DeepPartial<Browser_Plugin_SupportedMIMETypesEntry>): Browser_Plugin_SupportedMIMETypesEntry {
     const message = createBaseBrowser_Plugin_SupportedMIMETypesEntry();
     message.key = object.key ?? "";
     message.value = (object.value !== undefined && object.value !== null)
@@ -8734,10 +8708,10 @@ export const Browser_HighEntropyValues: MessageFns<Browser_HighEntropyValues> = 
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<Browser_HighEntropyValues>, I>>(base?: I): Browser_HighEntropyValues {
-    return Browser_HighEntropyValues.fromPartial(base ?? ({} as any));
+  create(base?: DeepPartial<Browser_HighEntropyValues>): Browser_HighEntropyValues {
+    return Browser_HighEntropyValues.fromPartial(base ?? {});
   },
-  fromPartial<I extends Exact<DeepPartial<Browser_HighEntropyValues>, I>>(object: I): Browser_HighEntropyValues {
+  fromPartial(object: DeepPartial<Browser_HighEntropyValues>): Browser_HighEntropyValues {
     const message = createBaseBrowser_HighEntropyValues();
     message.architecture = object.architecture ?? "";
     message.bitness = object.bitness ?? "";
@@ -8815,12 +8789,10 @@ export const Browser_HighEntropyValues_Brand: MessageFns<Browser_HighEntropyValu
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<Browser_HighEntropyValues_Brand>, I>>(base?: I): Browser_HighEntropyValues_Brand {
-    return Browser_HighEntropyValues_Brand.fromPartial(base ?? ({} as any));
+  create(base?: DeepPartial<Browser_HighEntropyValues_Brand>): Browser_HighEntropyValues_Brand {
+    return Browser_HighEntropyValues_Brand.fromPartial(base ?? {});
   },
-  fromPartial<I extends Exact<DeepPartial<Browser_HighEntropyValues_Brand>, I>>(
-    object: I,
-  ): Browser_HighEntropyValues_Brand {
+  fromPartial(object: DeepPartial<Browser_HighEntropyValues_Brand>): Browser_HighEntropyValues_Brand {
     const message = createBaseBrowser_HighEntropyValues_Brand();
     message.brand = object.brand ?? "";
     message.version = object.version ?? "";
@@ -8891,10 +8863,10 @@ export const Browser_WebRTC: MessageFns<Browser_WebRTC> = {
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<Browser_WebRTC>, I>>(base?: I): Browser_WebRTC {
-    return Browser_WebRTC.fromPartial(base ?? ({} as any));
+  create(base?: DeepPartial<Browser_WebRTC>): Browser_WebRTC {
+    return Browser_WebRTC.fromPartial(base ?? {});
   },
-  fromPartial<I extends Exact<DeepPartial<Browser_WebRTC>, I>>(object: I): Browser_WebRTC {
+  fromPartial(object: DeepPartial<Browser_WebRTC>): Browser_WebRTC {
     const message = createBaseBrowser_WebRTC();
     message.video = (object.video !== undefined && object.video !== null)
       ? Browser_WebRTC_CodecInformation.fromPartial(object.video)
@@ -8997,10 +8969,10 @@ export const Browser_WebRTC_Codec: MessageFns<Browser_WebRTC_Codec> = {
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<Browser_WebRTC_Codec>, I>>(base?: I): Browser_WebRTC_Codec {
-    return Browser_WebRTC_Codec.fromPartial(base ?? ({} as any));
+  create(base?: DeepPartial<Browser_WebRTC_Codec>): Browser_WebRTC_Codec {
+    return Browser_WebRTC_Codec.fromPartial(base ?? {});
   },
-  fromPartial<I extends Exact<DeepPartial<Browser_WebRTC_Codec>, I>>(object: I): Browser_WebRTC_Codec {
+  fromPartial(object: DeepPartial<Browser_WebRTC_Codec>): Browser_WebRTC_Codec {
     const message = createBaseBrowser_WebRTC_Codec();
     message.channels = object.channels ?? 0;
     message.clockRate = object.clockRate ?? 0;
@@ -9073,12 +9045,10 @@ export const Browser_WebRTC_HeaderExtension: MessageFns<Browser_WebRTC_HeaderExt
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<Browser_WebRTC_HeaderExtension>, I>>(base?: I): Browser_WebRTC_HeaderExtension {
-    return Browser_WebRTC_HeaderExtension.fromPartial(base ?? ({} as any));
+  create(base?: DeepPartial<Browser_WebRTC_HeaderExtension>): Browser_WebRTC_HeaderExtension {
+    return Browser_WebRTC_HeaderExtension.fromPartial(base ?? {});
   },
-  fromPartial<I extends Exact<DeepPartial<Browser_WebRTC_HeaderExtension>, I>>(
-    object: I,
-  ): Browser_WebRTC_HeaderExtension {
+  fromPartial(object: DeepPartial<Browser_WebRTC_HeaderExtension>): Browser_WebRTC_HeaderExtension {
     const message = createBaseBrowser_WebRTC_HeaderExtension();
     message.direction = object.direction ?? "";
     message.uri = object.uri ?? "";
@@ -9157,12 +9127,10 @@ export const Browser_WebRTC_CodecInformation: MessageFns<Browser_WebRTC_CodecInf
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<Browser_WebRTC_CodecInformation>, I>>(base?: I): Browser_WebRTC_CodecInformation {
-    return Browser_WebRTC_CodecInformation.fromPartial(base ?? ({} as any));
+  create(base?: DeepPartial<Browser_WebRTC_CodecInformation>): Browser_WebRTC_CodecInformation {
+    return Browser_WebRTC_CodecInformation.fromPartial(base ?? {});
   },
-  fromPartial<I extends Exact<DeepPartial<Browser_WebRTC_CodecInformation>, I>>(
-    object: I,
-  ): Browser_WebRTC_CodecInformation {
+  fromPartial(object: DeepPartial<Browser_WebRTC_CodecInformation>): Browser_WebRTC_CodecInformation {
     const message = createBaseBrowser_WebRTC_CodecInformation();
     message.codecs = object.codecs?.map((e) => Browser_WebRTC_Codec.fromPartial(e)) || [];
     message.headerExtensions = object.headerExtensions?.map((e) => Browser_WebRTC_HeaderExtension.fromPartial(e)) || [];
@@ -9261,10 +9229,10 @@ export const GPSLocation: MessageFns<GPSLocation> = {
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<GPSLocation>, I>>(base?: I): GPSLocation {
-    return GPSLocation.fromPartial(base ?? ({} as any));
+  create(base?: DeepPartial<GPSLocation>): GPSLocation {
+    return GPSLocation.fromPartial(base ?? {});
   },
-  fromPartial<I extends Exact<DeepPartial<GPSLocation>, I>>(object: I): GPSLocation {
+  fromPartial(object: DeepPartial<GPSLocation>): GPSLocation {
     const message = createBaseGPSLocation();
     message.longitude = object.longitude ?? 0;
     message.latitude = object.latitude ?? 0;
@@ -9337,10 +9305,10 @@ export const Locale: MessageFns<Locale> = {
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<Locale>, I>>(base?: I): Locale {
-    return Locale.fromPartial(base ?? ({} as any));
+  create(base?: DeepPartial<Locale>): Locale {
+    return Locale.fromPartial(base ?? {});
   },
-  fromPartial<I extends Exact<DeepPartial<Locale>, I>>(object: I): Locale {
+  fromPartial(object: DeepPartial<Locale>): Locale {
     const message = createBaseLocale();
     message.language = object.language ?? "";
     message.countryISO = object.countryISO ?? "";
@@ -9504,10 +9472,10 @@ export const SIMCard: MessageFns<SIMCard> = {
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<SIMCard>, I>>(base?: I): SIMCard {
-    return SIMCard.fromPartial(base ?? ({} as any));
+  create(base?: DeepPartial<SIMCard>): SIMCard {
+    return SIMCard.fromPartial(base ?? {});
   },
-  fromPartial<I extends Exact<DeepPartial<SIMCard>, I>>(object: I): SIMCard {
+  fromPartial(object: DeepPartial<SIMCard>): SIMCard {
     const message = createBaseSIMCard();
     message.phoneNumber = object.phoneNumber ?? "";
     message.MCC = object.MCC ?? "";
@@ -9588,10 +9556,10 @@ export const SIMCard_IMEI: MessageFns<SIMCard_IMEI> = {
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<SIMCard_IMEI>, I>>(base?: I): SIMCard_IMEI {
-    return SIMCard_IMEI.fromPartial(base ?? ({} as any));
+  create(base?: DeepPartial<SIMCard_IMEI>): SIMCard_IMEI {
+    return SIMCard_IMEI.fromPartial(base ?? {});
   },
-  fromPartial<I extends Exact<DeepPartial<SIMCard_IMEI>, I>>(object: I): SIMCard_IMEI {
+  fromPartial(object: DeepPartial<SIMCard_IMEI>): SIMCard_IMEI {
     const message = createBaseSIMCard_IMEI();
     message.TAC = object.TAC ?? "";
     message.imei = object.imei ?? "";
@@ -9676,10 +9644,10 @@ export const SIMCard_MEID: MessageFns<SIMCard_MEID> = {
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<SIMCard_MEID>, I>>(base?: I): SIMCard_MEID {
-    return SIMCard_MEID.fromPartial(base ?? ({} as any));
+  create(base?: DeepPartial<SIMCard_MEID>): SIMCard_MEID {
+    return SIMCard_MEID.fromPartial(base ?? {});
   },
-  fromPartial<I extends Exact<DeepPartial<SIMCard_MEID>, I>>(object: I): SIMCard_MEID {
+  fromPartial(object: DeepPartial<SIMCard_MEID>): SIMCard_MEID {
     const message = createBaseSIMCard_MEID();
     message.RegionCode = object.RegionCode ?? "";
     message.ManufacturerCode = object.ManufacturerCode ?? "";
@@ -9751,10 +9719,10 @@ export const MAC: MessageFns<MAC> = {
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<MAC>, I>>(base?: I): MAC {
-    return MAC.fromPartial(base ?? ({} as any));
+  create(base?: DeepPartial<MAC>): MAC {
+    return MAC.fromPartial(base ?? {});
   },
-  fromPartial<I extends Exact<DeepPartial<MAC>, I>>(object: I): MAC {
+  fromPartial(object: DeepPartial<MAC>): MAC {
     const message = createBaseMAC();
     message.OUI = object.OUI ?? "";
     message.address = object.address ?? "";
@@ -9809,10 +9777,10 @@ export const Timezone: MessageFns<Timezone> = {
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<Timezone>, I>>(base?: I): Timezone {
-    return Timezone.fromPartial(base ?? ({} as any));
+  create(base?: DeepPartial<Timezone>): Timezone {
+    return Timezone.fromPartial(base ?? {});
   },
-  fromPartial<I extends Exact<DeepPartial<Timezone>, I>>(object: I): Timezone {
+  fromPartial(object: DeepPartial<Timezone>): Timezone {
     const message = createBaseTimezone();
     message.name = object.name ?? "";
     return message;
@@ -9896,10 +9864,10 @@ export const ScreenData: MessageFns<ScreenData> = {
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<ScreenData>, I>>(base?: I): ScreenData {
-    return ScreenData.fromPartial(base ?? ({} as any));
+  create(base?: DeepPartial<ScreenData>): ScreenData {
+    return ScreenData.fromPartial(base ?? {});
   },
-  fromPartial<I extends Exact<DeepPartial<ScreenData>, I>>(object: I): ScreenData {
+  fromPartial(object: DeepPartial<ScreenData>): ScreenData {
     const message = createBaseScreenData();
     message.density = object.density ?? 0;
     message.resolutionHorizontal = object.resolutionHorizontal ?? 0;
@@ -10029,10 +9997,10 @@ export const CPUData: MessageFns<CPUData> = {
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<CPUData>, I>>(base?: I): CPUData {
-    return CPUData.fromPartial(base ?? ({} as any));
+  create(base?: DeepPartial<CPUData>): CPUData {
+    return CPUData.fromPartial(base ?? {});
   },
-  fromPartial<I extends Exact<DeepPartial<CPUData>, I>>(object: I): CPUData {
+  fromPartial(object: DeepPartial<CPUData>): CPUData {
     const message = createBaseCPUData();
     message.arch = object.arch ?? 0;
     message.archName = object.archName ?? "";
@@ -10247,10 +10215,10 @@ export const AndroidDevice: MessageFns<AndroidDevice> = {
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<AndroidDevice>, I>>(base?: I): AndroidDevice {
-    return AndroidDevice.fromPartial(base ?? ({} as any));
+  create(base?: DeepPartial<AndroidDevice>): AndroidDevice {
+    return AndroidDevice.fromPartial(base ?? {});
   },
-  fromPartial<I extends Exact<DeepPartial<AndroidDevice>, I>>(object: I): AndroidDevice {
+  fromPartial(object: DeepPartial<AndroidDevice>): AndroidDevice {
     const message = createBaseAndroidDevice();
     message.id = (object.id !== undefined && object.id !== null) ? AndroidDevice_ID.fromPartial(object.id) : undefined;
     message.version = object.version ?? 0;
@@ -10328,10 +10296,10 @@ export const AndroidDevice_ID: MessageFns<AndroidDevice_ID> = {
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<AndroidDevice_ID>, I>>(base?: I): AndroidDevice_ID {
-    return AndroidDevice_ID.fromPartial(base ?? ({} as any));
+  create(base?: DeepPartial<AndroidDevice_ID>): AndroidDevice_ID {
+    return AndroidDevice_ID.fromPartial(base ?? {});
   },
-  fromPartial<I extends Exact<DeepPartial<AndroidDevice_ID>, I>>(object: I): AndroidDevice_ID {
+  fromPartial(object: DeepPartial<AndroidDevice_ID>): AndroidDevice_ID {
     const message = createBaseAndroidDevice_ID();
     message.id = object.id ?? 0;
     return message;
@@ -10644,10 +10612,10 @@ export const AndroidDevice_BuildData: MessageFns<AndroidDevice_BuildData> = {
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<AndroidDevice_BuildData>, I>>(base?: I): AndroidDevice_BuildData {
-    return AndroidDevice_BuildData.fromPartial(base ?? ({} as any));
+  create(base?: DeepPartial<AndroidDevice_BuildData>): AndroidDevice_BuildData {
+    return AndroidDevice_BuildData.fromPartial(base ?? {});
   },
-  fromPartial<I extends Exact<DeepPartial<AndroidDevice_BuildData>, I>>(object: I): AndroidDevice_BuildData {
+  fromPartial(object: DeepPartial<AndroidDevice_BuildData>): AndroidDevice_BuildData {
     const message = createBaseAndroidDevice_BuildData();
     message.board = object.board ?? "";
     message.bootloader = object.bootloader ?? "";
@@ -10763,10 +10731,10 @@ export const AndroidDevice_DeviceSoftware: MessageFns<AndroidDevice_DeviceSoftwa
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<AndroidDevice_DeviceSoftware>, I>>(base?: I): AndroidDevice_DeviceSoftware {
-    return AndroidDevice_DeviceSoftware.fromPartial(base ?? ({} as any));
+  create(base?: DeepPartial<AndroidDevice_DeviceSoftware>): AndroidDevice_DeviceSoftware {
+    return AndroidDevice_DeviceSoftware.fromPartial(base ?? {});
   },
-  fromPartial<I extends Exact<DeepPartial<AndroidDevice_DeviceSoftware>, I>>(object: I): AndroidDevice_DeviceSoftware {
+  fromPartial(object: DeepPartial<AndroidDevice_DeviceSoftware>): AndroidDevice_DeviceSoftware {
     const message = createBaseAndroidDevice_DeviceSoftware();
     message.softwareMetaData = Object.entries(object.softwareMetaData ?? {}).reduce<{ [key: string]: string }>(
       (acc, [key, value]) => {
@@ -10858,13 +10826,13 @@ export const AndroidDevice_DeviceSoftware_SoftwareMetaDataEntry: MessageFns<
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<AndroidDevice_DeviceSoftware_SoftwareMetaDataEntry>, I>>(
-    base?: I,
+  create(
+    base?: DeepPartial<AndroidDevice_DeviceSoftware_SoftwareMetaDataEntry>,
   ): AndroidDevice_DeviceSoftware_SoftwareMetaDataEntry {
-    return AndroidDevice_DeviceSoftware_SoftwareMetaDataEntry.fromPartial(base ?? ({} as any));
+    return AndroidDevice_DeviceSoftware_SoftwareMetaDataEntry.fromPartial(base ?? {});
   },
-  fromPartial<I extends Exact<DeepPartial<AndroidDevice_DeviceSoftware_SoftwareMetaDataEntry>, I>>(
-    object: I,
+  fromPartial(
+    object: DeepPartial<AndroidDevice_DeviceSoftware_SoftwareMetaDataEntry>,
   ): AndroidDevice_DeviceSoftware_SoftwareMetaDataEntry {
     const message = createBaseAndroidDevice_DeviceSoftware_SoftwareMetaDataEntry();
     message.key = object.key ?? "";
@@ -10940,13 +10908,13 @@ export const AndroidDevice_DeviceSoftware_AppMetaDataEntry: MessageFns<AndroidDe
       return obj;
     },
 
-    create<I extends Exact<DeepPartial<AndroidDevice_DeviceSoftware_AppMetaDataEntry>, I>>(
-      base?: I,
+    create(
+      base?: DeepPartial<AndroidDevice_DeviceSoftware_AppMetaDataEntry>,
     ): AndroidDevice_DeviceSoftware_AppMetaDataEntry {
-      return AndroidDevice_DeviceSoftware_AppMetaDataEntry.fromPartial(base ?? ({} as any));
+      return AndroidDevice_DeviceSoftware_AppMetaDataEntry.fromPartial(base ?? {});
     },
-    fromPartial<I extends Exact<DeepPartial<AndroidDevice_DeviceSoftware_AppMetaDataEntry>, I>>(
-      object: I,
+    fromPartial(
+      object: DeepPartial<AndroidDevice_DeviceSoftware_AppMetaDataEntry>,
     ): AndroidDevice_DeviceSoftware_AppMetaDataEntry {
       const message = createBaseAndroidDevice_DeviceSoftware_AppMetaDataEntry();
       message.key = object.key ?? "";
@@ -10988,10 +10956,6 @@ export type DeepPartial<T> = T extends Builtin ? T
   : T extends {} ? { [K in keyof T]?: DeepPartial<T[K]> }
   : Partial<T>;
 
-type KeysOfUnion<T> = T extends T ? keyof T : never;
-export type Exact<P, I extends P> = P extends Builtin ? P
-  : P & { [K in keyof P]: Exact<P[K], I[K]> } & { [K in Exclude<keyof I, KeysOfUnion<P>>]: never };
-
 function longToNumber(int64: { toString(): string }): number {
   const num = globalThis.Number(int64.toString());
   if (num > globalThis.Number.MAX_SAFE_INTEGER) {
@@ -11016,6 +10980,6 @@ export interface MessageFns<T> {
   decode(input: BinaryReader | Uint8Array, length?: number): T;
   fromJSON(object: any): T;
   toJSON(message: T): unknown;
-  create<I extends Exact<DeepPartial<T>, I>>(base?: I): T;
-  fromPartial<I extends Exact<DeepPartial<T>, I>>(object: I): T;
+  create(base?: DeepPartial<T>): T;
+  fromPartial(object: DeepPartial<T>): T;
 }

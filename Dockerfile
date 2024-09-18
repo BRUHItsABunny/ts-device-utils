@@ -48,7 +48,7 @@ ENV PROTOC_CMD="protoc ${PROTO_INC} \
   --ts_proto_out=. ./*.proto \
   --ts_proto_opt=esModuleInterop=true \
   --ts_proto_opt=outputServices=nice-grpc,outputServices=generic-definitions \
-  --ts_proto_opt=useExactTypes=true \
+  --ts_proto_opt=useExactTypes=false \
   --ts_proto_opt=addGrpcMetadata=true \
   --ts_proto_opt=useOptionals=all"
 # Generate
