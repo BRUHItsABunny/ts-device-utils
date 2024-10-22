@@ -1,6 +1,6 @@
 {
   "name": "ts-device-utils",
-  "version": "1.0.2",
+  "version": "2.0.2",
   "description": "Device utilities for TypeScript, comes with data structures and helper functions",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
