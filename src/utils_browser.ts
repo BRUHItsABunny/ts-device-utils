@@ -65,7 +65,7 @@ export function getBrowserHeaders(browser: Browser, productOverride?: string, pl
     }
 
     if (typeof platform === "undefined") {
-        platform = "Windows"
+        platform = "\"Windows\""
     }
     if (typeof isMobile === "undefined") {
         isMobile = false
