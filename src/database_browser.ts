@@ -1,4 +1,8 @@
-import {Browser, Browser_TLSFingerprint_ProtocolVersion} from "./device_utils";
+import {
+    Browser,
+    Browser_TLSFingerprint_ProtocolVersion
+} from "./device_utils";
+import {getLatestChromium, generateBrandHeader} from "./utils_browser";
 
 const AvailableBrowsers: {[key: string]: {[key: string]: Browser}} = {
     "brave": {
@@ -110,4 +114,27 @@ export function randomBrowserVersionByName(name: string): Browser | undefined {
 export function randomBrowser(): Browser {
     const browserName = getRandomKey(AvailableBrowsers);
     return AvailableBrowsers[browserName][getRandomKey(AvailableBrowsers[browserName])];
+}
+
+
+
+export async function desktopChrome(index: number = 1): Promise<Browser> {
+    try {
+        // The reason to use 1 is to get the latest stable version
+        const chromiumVersion = await getLatestChromium(index);
+        const majorVersion = chromiumVersion.getMajorVersion();
+
+        const browser: Browser = {
+            version: chromiumVersion.version,
+            name: "chrome",
+            userAgent: `Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/${chromiumVersion.getUAVersion()} Safari/537.36`,
+            brandHeader: generateBrandHeader("Google Chrome", majorVersion),
+            tlsFingerprint: {}
+        };
+
+        return browser;
+    } catch (error) {
+        // fallback browser for whichever that gets chosen
+        return AvailableBrowsers["chrome"][getRandomKey(AvailableBrowsers["chrome"])];
+    }
 }
